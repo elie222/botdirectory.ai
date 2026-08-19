@@ -29,6 +29,7 @@
   "Zoom": "https://svgl.app/library/zoom.svg",
   "YouTube": "https://svgl.app/library/youtube.svg",
   "PostHog": "https://svgl.app/library/posthog.svg",
+  "Kobbe": { "site": "https://kobbe.io" },
   "Datadog": "https://svgl.app/library/datadog.svg",
   "Reddit": "https://svgl.app/library/reddit.svg",
   "Outlook": "https://svgl.app/library/microsoft-outlook.svg",
