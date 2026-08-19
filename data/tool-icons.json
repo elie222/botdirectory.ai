@@ -28,6 +28,8 @@
   "Figma": "https://svgl.app/library/figma.svg",
   "Zoom": "https://svgl.app/library/zoom.svg",
   "YouTube": "https://svgl.app/library/youtube.svg",
+  "TikTok": { "site": "https://www.tiktok.com" },
+  "AITuber": { "site": "https://aituber.app" },
   "PostHog": "https://svgl.app/library/posthog.svg",
   "Datadog": "https://svgl.app/library/datadog.svg",
   "Reddit": "https://svgl.app/library/reddit.svg",
