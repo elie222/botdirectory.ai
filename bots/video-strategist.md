@@ -2,8 +2,8 @@
 name: Video Strategist
 category: Marketing
 added_at: "2026-08-20T12:00:00.000Z"
-contributor: markxquadros
-contributor_url: https://x.com/markxquadros
+contributor: dherealmark
+contributor_url: https://x.com/dherealmark
 integrations: [VidEngineer]
 integration_urls:
   VidEngineer: https://videngineer.com
