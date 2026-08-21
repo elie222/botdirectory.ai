@@ -40,6 +40,9 @@ Full contract, category list, and quality bar: [CONTRIBUTING.md](CONTRIBUTING.md
 
 ## Public API
 
+Reads and writes both live on `https://api.botdirectory.ai`. Full contract:
+[botdirectory.ai/api/](https://botdirectory.ai/api/).
+
 `GET https://api.botdirectory.ai/api/bots` returns listings as paginated JSON.
 It accepts `q`, `category`, `integration`, `page`, `limit` (maximum 100), and
 `sort` (`newest` or `name`). For append-safe synchronization, begin with
@@ -52,6 +55,16 @@ https://api.botdirectory.ai/api/bots?cursor=start&limit=100
 
 For mirroring the whole directory in one request, use the canonical raw feed
 at `https://botdirectory.ai/api/bots.json`.
+
+Writes need an account. `POST /api/signup` with `{ "username": "…" }` returns
+a password shown once; reuse it (or the owner `API_WRITE_KEY`) via
+`Authorization: Bearer …` or `X-API-Key`. Then:
+
+- `GET /api/me` — which account the credential is
+- `POST /api/bots` — validates the contribution contract and opens a PR adding
+  `bots/<slug>.md` (never pushes `main`)
+- `POST /api/feedback` — leave feedback on a listing
+- `GET /api/feedback` — owner key only; list recent feedback
 
 ## Local dev
 
