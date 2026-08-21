@@ -10,7 +10,19 @@
   { "name": "Castos", "initial": "C", "family": "purple", "tagline": "The easiest way to start and grow your podcast — publish in minutes, distribute everywhere.", "cta": "Start a podcast →", "url": "https://castos.com", "logo": "/images/sponsors/castos.png" },
   { "name": "Monocards", "initial": "M", "family": "purple", "tagline": "Turn your agent into an on-brand visual designer.", "cta": "Design on-brand cards →", "url": "https://monocards.app", "logo": "/images/sponsors/monocards.png" },
   { "name": "maxfusion.ai", "initial": "M", "family": "orange", "tagline": "The AI ad creative platform for agents.", "cta": "Create your AI ad →", "url": "https://maxfusion.ai", "logo": "/images/sponsors/maxfusion.png" },
-  { "name": "CodeRabbit", "initial": "C", "family": "orange", "tagline": "Try CodeRabbit for Free", "cta": "Start reviewing →", "url": "https://coderabbit.link/bot-directory-ai-001", "logo": "/images/sponsors/coderabbit.png" },
+  {
+    "name": "CodeRabbit",
+    "initial": "C",
+    "family": "orange",
+    "tagline": "AI writes the code. CodeRabbit catches the slop.",
+    "cta": "Start reviewing →",
+    "url": "https://coderabbit.link/bot-directory-ai-001",
+    "logo": "/images/sponsors/coderabbit.png",
+    "ab": [
+      { "id": "slop", "tagline": "AI writes the code. CodeRabbit catches the slop." },
+      { "id": "reviews", "tagline": "Your agent writes the code. CodeRabbit reviews it." }
+    ]
+  },
   { "name": "TranscriptAPI", "initial": "T", "family": "indigo", "tagline": "Reliable YouTube transcripts, search and channel data through one API.", "cta": "Get API access →", "url": "https://www.transcriptapi.io", "logo": "/images/sponsors/transcriptapi.png" },
   { "name": "CRHQ.AI", "initial": "C", "family": "purple", "tagline": "Deploy autonomous AI agent teams on dedicated servers in 90 seconds.", "cta": "Deploy your AI team →", "url": "https://crhq.ai", "logo": "/images/sponsors/crhq.svg" }
 ]

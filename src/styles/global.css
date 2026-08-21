@@ -810,6 +810,14 @@ code, .iz-code {
 .edge-card-right { border-radius: var(--r-card, 20px); }
 .edge-card-left:hover,
 .edge-card-right:hover { transform: translateY(-2px); box-shadow: var(--iz-shadow-lg); }
+/* Flip faces keep their rotateY; a hover translate would flatten the 3D. */
+.edge-flip .edge-card-left:hover,
+.edge-flip .edge-card-right:hover { box-shadow: var(--iz-shadow-lg); }
+.edge-flip .edge-card.edge-flip-front:hover { transform: rotateY(0deg); }
+.edge-flip .edge-card.edge-flip-back:hover { transform: rotateY(180deg); }
+.edge-flip .sponsor-card:hover { box-shadow: var(--iz-shadow-lg); }
+.edge-flip .sponsor-card.edge-flip-front:hover { transform: rotateY(0deg); }
+.edge-flip .sponsor-card.edge-flip-back:hover { transform: rotateY(180deg); }
 /* Real sponsor logos: image replaces the colored initial tile. White chip
    behind keeps dark/transparent marks legible on tinted cards + dark mode. */
 .logo-img { object-fit: contain; background: #fff; border: 1px solid var(--iz-line); padding: 3px; }
@@ -848,6 +856,43 @@ code, .iz-code {
 .edge-card-slot:hover { background: var(--iz-surface); box-shadow: none; }
 .edge-card-slot .edge-name { color: var(--iz-ink); }
 .edge-slot-icon { color: var(--iz-muted-2); }
+
+/* Sit-out sponsors flip into a visible slot. High perspective keeps it flat. */
+.edge-flip {
+  width: 100%;
+  perspective: 1600px;
+  perspective-origin: 50% 50%;
+}
+.edge-flip-inner {
+  display: grid;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 720ms cubic-bezier(0.37, 0, 0.63, 1);
+}
+.edge-flip.is-flipped .edge-flip-inner { transform: rotateY(-180deg); }
+.edge-flip.is-flipping { pointer-events: none; }
+.edge-flip.is-flipping .edge-flip-inner { will-change: transform; }
+.edge-flip-face {
+  grid-area: 1 / 1;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.edge-card.edge-flip-face,
+.sponsor-card.edge-flip-face {
+  transition: box-shadow 180ms ease, background 180ms ease;
+}
+.edge-flip-front { transform: rotateY(0deg); }
+.edge-flip-back {
+  transform: rotateY(180deg);
+  pointer-events: none;
+}
+.edge-flip.is-flipped .edge-flip-back { pointer-events: auto; }
+.edge-flip.is-flipped .edge-flip-front { pointer-events: none; }
+.sponsor-wait-pool { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .edge-flip-inner { transition: none; }
+}
 
 /* Bot page attribution, inline with the badge row:
    "Based on this tweet by @author · scouted by @x" */

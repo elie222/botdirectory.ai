@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import PostHog from '../components/posthog.astro';
+import SponsorAb from '../components/SponsorAb.astro';
 import { SITE } from '../config';
 
 interface Props {
@@ -67,5 +68,6 @@ const jsonLd = structuredData
   </head>
   <body>
     <slot />
+    <SponsorAb />
   </body>
 </html>

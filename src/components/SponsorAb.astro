@@ -1,0 +1,63 @@
+<!-- Sticky 50/50 sponsor copy test. Runs after the cards are in the DOM so
+     every CodeRabbit instance (edge, rail, bot page, sponsor page) matches.
+     The chosen id is stored locally and appended as utm_content. -->
+<script is:inline>
+  (() => {
+    const nodes = document.querySelectorAll('[data-ab-taglines]');
+    if (!nodes.length) return;
+
+    const groups = new Map();
+    nodes.forEach((el) => {
+      const name = el.getAttribute('data-sponsor');
+      if (!name) return;
+      const list = groups.get(name) || [];
+      list.push(el);
+      groups.set(name, list);
+    });
+
+    groups.forEach((els, name) => {
+      let variants;
+      try {
+        variants = JSON.parse(els[0].getAttribute('data-ab-taglines') || '[]');
+      } catch {
+        return;
+      }
+      if (!Array.isArray(variants) || variants.length < 2) return;
+
+      const key = 'bd-ab-' + name;
+      let id = null;
+      try {
+        id = localStorage.getItem(key);
+      } catch (e) {}
+      if (!id || !variants.some((v) => v.id === id)) {
+        id = variants[Math.floor(Math.random() * variants.length)].id;
+        try {
+          localStorage.setItem(key, id);
+        } catch (e) {}
+      }
+      const variant = variants.find((v) => v.id === id) || variants[0];
+      const ph = window.posthog;
+
+      els.forEach((el) => {
+        const line = el.querySelector('[data-ab-line]');
+        if (line) line.textContent = variant.tagline;
+        try {
+          const u = new URL(el.href);
+          u.searchParams.set('utm_content', variant.id);
+          el.href = u.toString();
+        } catch (e) {}
+        el.setAttribute('data-ab-variant', variant.id);
+        el.addEventListener('click', () => {
+          if (ph && typeof ph.capture === 'function') {
+            ph.capture('sponsor_copy_clicked', { sponsor: name, variant: variant.id });
+          }
+        });
+      });
+
+      if (ph && typeof ph.capture === 'function') {
+        ph.capture('sponsor_copy_shown', { sponsor: name, variant: variant.id });
+        if (typeof ph.register === 'function') ph.register({ ['sponsor_copy_' + name]: variant.id });
+      }
+    });
+  })();
+</script>

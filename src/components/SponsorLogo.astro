@@ -15,7 +15,7 @@ const f = familyStyle(s.family);
 
 {
   s.logo ? (
-    <img class={`${cls} logo-img`} src={s.logo} alt={`${s.name} logo`} width="128" height="128" loading="lazy" />
+    <img class={`${cls} logo-img`} src={s.logo} alt={`${s.name} logo`} width="128" height="128" loading={cls.includes('edge-logo') ? 'eager' : 'lazy'} />
   ) : (
     <span class={cls} style={`color: ${f.fg}; background: ${f.bg}; border: 1px solid ${f.border};`}>
       {s.initial}

@@ -1,37 +1,231 @@
-<!-- Randomize sponsor order per page load so impressions split evenly.
-     Shows 10 cards total: the Advertise slot always included, the other 9
-     drawn at random from the sponsor pool (the rest sit out per load).
-     The narrower desktop rail draws half the pool independently.
-     Inline + right after render so the swap happens before paint. -->
+<!-- Shuffle sponsor order before paint so impressions split evenly, then
+     keep sit-outs in a pool and flip them into the 10 visible slots
+     (9 sponsors + Advertise) one rail at a time: all 5 on the left, then
+     as many as the right can take. Advertise never moves.
+     The narrower desktop rail uses its own pool. -->
 <script is:inline>
   (() => {
+    const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const STAGGER = 90;
+    const INTERVAL = 10000;
+    const FIRST = 5000;
+    const FLIP_MS = 720;
+
+    const shuffle = (arr) => {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    };
+
+    const setFace = (card, side) => {
+      card.classList.add('edge-flip-face');
+      card.classList.toggle('edge-flip-front', side === 'front');
+      card.classList.toggle('edge-flip-back', side === 'back');
+    };
+
+    const clearFace = (card) => {
+      card.classList.remove('edge-flip-face', 'edge-flip-front', 'edge-flip-back');
+      card.style.minHeight = '';
+    };
+
+    const wrap = (card) => {
+      const flip = document.createElement('div');
+      flip.className = 'edge-flip';
+      const inner = document.createElement('div');
+      inner.className = 'edge-flip-inner';
+      setFace(card, 'front');
+      inner.appendChild(card);
+      flip.appendChild(inner);
+      return flip;
+    };
+
+    const eager = (root) => {
+      root.querySelectorAll('img').forEach((img) => {
+        img.loading = 'eager';
+        if (typeof img.decode === 'function') img.decode().catch(() => {});
+      });
+    };
+
+    const makePool = () => {
+      const pool = document.createElement('div');
+      pool.className = 'sponsor-wait-pool';
+      pool.hidden = true;
+      pool.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(pool);
+      return pool;
+    };
+
+    const armedGroup = (group) => {
+      const col = group[0] && group[0].parentElement;
+      if (col && col.matches(':hover')) return true;
+      return group.some((s) => s.contains(document.activeElement));
+    };
+
+    const startRotation = (groups, pool) => {
+      const sides = groups.filter((g) => g.length);
+      if (!sides.length || !pool.childElementCount) return;
+      let side = 0;
+      let busy = false;
+
+      const flipTo = (slot, incoming, done) => {
+        const inner = slot.querySelector('.edge-flip-inner');
+        if (!inner) {
+          done();
+          return;
+        }
+        const flipped = slot.classList.contains('is-flipped');
+        const visible = inner.querySelector(flipped ? '.edge-flip-back' : '.edge-flip-front');
+        if (!visible || visible === incoming) {
+          done();
+          return;
+        }
+
+        eager(incoming);
+        setFace(incoming, flipped ? 'front' : 'back');
+        inner.appendChild(incoming);
+
+        const h = Math.max(visible.offsetHeight, incoming.offsetHeight);
+        visible.style.minHeight = h + 'px';
+        incoming.style.minHeight = h + 'px';
+        slot.style.minHeight = h + 'px';
+
+        const settle = () => {
+          clearFace(visible);
+          pool.appendChild(visible);
+          slot.classList.remove('is-flipping');
+          incoming.style.minHeight = '';
+          slot.style.minHeight = incoming.offsetHeight + 'px';
+          done();
+        };
+
+        if (REDUCE) {
+          slot.classList.toggle('is-flipped');
+          settle();
+          return;
+        }
+
+        slot.classList.add('is-flipping');
+        void inner.offsetWidth;
+        slot.classList.toggle('is-flipped');
+
+        let settled = false;
+        const finish = () => {
+          if (settled) return;
+          settled = true;
+          inner.removeEventListener('transitionend', onEnd);
+          settle();
+        };
+        const onEnd = (e) => {
+          if (e.target === inner && e.propertyName === 'transform') finish();
+        };
+        inner.addEventListener('transitionend', onEnd);
+        setTimeout(finish, FLIP_MS + 140);
+      };
+
+      const tick = () => {
+        if (busy || document.hidden) return;
+        const waiters = [...pool.children];
+        if (!waiters.length) return;
+
+        let picked = -1;
+        for (let i = 0; i < sides.length; i++) {
+          const gi = (side + i) % sides.length;
+          const group = sides[gi];
+          const visible = group.filter((s) => s.offsetParent);
+          if (!visible.length) continue;
+          if (armedGroup(group)) {
+            if (i === 0) return;
+            continue;
+          }
+          picked = gi;
+          break;
+        }
+        if (picked < 0) return;
+
+        const group = sides[picked].filter((s) => s.offsetParent);
+        side = (picked + 1) % sides.length;
+
+        const n = Math.min(waiters.length, group.length);
+        if (!n) return;
+        const chosen = [];
+        for (let i = 0; i < n; i++) {
+          chosen.push({ slot: group[i], incoming: waiters[i] });
+        }
+
+        busy = true;
+        let left = chosen.length;
+        chosen.forEach((item, i) => {
+          const run = () =>
+            flipTo(item.slot, item.incoming, () => {
+              left -= 1;
+              if (left === 0) busy = false;
+            });
+          if (REDUCE || i === 0) run();
+          else setTimeout(run, i * STAGGER);
+        });
+      };
+
+      const loop = () => {
+        tick();
+        setTimeout(loop, INTERVAL);
+      };
+      setTimeout(loop, FIRST);
+    };
+
     const cols = document.querySelectorAll('.iz-cols > .iz-edge');
-    if (cols.length !== 2) return;
-    const [left, right] = cols;
-    const cards = [...document.querySelectorAll('.iz-cols > .iz-edge .edge-card:not(.edge-card-slot)')];
-    for (let i = cards.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [cards[i], cards[j]] = [cards[j], cards[i]];
+    if (cols.length === 2) {
+      const [left, right] = cols;
+      const flips = shuffle([...left.querySelectorAll('.edge-flip'), ...right.querySelectorAll('.edge-flip')]);
+      const ad = right.querySelector('.edge-card-slot');
+      const keep = ad ? 9 : 10;
+      const shown = flips.slice(0, keep);
+      const hidden = flips.slice(keep);
+      const leftCount = Math.min(5, shown.length);
+
+      const pool = makePool();
+      hidden.forEach((flip) => {
+        const card = flip.querySelector('.edge-card');
+        if (card) {
+          eager(card);
+          clearFace(card);
+          pool.appendChild(card);
+        }
+        flip.remove();
+      });
+
+      shown.slice(0, leftCount).forEach((flip) => {
+        eager(flip);
+        left.appendChild(flip);
+      });
+      shown.slice(leftCount).forEach((flip) => {
+        eager(flip);
+        ad ? right.insertBefore(flip, ad) : right.appendChild(flip);
+      });
+
+      startRotation([shown.slice(0, leftCount), shown.slice(leftCount)], pool);
     }
-    const slot = right.querySelector('.edge-card-slot');
-    const keep = slot ? 9 : 10;
-    cards.slice(keep).forEach((c) => c.remove());
-    const shown = cards.slice(0, keep);
-    shown.slice(0, 5).forEach((c) => left.appendChild(c));
-    shown.slice(5).forEach((c) => (slot ? right.insertBefore(c, slot) : right.appendChild(c)));
 
     const rail = document.querySelector('.iz-rail-wrap.iz-only-narrow .iz-rail');
-    if (!rail) return;
-    const railCards = [...rail.querySelectorAll('.sponsor-card')];
-    for (let i = railCards.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [railCards[i], railCards[j]] = [railCards[j], railCards[i]];
+    if (rail) {
+      const cards = shuffle([...rail.querySelectorAll('.sponsor-card')]);
+      const railSlot = rail.querySelector('.slot-empty');
+      const railKeep = Math.ceil(cards.length / 2);
+      const shown = cards.slice(0, railKeep);
+      const hidden = cards.slice(railKeep);
+      const pool = makePool();
+      hidden.forEach((card) => {
+        eager(card);
+        pool.appendChild(card);
+      });
+      const flips = shown.map((card) => {
+        eager(card);
+        const flip = wrap(card);
+        railSlot ? rail.insertBefore(flip, railSlot) : rail.appendChild(flip);
+        return flip;
+      });
+      startRotation([flips], pool);
     }
-    const railSlot = rail.querySelector('.slot-empty');
-    const railKeep = Math.ceil(railCards.length / 2);
-    railCards.slice(railKeep).forEach((c) => c.remove());
-    railCards.slice(0, railKeep).forEach((c) =>
-      railSlot ? rail.insertBefore(c, railSlot) : rail.appendChild(c)
-    );
   })();
 </script>

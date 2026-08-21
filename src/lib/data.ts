@@ -4,6 +4,11 @@ import sponsorsJson from '../../data/sponsors.json';
 import promosJson from '../../data/promos.json';
 
 
+export interface SponsorCopyVariant {
+  id: string;
+  tagline: string;
+}
+
 export interface Sponsor {
   name: string;
   initial: string;
@@ -13,6 +18,16 @@ export interface Sponsor {
   url: string;
   /** Path under public/ to a real logo; falls back to the initial tile. */
   logo?: string;
+  /** Sticky per-visitor copy test. `tagline` is the no-JS fallback (variant A). */
+  ab?: SponsorCopyVariant[];
+}
+
+export function sponsorAbAttrs(s: Sponsor): Record<string, string> {
+  if (!s.ab?.length) return {};
+  return {
+    'data-sponsor': s.name,
+    'data-ab-taglines': JSON.stringify(s.ab),
+  };
 }
 
 export interface Promo {

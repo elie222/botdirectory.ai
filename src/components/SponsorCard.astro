@@ -1,6 +1,6 @@
 ---
 import SponsorLogo from './SponsorLogo.astro';
-import type { Sponsor } from '../lib/data';
+import { sponsorAbAttrs, type Sponsor } from '../lib/data';
 import { sponsorUrl, type SponsorPlacement } from '../lib/utm';
 
 interface Props {
@@ -11,11 +11,11 @@ interface Props {
 const { sponsor: s, placement = 'rail' } = Astro.props;
 ---
 
-<a href={sponsorUrl(s.url, placement)} class="sponsor-card">
+<a href={sponsorUrl(s.url, placement)} class="sponsor-card" {...sponsorAbAttrs(s)}>
   <div class="sponsor-head">
     <SponsorLogo sponsor={s} class="sponsor-logo" />
     <span class="sponsor-name">{s.name}</span>
   </div>
-  <p class="sponsor-tagline">{s.tagline}</p>
+  <p class="sponsor-tagline" data-ab-line>{s.tagline}</p>
   <span class="sponsor-cta">{s.cta}</span>
 </a>
