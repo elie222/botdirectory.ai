@@ -1,6 +1,7 @@
 ---
-name: Home Services Autopilot
+name: HireNimbus Repair Autopilot
 category: Personal
+added_at: "2026-08-18T06:26:29.000Z"
 contributor: HireNimbus
 contributor_url: https://hirenimbus.com
 integrations: [Photos, HireNimbus]
