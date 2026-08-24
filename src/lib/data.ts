@@ -46,6 +46,7 @@ export interface Bot {
   name: string;
   category: Category;
   addedAt: string;
+  updatedAt?: string;
   /** Whose setup/prompt this is. Absent for anonymous/deleted sources. */
   contributor?: string;
   /** Where the contributor handle links (X profile, blog…). Defaults to GitHub. */
@@ -116,6 +117,7 @@ export async function getBots(): Promise<Bot[]> {
     name: e.data.name,
     category: e.data.category,
     addedAt: e.data.added_at,
+    updatedAt: e.data.updated_at,
     contributor: e.data.contributor,
     contributorUrl: e.data.contributor_url,
     scoutedBy: e.data.scouted_by,

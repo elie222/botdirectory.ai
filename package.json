@@ -16,7 +16,6 @@
     "deploy:proxy": "wrangler deploy -c workers/t/wrangler.jsonc"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.4.1",
     "astro": "^5.13.2"
   },
   "devDependencies": {

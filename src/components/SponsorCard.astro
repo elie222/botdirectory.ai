@@ -16,6 +16,7 @@ const { sponsor: s, placement = 'rail' } = Astro.props;
   class="sponsor-card"
   data-sponsor={s.name}
   data-sponsor-placement={placement}
+  rel="sponsored"
   {...sponsorAbAttrs(s)}
 >
   <div class="sponsor-head">

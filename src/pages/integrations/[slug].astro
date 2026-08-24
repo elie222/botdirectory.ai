@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import HubBotGrid from '../../components/HubBotGrid.astro';
+import ToolIcon from '../../components/ToolIcon.astro';
+import { SITE } from '../../config';
+import { getBots, type Bot } from '../../lib/data';
+import { collectionStructuredData, integrationDescription, integrationSlug, listIntegrations } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const allBots = await getBots();
+  const integrations = listIntegrations(allBots);
+  const integrationHubs = integrations.map(({ name }) => name);
+  return integrations.map((integration) => ({
+    params: { slug: integration.slug },
+    props: {
+      integration: integration.name,
+      bots: allBots
+        .filter((bot) => bot.integrations.includes(integration.name))
+        .sort((a, b) => b.copies - a.copies || b.addedAt.localeCompare(a.addedAt)),
+      integrationHubs,
+    },
+  }));
+}
+
+interface Props {
+  integration: string;
+  bots: Bot[];
+  integrationHubs: string[];
+}
+
+const { integration, bots, integrationHubs } = Astro.props;
+const description = integrationDescription(integration, bots.length);
+const pageUrl = `${SITE.url}/integrations/${integrationSlug(integration)}/`;
+const categories = [...new Set(bots.map((bot) => bot.category))].sort();
+const companionTools = listIntegrations(bots, 1)
+  .filter(({ name }) => name !== integration)
+  .slice(0, 4);
+const title = `${integration} Grok Bot Prompts | ${SITE.wordmark}`;
+const structuredData = collectionStructuredData({
+  name: `${integration} Grok Bot prompts`,
+  url: pageUrl,
+  description,
+  bots,
+  breadcrumbs: [
+    { name: 'All bots', url: `${SITE.url}/` },
+    { name: 'Integrations', url: `${SITE.url}/integrations/` },
+    { name: integration, url: pageUrl },
+  ],
+});
+---
+
+<Base title={title} description={description} structuredData={structuredData}>
+  <Header />
+  <main class="hub-page">
+    <div class="breadcrumb"><a href="/">All bots</a><span>/</span><a href="/integrations/">Integrations</a><span>/</span><span>{integration}</span></div>
+    <div class="hub-tool-title"><ToolIcon name={integration} size={34} /><h1 class="hub-title">{integration} Grok Bot prompts</h1></div>
+    <p class="hub-lead">{description} These workflows span {categories.join(', ')}{companionTools.length > 0 && <> and commonly pair {integration} with {companionTools.map(({ name }) => name).join(', ')}.</>}</p>
+    <HubBotGrid bots={bots} integrationHubs={integrationHubs} />
+  </main>
+  <Footer />
+</Base>

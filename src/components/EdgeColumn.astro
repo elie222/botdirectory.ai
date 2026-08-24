@@ -29,6 +29,7 @@ const cardClass = side === 'left' ? 'edge-card-left' : 'edge-card-right';
             style={edgeCardStyle(s)}
             data-sponsor={s.name}
             data-sponsor-placement="edge"
+            rel="sponsored"
             {...sponsorAbAttrs(s)}
           >
             <SponsorLogo sponsor={s} class="edge-logo" />

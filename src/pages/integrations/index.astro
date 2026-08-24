@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import ToolIcon from '../../components/ToolIcon.astro';
+import { SITE } from '../../config';
+import { getBots } from '../../lib/data';
+import { listIntegrations } from '../../lib/seo';
+
+const bots = await getBots();
+const integrations = listIntegrations(bots);
+const title = `Grok Bot Prompts by Integration | ${SITE.wordmark}`;
+const description = 'Find ready-to-copy Grok Bot prompts for Gmail, Slack, GitHub, Notion, Google Calendar, and other popular tools.';
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Grok Bot prompts by integration',
+  url: `${SITE.url}/integrations/`,
+  description,
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: integrations.length,
+    itemListElement: integrations.map((integration, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: integration.name,
+      url: `${SITE.url}/integrations/${integration.slug}/`,
+    })),
+  },
+};
+---
+
+<Base title={title} description={description} structuredData={structuredData}>
+  <Header />
+  <main class="hub-page">
+    <div class="breadcrumb"><a href="/">All bots</a><span>/</span><span>Integrations</span></div>
+    <p class="iz-eyebrow">Browse by tool</p>
+    <h1 class="hub-title">Grok Bot prompts by integration</h1>
+    <p class="hub-lead">Choose a tool you already use to find bots that can work with it. Integration pages are published once there are enough distinct prompts to compare.</p>
+
+    <div class="integration-index-grid">
+      {integrations.map((integration) => (
+        <a href={`/integrations/${integration.slug}/`} class="integration-index-card">
+          <ToolIcon name={integration.name} size={24} />
+          <span><strong>{integration.name}</strong><small>{integration.count} prompts</small></span>
+          <span aria-hidden="true">→</span>
+        </a>
+      ))}
+    </div>
+  </main>
+  <Footer />
+</Base>

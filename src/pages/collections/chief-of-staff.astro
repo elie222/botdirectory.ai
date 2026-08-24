@@ -1,0 +1,70 @@
+---
+import Base from '../../layouts/Base.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import HubBotGrid from '../../components/HubBotGrid.astro';
+import { SITE } from '../../config';
+import { getBots } from '../../lib/data';
+import { collectionStructuredData, listIntegrations } from '../../lib/seo';
+
+const choices = [
+  { slug: 'bot-team-chief-of-staff', bestFor: 'Reviewing and reorganizing an existing team of specialist bots', cadence: 'On demand plus a regular team review' },
+  { slug: 'chief-of-staff', bestFor: 'Routing incoming work and tracking decisions across Slack, Notion, and Linear', cadence: 'Always on with a daily check-in' },
+  { slug: 'chief-of-staff-front-door', bestFor: 'Giving one plain-language entry point to a team of agents', cadence: 'On demand' },
+  { slug: 'chief-of-staff-briefing', bestFor: 'Combining messages, meetings, and open work into a morning briefing', cadence: 'Daily at 5am' },
+  { slug: 'gtm-chief-of-staff', bestFor: 'Enterprise sales preparation, follow-up, and bot orchestration', cadence: 'Ongoing plus periodic reviews' },
+  { slug: 'bot-chief-of-staff', bestFor: 'Classifying new tasks and routing each one to a specialized bot', cadence: 'On demand' },
+];
+const allBots = await getBots();
+const botsBySlug = new Map(allBots.map((bot) => [bot.slug, bot]));
+const bots = choices.map(({ slug }) => botsBySlug.get(slug)).filter((bot) => bot !== undefined);
+const integrationHubs = listIntegrations(allBots).map(({ name }) => name);
+const title = `Chief of Staff Grok Bot Prompts | ${SITE.wordmark}`;
+const description = 'Compare ready-to-copy chief of staff Grok Bot prompts for daily briefings, task routing, agent teams, operations, and sales.';
+const pageUrl = `${SITE.url}/collections/chief-of-staff/`;
+const structuredData = collectionStructuredData({
+  name: 'Chief of Staff Grok Bot prompts',
+  url: pageUrl,
+  description,
+  bots,
+  breadcrumbs: [
+    { name: 'All bots', url: `${SITE.url}/` },
+    { name: 'Chief of Staff prompts', url: pageUrl },
+  ],
+});
+---
+
+<Base title={title} description={description} structuredData={structuredData}>
+  <Header />
+  <main class="hub-page">
+    <div class="breadcrumb"><a href="/">All bots</a><span>/</span><span>Chief of Staff prompts</span></div>
+    <p class="iz-eyebrow">Curated playbook</p>
+    <h1 class="hub-title">Chief of Staff Grok Bot prompts</h1>
+    <p class="hub-lead">A chief of staff bot can mean a daily briefing, a front door for incoming work, or an orchestrator for a whole agent team. Compare the prompts below by job, tools, and cadence before choosing one to copy.</p>
+
+    <section class="hub-guide" aria-labelledby="choose-heading">
+      <h2 id="choose-heading">Choose the right setup</h2>
+      <div class="hub-compare-wrap">
+        <table class="hub-compare-table">
+          <thead><tr><th>Prompt</th><th>Best for</th><th>Cadence</th></tr></thead>
+          <tbody>
+            {choices.map((choice) => {
+              const bot = botsBySlug.get(choice.slug);
+              return bot && (
+                <tr>
+                  <td><a href={`/bots/${bot.slug}/`}>{bot.name}</a></td>
+                  <td>{choice.bestFor}</td>
+                  <td>{choice.cadence}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p>Start with the narrowest job that would be useful every week. Keep approvals on for messages, calendar changes, CRM updates, spending, and any other consequential action until the workflow has earned your trust.</p>
+    </section>
+
+    <HubBotGrid bots={bots} integrationHubs={integrationHubs} />
+  </main>
+  <Footer />
+</Base>

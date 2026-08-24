@@ -25,6 +25,7 @@ const schema = z
     name: z.string().min(1),
     category: z.enum(CATEGORIES),
     added_at: z.string().datetime(),
+    updated_at: z.string().datetime().optional(),
     contributor: z.string().min(1).optional(),
     contributor_url: z.string().url().optional(),
     scouted_by: z.string().min(1).optional(),
@@ -35,6 +36,13 @@ const schema = z
   })
   .strict()
   .superRefine((bot, ctx) => {
+    if (bot.updated_at && bot.updated_at < bot.added_at) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['updated_at'],
+        message: 'Must be on or after added_at',
+      });
+    }
     for (const name of Object.keys(bot.integration_urls ?? {})) {
       if (!bot.integrations.includes(name)) {
         ctx.addIssue({

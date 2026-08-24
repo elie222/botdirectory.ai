@@ -1,7 +1,8 @@
-// Home-page interactivity: filter / sort / search / view toggle over the
-// statically rendered rows. Rows are never re-created — they are shown,
-// hidden and reordered in place, so the full list stays in the HTML.
+// Home-page interactivity over one statically rendered directory. Card mode
+// restyles the same links instead of shipping a duplicate tree for every bot.
 import { loadCopyCounts, refreshCopyLabels } from './copies';
+import type { Bot } from '../lib/data';
+import { promptExcerpt } from '../lib/text';
 
 interface BrowseState {
   category: string;
@@ -9,6 +10,38 @@ interface BrowseState {
   query: string;
   sort: 'copies' | 'newest' | 'name';
   view: 'table' | 'cards';
+}
+
+type BotFeedItem = Pick<Bot, 'slug' | 'name' | 'category' | 'integrations' | 'prompt'> & {
+  contributor: string | null;
+};
+
+const searchIndex = new Map<string, string>();
+let detailsPromise: Promise<void> | undefined;
+let detailsReady = false;
+let detailsRefreshQueued = false;
+
+function loadBotDetails(): Promise<void> {
+  detailsPromise ??= fetch('/api/bots.json', { headers: { Accept: 'application/json' } })
+    .then(async (response) => {
+      if (!response.ok) throw new Error(`bot feed returned ${response.status}`);
+      const payload = (await response.json()) as { bots?: BotFeedItem[] };
+      for (const bot of payload.bots ?? []) {
+        searchIndex.set(
+          bot.slug,
+          [bot.name, bot.category, ...bot.integrations, bot.contributor, bot.prompt].filter(Boolean).join(' ').toLowerCase(),
+        );
+        const summary = document.querySelector<HTMLElement>(`[data-prompt-slug="${CSS.escape(bot.slug)}"]`);
+        if (summary) summary.textContent = promptExcerpt(bot.prompt);
+      }
+    })
+    .catch(() => {
+      // The server-rendered name, category, tool, and contributor search still works.
+    })
+    .finally(() => {
+      detailsReady = true;
+    });
+  return detailsPromise;
 }
 
 function init(): void {
@@ -19,11 +52,12 @@ function init(): void {
   const sort = document.getElementById('bot-sort') as HTMLInputElement | null;
   const btnTable = document.getElementById('view-table-btn');
   const btnCards = document.getElementById('view-cards-btn');
-  const tableView = document.getElementById('table-view');
-  const cardsView = document.getElementById('cards-view');
+  const directoryView = document.getElementById('directory-view');
   const empty = document.getElementById('empty-state');
   // `sort` is optional: the select is hidden pre-launch while copy counts are hidden.
-  if (!search || !category || !integration || !btnTable || !btnCards || !tableView || !cardsView || !empty) return;
+  if (!search || !category || !integration || !btnTable || !btnCards || !directoryView || !empty) return;
+  const directory = directoryView;
+  const emptyState = empty;
 
   const state: BrowseState = {
     category: new URLSearchParams(location.search).get('category') || 'All',
@@ -51,10 +85,10 @@ function init(): void {
   const matches = (row: HTMLElement, q: string): boolean =>
     (state.category === 'All' || row.dataset.category === state.category) &&
     (state.integration === 'all' || (row.dataset.integrations || '').split('|').includes(state.integration)) &&
-    (!q || (row.dataset.search || '').includes(q));
+    (!q || (searchIndex.get(row.dataset.slug || '') || row.dataset.search || '').includes(q));
 
-  function applyTo(container: HTMLElement): number {
-    const rows = Array.from(container.querySelectorAll<HTMLElement>('[data-slug], [data-promo]'));
+  function applyDirectory(): void {
+    const rows = Array.from(directory.querySelectorAll<HTMLElement>('[data-slug], [data-promo]'));
     const botRows = rows.filter((r) => !r.hasAttribute('data-promo'));
     const promoRows = rows.filter((r) => r.hasAttribute('data-promo'));
     const q = state.query.trim().toLowerCase();
@@ -80,28 +114,32 @@ function init(): void {
     for (const r of ordered) r.hidden = false;
     for (const r of hiddenRows) r.hidden = true;
     // Reorder in place (the table header stays first: only rows move).
-    for (const r of [...ordered, ...hiddenRows]) container.appendChild(r);
-
-    return visible.length + promoRows.length;
+    for (const r of [...ordered, ...hiddenRows]) directory.appendChild(r);
   }
 
   function apply(): void {
-    applyTo(tableView!);
-    applyTo(cardsView!);
-    const anyVisible = tableView!.querySelectorAll('[data-slug]:not([hidden])').length > 0;
-    empty!.hidden = anyVisible;
+    applyDirectory();
+    const anyVisible = directory.querySelectorAll('[data-slug]:not([hidden])').length > 0;
+    emptyState.hidden = anyVisible;
   }
 
   function syncView(): void {
-    tableView!.hidden = state.view !== 'table';
-    cardsView!.hidden = state.view !== 'cards';
+    directory.dataset.view = state.view;
     btnTable!.classList.toggle('active', state.view === 'table');
     btnCards!.classList.toggle('active', state.view === 'cards');
+    if (state.view === 'cards') void loadBotDetails();
   }
 
   search.addEventListener('input', () => {
     state.query = search.value;
     apply();
+    if (state.query.trim() && !detailsReady && !detailsRefreshQueued) {
+      detailsRefreshQueued = true;
+      void loadBotDetails().then(() => {
+        detailsRefreshQueued = false;
+        if (state.query.trim()) apply();
+      });
+    }
   });
   category.addEventListener('change', () => {
     state.category = category.value || 'All';

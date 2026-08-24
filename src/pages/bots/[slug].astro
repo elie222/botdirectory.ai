@@ -7,29 +7,30 @@ import ToolIcon from '../../components/ToolIcon.astro';
 import { CONNECT_SPONSOR, FEATURES, SITE } from '../../config';
 import { catStyle, fmt } from '../../lib/constants';
 import { getBots, SPONSORS, type Bot } from '../../lib/data';
+import { botDescription, botLastModified, categorySlug, integrationSlug, listIntegrations, relatedBots } from '../../lib/seo';
 import { sponsorUrl } from '../../lib/utm';
 
 export async function getStaticPaths() {
   const bots = await getBots();
-  return bots.map((bot) => ({ params: { slug: bot.slug }, props: { bot, bots } }));
+  const integrationHubNames = listIntegrations(bots).map(({ name }) => name);
+  return bots.map((bot) => ({ params: { slug: bot.slug }, props: { bot, bots, integrationHubNames } }));
 }
 
 interface Props {
   bot: Bot;
   bots: Bot[];
+  integrationHubNames: string[];
 }
 
-const { bot, bots } = Astro.props;
+const { bot, bots, integrationHubNames } = Astro.props;
 const cat = catStyle(bot.category);
-
-const sameCategory = bots.filter((x) => x.slug !== bot.slug && x.category === bot.category).slice(0, 3);
-const related = sameCategory.length ? sameCategory : bots.filter((x) => x.slug !== bot.slug).slice(0, 3);
-const relatedTitle = sameCategory.length ? `More ${bot.category.toLowerCase()} bots` : 'Other bots';
-
-// Same title/description the design's syncHead() produced.
-const title = `${bot.name} — a Grok Bot prompt you can copy | ${SITE.wordmark}`;
-const description = `Copy the ${bot.name} prompt to set up a bot on ${bot.integrations.join(', ')}. Paste it into Grok Bot or Rakazo and it walks you through the setup.`;
+const integrationHubs = new Set(integrationHubNames);
+const related = relatedBots(bot, bots);
+const title = `${bot.name} Grok Bot Prompt`;
+const description = botDescription(bot);
 const pageUrl = `${SITE.url}/bots/${bot.slug}/`;
+const categoryUrl = `${SITE.url}/categories/${categorySlug(bot.category)}/`;
+const isChiefOfStaff = bot.slug.includes('chief-of-staff');
 const structuredData = [
   {
     '@context': 'https://schema.org',
@@ -40,6 +41,8 @@ const structuredData = [
     genre: bot.category,
     keywords: [bot.category, ...bot.integrations, 'AI bot prompt', 'Grok Bot prompt'],
     isAccessibleForFree: true,
+    datePublished: bot.addedAt,
+    dateModified: botLastModified(bot),
     isPartOf: { '@type': 'WebSite', name: SITE.wordmark, url: SITE.url },
     ...(bot.contributor && {
       creator: {
@@ -54,7 +57,7 @@ const structuredData = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'All bots', item: `${SITE.url}/` },
-      { '@type': 'ListItem', position: 2, name: bot.category, item: `${SITE.url}/?category=${encodeURIComponent(bot.category)}` },
+      { '@type': 'ListItem', position: 2, name: bot.category, item: categoryUrl },
       { '@type': 'ListItem', position: 3, name: bot.name, item: pageUrl },
     ],
   },
@@ -68,10 +71,11 @@ const structuredData = [
     <div class="breadcrumb">
       <a href="/">All bots</a>
       <span>/</span>
-      <a href={`/?category=${encodeURIComponent(bot.category)}`}>{bot.category}</a>
+      <a href={`/categories/${categorySlug(bot.category)}/`}>{bot.category}</a>
     </div>
 
     <h1 class="bot-title">{bot.name}</h1>
+    <p class="bot-lead">Copy this complete Grok Bot prompt to create a {bot.category.toLowerCase()} workflow using {bot.integrations.join(', ')}. The setup stays reviewable before it is saved or allowed to take consequential actions.</p>
 
     <div class="badge-row">
       <span class="badge-cat" style={`color: ${cat.catFg}; background: ${cat.catBg}; border-color: ${cat.catBorder};`}>{bot.category}</span>
@@ -127,7 +131,11 @@ const structuredData = [
       <div class="connect-chips">
         {
           bot.integrations.map((t) => (
-            <span class="connect-chip"><ToolIcon name={t} size={18} />{t}</span>
+            integrationHubs.has(t) ? (
+              <a href={`/integrations/${integrationSlug(t)}/`} class="connect-chip"><ToolIcon name={t} size={18} />{t}</a>
+            ) : (
+              <span class="connect-chip"><ToolIcon name={t} size={18} />{t}</span>
+            )
           ))
         }
       </div>
@@ -139,6 +147,7 @@ const structuredData = [
             class="connect-sponsor"
             data-sponsor={CONNECT_SPONSOR.name}
             data-sponsor-placement="connect"
+            rel="sponsored"
           >
             <img src={CONNECT_SPONSOR.logo} alt={`${CONNECT_SPONSOR.name} logo`} width="128" height="128" class="connect-sponsor-logo" loading="lazy" />
             <span class="connect-sponsor-copy">
@@ -148,6 +157,16 @@ const structuredData = [
           </a>
         )
       }
+    </section>
+
+    <section class="setup-section">
+      <h2 class="section-title">How to use this prompt</h2>
+      <ol class="setup-steps">
+        <li><strong>Copy the full prompt.</strong> Keep the instructions together so the agent sees the workflow, tools, and guardrails.</li>
+        <li><strong>Paste it into your agent.</strong> Answer the setup questions and connect {bot.integrations.length === 1 ? 'the required tool' : 'the required tools'} when asked.</li>
+        <li><strong>Review the first run.</strong> Confirm the output and approval rules before saving it for on-demand or scheduled use.</li>
+      </ol>
+      {isChiefOfStaff && <p class="section-note"><a href="/collections/chief-of-staff/">Compare every Chief of Staff prompt</a> by job, cadence, and integrations.</p>}
     </section>
 
     <section class="cta-card">
@@ -181,7 +200,7 @@ const structuredData = [
     </section>
 
     <section class="related-section">
-      <h2 class="section-title">{relatedTitle}</h2>
+      <h2 class="section-title">Related bot prompts</h2>
       <div class="related-grid">
         {
           related.map((x) => (
@@ -197,6 +216,8 @@ const structuredData = [
         }
       </div>
     </section>
+
+    <p class="more-in-category">Browse all <a href={`/categories/${categorySlug(bot.category)}/`}>{bot.category.toLowerCase()} Grok Bot prompts</a>.</p>
 
     <section class="page-sponsors">
       <div class="page-sponsors-head">

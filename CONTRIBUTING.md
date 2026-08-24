@@ -17,6 +17,7 @@ non-alphanumerics replaced by `-` (e.g. `SEO Improver` → `seo-improver`).
 name: SEO Improver
 category: Marketing
 added_at: "2026-08-18T12:00:00.000Z"     # UTC time the listing is added
+updated_at: "2026-08-24T12:00:00.000Z"   # optional — set after a material update
 contributor: elie2222                    # optional — whose setup this is
 contributor_url: https://x.com/elie2222  # optional — where the handle links (default: GitHub)
 scouted_by: someoneelse                # optional — X handle of whoever found/submitted it
@@ -32,6 +33,8 @@ added_via: https://x.com/.../status/…  # optional — set by the X mention bot
 
 - **name** — what the bot is called on the shelf.
 - **added_at** — the UTC time the listing is added, as an ISO 8601 timestamp.
+- **updated_at** — optional ISO 8601 timestamp for a material prompt or listing
+  update. This becomes the page's sitemap and structured-data modification date.
 - **category** — one of: `Productivity`, `Sales`, `Marketing`, `Ops`, `Success`,
   `Personal`. Pick the closest fit — this list is deliberately short and curated.
 - **contributor** — whose setup/prompt this is (optional; omit for anonymous

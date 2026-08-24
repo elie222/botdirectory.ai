@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE } from '../../config';
+import { CATEGORIES, catStyle } from '../../lib/constants';
+import { getBots } from '../../lib/data';
+import { CATEGORY_PAGE_COPY, categorySlug } from '../../lib/seo';
+
+const bots = await getBots();
+const categories = CATEGORIES.map((category) => ({
+  category,
+  count: bots.filter((bot) => bot.category === category).length,
+  copy: CATEGORY_PAGE_COPY[category],
+  style: catStyle(category),
+}));
+const title = `Grok Bot Prompt Categories | ${SITE.wordmark}`;
+const description = 'Browse Grok Bot prompts by category, including productivity, marketing, sales, operations, customer success, and personal workflows.';
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Grok Bot prompt categories',
+  url: `${SITE.url}/categories/`,
+  description,
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: categories.length,
+    itemListElement: categories.map(({ category }, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: category,
+      url: `${SITE.url}/categories/${categorySlug(category)}/`,
+    })),
+  },
+};
+---
+
+<Base title={title} description={description} structuredData={structuredData}>
+  <Header />
+  <main class="hub-page">
+    <div class="breadcrumb"><a href="/">All bots</a><span>/</span><span>Categories</span></div>
+    <p class="iz-eyebrow">Browse by category</p>
+    <h1 class="hub-title">Grok Bot prompt categories</h1>
+    <p class="hub-lead">Start with the kind of work you want to hand off. Every category contains complete prompts you can copy, adapt, and run with your preferred agent.</p>
+
+    <div class="hub-index-grid">
+      {categories.map(({ category, count, copy, style }) => (
+        <a href={`/categories/${categorySlug(category)}/`} class="hub-index-card">
+          <span class="cat-pill" style={`color: ${style.catFg}; background: ${style.catBg}; border-color: ${style.catBorder};`}>{category}</span>
+          <strong>{copy.title}</strong>
+          <span>{copy.intro}</span>
+          <small>{count} prompts →</small>
+        </a>
+      ))}
+    </div>
+  </main>
+  <Footer />
+</Base>

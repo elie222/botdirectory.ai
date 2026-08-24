@@ -13,12 +13,15 @@ import Select from '../components/Select.astro';
 import { FEATURES, SITE, SPONSORING } from '../config';
 import { CATEGORIES, catStyle, fmt } from '../lib/constants';
 import { getBots, SPONSORS, PROMOS, type Bot, type Promo } from '../lib/data';
+import { categorySlug, listIntegrations, MIN_INTEGRATION_HUB_BOTS } from '../lib/seo';
 import { sponsorUrl } from '../lib/utm';
 
 const bots = [...(await getBots())].sort(
   (a, b) => b.copies - a.copies || a.name.localeCompare(b.name),
 );
-const allTools = [...new Set(bots.flatMap((b) => b.integrations))].sort();
+const integrations = listIntegrations(bots, 1);
+const allTools = integrations.map(({ name }) => name).sort();
+const topIntegrationHubs = integrations.filter(({ count }) => count >= MIN_INTEGRATION_HUB_BOTS).slice(0, 8);
 
 const mode = SPONSORING.mode;
 const hasRail = mode === 'rail' || mode === 'both';
@@ -40,7 +43,7 @@ if (mode === 'inline') {
   for (const p of PROMOS) rows.splice(Math.min(p.at, rows.length), 0, { promo: p });
 }
 
-const searchText = (b: Bot) => (b.name + ' ' + b.prompt + ' ' + b.integrations.join(' ')).toLowerCase();
+const searchText = (b: Bot) => [b.name, b.category, ...b.integrations, b.contributor].filter(Boolean).join(' ').toLowerCase();
 
 const title = `Grok Bot Prompts & AI Bot Directory | ${SITE.wordmark}`;
 const description =
@@ -99,6 +102,16 @@ const structuredData = [
           </p>
           <h1 class="hero-title">The Grok Bot directory</h1>
           <p class="hero-sub">Bots that get stuff done. Set one up with a single prompt for work, business, or everyday life.</p>
+          <nav class="discovery-links" aria-label="Browse prompt collections">
+            <span>Explore:</span>
+            {CATEGORIES.map((category) => <a href={`/categories/${categorySlug(category)}/`}>{category}</a>)}
+            <a href="/integrations/">By integration</a>
+            <a href="/collections/chief-of-staff/">Chief of Staff prompts</a>
+          </nav>
+          <nav class="discovery-links discovery-links-tools" aria-label="Popular integrations">
+            <span>Popular tools:</span>
+            {topIntegrationHubs.map((integration) => <a href={`/integrations/${integration.slug}/`}>{integration.name}</a>)}
+          </nav>
         </section>
 
         <section id="browse" class="browse" style={`max-width: ${browseMax};`}>
@@ -134,73 +147,7 @@ const structuredData = [
                 </div>
               </div>
 
-              <div id="cards-view" class="cards-grid" hidden>
-                {
-                  rows.map((row) =>
-                    row.bot ? (
-                      <a
-                        href={`/bots/${row.bot.slug}/`}
-                        class="bot-card"
-                        data-slug={row.bot.slug}
-                        data-name={row.bot.name}
-                        data-category={row.bot.category}
-                        data-copies={row.bot.copies}
-                        data-added-at={row.bot.addedAt}
-                        data-integrations={row.bot.integrations.join('|')}
-                        data-search={searchText(row.bot)}
-                      >
-                        <div class="bot-card-head">
-                          <h3 class="bot-card-title">{row.bot.name}</h3>
-                        </div>
-                        <div class="card-prompt">{row.bot.prompt}</div>
-                        <div class="chip-row">
-                          {row.bot.integrations.map((t) => (
-                            <span class="tool-chip"><ToolIcon name={t} size={14} />{t}</span>
-                          ))}
-                        </div>
-                        <div class="bot-card-meta">
-                          {FEATURES.showCopies && (
-                            <>
-                              <span class="meta-copies" data-copies-slug={row.bot.slug} data-copies-seed={row.bot.copies}>{fmt(row.bot.copies)} copies</span>
-                              <span>·</span>
-                            </>
-                          )}
-                          {row.bot.contributor && <span class="meta-contrib">@{row.bot.contributor}</span>}
-                        </div>
-                      </a>
-                    ) : (
-                      <a
-                        href={sponsorUrl(row.promo.href, 'promo')}
-                        class="bot-card"
-                        data-promo
-                        data-sponsor={row.promo.name}
-                        data-sponsor-placement="promo"
-                        data-at={row.promo.at}
-                        style={`background: var(--iz-${row.promo.family}-50); border-color: var(--iz-${row.promo.family}-150, var(--iz-${row.promo.family}-200));`}
-                      >
-                        <div class="bot-card-head">
-                          <h3 class="bot-card-title">{row.promo.name}</h3>
-                          <span class="promo-tag">Promoted</span>
-                        </div>
-                        <p class="promo-note">{row.promo.note}</p>
-                        <div class="card-prompt">{row.promo.note}</div>
-                        <div class="chip-row">
-                          {row.promo.integrations.map((t) => (
-                            <span class="tool-chip"><ToolIcon name={t} size={14} />{t}</span>
-                          ))}
-                        </div>
-                        <div class="bot-card-meta">
-                          <span class="meta-copies">Sponsored</span>
-                          <span>·</span>
-                          <span class="meta-contrib">@{row.promo.contributor}</span>
-                        </div>
-                      </a>
-                    )
-                  )
-                }
-              </div>
-
-              <div id="table-view" class="bot-table">
+              <div id="directory-view" class="bot-table directory-view" data-view="table">
                 <div class="bot-table-head">
                   <span>Bot</span><span>Category</span><span>Integrations</span>{FEATURES.showCopies && <span>Copies</span>}<span>Source</span>
                 </div>
@@ -222,6 +169,7 @@ const structuredData = [
                           <span class="bot-row-nameline">
                             <span class="bot-row-name">{row.bot.name}</span>
                           </span>
+                          <span class="directory-card-summary" data-prompt-slug={row.bot.slug}>View the full prompt and setup instructions.</span>
                         </span>
                         <span
                           class="cat-pill"

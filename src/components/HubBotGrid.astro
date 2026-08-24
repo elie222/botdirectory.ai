@@ -1,0 +1,50 @@
+---
+import ToolIcon from './ToolIcon.astro';
+import { catStyle } from '../lib/constants';
+import type { Bot } from '../lib/data';
+import { categorySlug, integrationSlug } from '../lib/seo';
+import { promptExcerpt } from '../lib/text';
+
+interface Props {
+  bots: Bot[];
+  integrationHubs?: string[];
+}
+
+const { bots, integrationHubs = [] } = Astro.props;
+const linkedIntegrations = new Set(integrationHubs);
+---
+
+<div class="hub-bot-grid">
+  {
+    bots.map((bot) => {
+      const cat = catStyle(bot.category);
+      return (
+        <article class="hub-bot-card">
+          <div class="hub-bot-head">
+            <h2><a href={`/bots/${bot.slug}/`}>{bot.name}</a></h2>
+            <a
+              href={`/categories/${categorySlug(bot.category)}/`}
+              class="cat-pill"
+              style={`color: ${cat.catFg}; background: ${cat.catBg}; border-color: ${cat.catBorder};`}
+            >
+              {bot.category}
+            </a>
+          </div>
+          <p>{promptExcerpt(bot.prompt)}</p>
+          <div class="hub-tool-list" aria-label="Integrations">
+            {bot.integrations.map((integration) =>
+              linkedIntegrations.has(integration) ? (
+                <a href={`/integrations/${integrationSlug(integration)}/`} class="tool-chip">
+                  <ToolIcon name={integration} size={14} />{integration}
+                </a>
+              ) : (
+                <span class="tool-chip"><ToolIcon name={integration} size={14} />{integration}</span>
+              )
+            )}
+          </div>
+          <a href={`/bots/${bot.slug}/`} class="hub-bot-cta">View and copy prompt →</a>
+        </article>
+      );
+    })
+  }
+</div>

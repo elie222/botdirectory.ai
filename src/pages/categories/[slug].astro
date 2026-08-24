@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import HubBotGrid from '../../components/HubBotGrid.astro';
+import { SITE } from '../../config';
+import { CATEGORIES, type Category } from '../../lib/constants';
+import { getBots, type Bot } from '../../lib/data';
+import { CATEGORY_PAGE_COPY, categorySlug, collectionStructuredData, listIntegrations } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const bots = await getBots();
+  const integrationHubs = listIntegrations(bots).map(({ name }) => name);
+  return CATEGORIES.map((category) => ({
+    params: { slug: categorySlug(category) },
+    props: {
+      category,
+      bots: bots
+        .filter((bot) => bot.category === category)
+        .sort((a, b) => b.copies - a.copies || b.addedAt.localeCompare(a.addedAt)),
+      integrationHubs,
+    },
+  }));
+}
+
+interface Props {
+  category: Category;
+  bots: Bot[];
+  integrationHubs: string[];
+}
+
+const { category, bots, integrationHubs } = Astro.props;
+const copy = CATEGORY_PAGE_COPY[category];
+const pageUrl = `${SITE.url}/categories/${categorySlug(category)}/`;
+const title = `${copy.title} | ${SITE.wordmark}`;
+const structuredData = collectionStructuredData({
+  name: copy.title,
+  url: pageUrl,
+  description: copy.description,
+  bots,
+  breadcrumbs: [
+    { name: 'All bots', url: `${SITE.url}/` },
+    { name: 'Categories', url: `${SITE.url}/categories/` },
+    { name: category, url: pageUrl },
+  ],
+});
+---
+
+<Base title={title} description={copy.description} structuredData={structuredData}>
+  <Header />
+  <main class="hub-page">
+    <div class="breadcrumb"><a href="/">All bots</a><span>/</span><a href="/categories/">Categories</a><span>/</span><span>{category}</span></div>
+    <p class="iz-eyebrow">{bots.length} ready-to-copy prompts</p>
+    <h1 class="hub-title">{copy.title}</h1>
+    <p class="hub-lead">{copy.intro}</p>
+    <HubBotGrid bots={bots} integrationHubs={integrationHubs} />
+  </main>
+  <Footer />
+</Base>

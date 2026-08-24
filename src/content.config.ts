@@ -11,6 +11,8 @@ const bots = defineCollection({
     category: z.enum(CATEGORIES),
     /** UTC timestamp when the listing was added to the directory. */
     added_at: z.string().datetime(),
+    /** Update when the prompt or listing changes materially after publication. */
+    updated_at: z.string().datetime().optional(),
     /** Whose setup this is. Optional — some sources are anonymous. */
     contributor: z.string().min(1).optional(),
     /** Where the contributor handle links. Defaults to github.com/<contributor>. */
@@ -25,6 +27,13 @@ const bots = defineCollection({
     /** Optional source tweet URL when added by the X mention bot. */
     added_via: z.string().url().optional(),
   }).superRefine((bot, ctx) => {
+    if (bot.updated_at && bot.updated_at < bot.added_at) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['updated_at'],
+        message: 'Must be on or after added_at',
+      });
+    }
     for (const name of Object.keys(bot.integration_urls ?? {})) {
       if (!bot.integrations.includes(name)) {
         ctx.addIssue({
