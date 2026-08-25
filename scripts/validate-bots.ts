@@ -14,11 +14,35 @@ import { fileURLToPath } from 'node:url';
 import { parse as parseYaml } from 'yaml';
 import { z } from 'zod';
 import { CATEGORIES, slugify } from '../src/lib/constants';
+import { SOURCE_KINDS, sourceMatchesKind } from '../src/lib/sources';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const BOTS_DIR = join(ROOT, 'bots');
 
 const httpsUrl = z.string().url().refine((value) => value.startsWith('https://'), 'Must use HTTPS');
+const sourceSchema = z
+  .object({
+    kind: z.enum(SOURCE_KINDS),
+    url: httpsUrl,
+    start_seconds: z.number().int().nonnegative().optional(),
+  })
+  .strict()
+  .superRefine((source, ctx) => {
+    if (!sourceMatchesKind({ kind: source.kind, url: source.url, startSeconds: source.start_seconds })) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['url'],
+        message: `URL does not match source kind "${source.kind}"`,
+      });
+    }
+    if (source.kind !== 'youtube' && source.start_seconds !== undefined) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['start_seconds'],
+        message: 'Only YouTube sources support a start time',
+      });
+    }
+  });
 
 const schema = z
   .object({
@@ -33,6 +57,7 @@ const schema = z
     integration_urls: z.record(z.string().min(1), httpsUrl).optional(),
     url: z.string().url().optional(),
     added_via: z.string().url().optional(),
+    sources: z.array(sourceSchema).min(1).optional(),
   })
   .strict()
   .superRefine((bot, ctx) => {

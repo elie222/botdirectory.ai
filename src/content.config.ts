@@ -1,8 +1,33 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { CATEGORIES } from './lib/constants';
+import { SOURCE_KINDS, sourceMatchesKind } from './lib/sources';
 
 const httpsUrl = z.string().url().refine((value) => value.startsWith('https://'), 'Must use HTTPS');
+const source = z
+  .object({
+    kind: z.enum(SOURCE_KINDS),
+    url: httpsUrl,
+    start_seconds: z.number().int().nonnegative().optional(),
+  })
+  .strict()
+  .superRefine((value, ctx) => {
+    const normalized = { kind: value.kind, url: value.url, startSeconds: value.start_seconds };
+    if (!sourceMatchesKind(normalized)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['url'],
+        message: `URL does not match source kind "${value.kind}"`,
+      });
+    }
+    if (value.kind !== 'youtube' && value.start_seconds !== undefined) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['start_seconds'],
+        message: 'Only YouTube sources support a start time',
+      });
+    }
+  });
 
 const bots = defineCollection({
   loader: glob({ pattern: '*.md', base: './bots' }),
@@ -26,6 +51,8 @@ const bots = defineCollection({
     url: z.string().url().optional(),
     /** Optional source tweet URL when added by the X mention bot. */
     added_via: z.string().url().optional(),
+    /** First-class source material. `added_via` remains supported for legacy X submissions. */
+    sources: z.array(source).min(1).optional(),
   }).superRefine((bot, ctx) => {
     if (bot.updated_at && bot.updated_at < bot.added_at) {
       ctx.addIssue({

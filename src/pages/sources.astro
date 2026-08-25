@@ -1,0 +1,152 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SourceEmbed from '../components/SourceEmbed.astro';
+import { SITE } from '../config';
+import { getBots } from '../lib/data';
+import { groupSources, sourcePlatformName, type SourceKind } from '../lib/sources';
+
+const bots = await getBots();
+const sources = groupSources(bots);
+const sourceBotCount = sources.reduce((total, source) => total + source.bots.length, 0);
+const kindCounts = new Map<SourceKind, number>();
+for (const source of sources) kindCounts.set(source.kind, (kindCounts.get(source.kind) ?? 0) + 1);
+
+const title = `Bot sources from X and YouTube | ${SITE.wordmark}`;
+const description = 'Explore the real posts, videos, and stories behind the bot prompts in the directory.';
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Bot sources',
+  url: `${SITE.url}/sources/`,
+  description,
+  isPartOf: { '@type': 'WebSite', name: SITE.wordmark, url: SITE.url },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: sources.length,
+    itemListElement: sources.map((source, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: source.url,
+      name: `${sourcePlatformName(source.kind)} source for ${source.bots.map((bot) => bot.name).join(', ')}`,
+    })),
+  },
+};
+
+const filters: Array<{ value: 'all' | SourceKind; label: string; count: number }> = [
+  { value: 'all', label: 'All', count: sources.length },
+  { value: 'x', label: 'X', count: kindCounts.get('x') ?? 0 },
+  { value: 'youtube', label: 'YouTube', count: kindCounts.get('youtube') ?? 0 },
+];
+if (kindCounts.get('web')) filters.push({ value: 'web', label: 'Other', count: kindCounts.get('web') ?? 0 });
+---
+
+<Base title={title} description={description} structuredData={structuredData}>
+  <Header />
+
+  <main class="sources-page">
+    <section class="sources-hero">
+      <p class="iz-eyebrow">In the wild</p>
+      <h1 class="sources-title">The ideas behind the bots</h1>
+      <p class="sources-lead">Real setups shared by people, and the ready-to-run prompts they inspired.</p>
+      <p class="sources-count">{sources.length} sources · {sourceBotCount} bot connections</p>
+    </section>
+
+    <div class="source-filterbar" aria-label="Filter sources">
+      {
+        filters.map((filter) => (
+          <button
+            type="button"
+            class:list={['source-filter', { active: filter.value === 'all' }]}
+            data-source-filter={filter.value}
+            aria-pressed={filter.value === 'all' ? 'true' : 'false'}
+          >
+            {filter.label} <span>{filter.count}</span>
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="source-grid" data-source-grid>
+      {
+        sources.map((source) => {
+          const visibleBots = source.bots.slice(0, 5);
+          const remainingBots = source.bots.slice(5);
+          return (
+            <article class="source-card" data-source-card={source.kind}>
+              <div class="source-card-head">
+                <span class={`source-platform source-platform-${source.kind}`}>{sourcePlatformName(source.kind)}</span>
+                <a href={source.url} class="source-external" rel="nofollow">Open source <span aria-hidden="true">↗</span></a>
+              </div>
+
+              <SourceEmbed source={source} />
+
+              <div class="source-bots">
+                <p class="source-bots-title">
+                  {source.bots.length === 1 ? 'Bot from this source' : `${source.bots.length} bots from this source`}
+                </p>
+                <div class="source-bot-links">
+                  {visibleBots.map((bot) => <a href={`/bots/${bot.slug}/`}>{bot.name}</a>)}
+                </div>
+                {
+                  remainingBots.length > 0 && (
+                    <details class="source-more-bots">
+                      <summary>Show {remainingBots.length} more</summary>
+                      <div class="source-bot-links">
+                        {remainingBots.map((bot) => <a href={`/bots/${bot.slug}/`}>{bot.name}</a>)}
+                      </div>
+                    </details>
+                  )
+                }
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+
+    <div class="source-empty" data-source-empty hidden>
+      <p>No sources of this type yet.</p>
+    </div>
+  </main>
+
+  <Footer />
+</Base>
+
+<script>
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-source-filter]');
+  const sourceCards = document.querySelectorAll<HTMLElement>('[data-source-card]');
+  const empty = document.querySelector<HTMLElement>('[data-source-empty]');
+
+  function applyFilter(value: string, updateUrl = true) {
+    let visible = 0;
+    sourceCards.forEach((card) => {
+      const show = value === 'all' || card.dataset.sourceCard === value;
+      card.hidden = !show;
+      if (show) visible += 1;
+    });
+    filterButtons.forEach((button) => {
+      const active = button.dataset.sourceFilter === value;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    if (empty) empty.hidden = visible > 0;
+
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      if (value === 'all') url.searchParams.delete('type');
+      else url.searchParams.set('type', value);
+      window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+    }
+  }
+
+  filterButtons.forEach((button) =>
+    button.addEventListener('click', () => applyFilter(button.dataset.sourceFilter ?? 'all')),
+  );
+
+  const requested = new URLSearchParams(window.location.search).get('type');
+  if (requested && [...filterButtons].some((button) => button.dataset.sourceFilter === requested)) {
+    applyFilter(requested, false);
+  }
+</script>

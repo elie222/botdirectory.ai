@@ -26,6 +26,10 @@ integration_urls:                       # optional; lets deploy fetch missing fa
   DataForSEO: https://dataforseo.com
 url: https://example.com/my-bot        # optional — canonical homepage (dedupe key)
 added_via: https://x.com/.../status/…  # optional — set by the X mention bot
+sources:                              # optional — source material beyond added_via
+  - kind: youtube
+    url: https://www.youtube.com/watch?v=example123
+    start_seconds: 126                # optional — jump to the relevant moment
 ---
 
 <the prompt, verbatim, as the file body>
@@ -66,6 +70,12 @@ added_via: https://x.com/.../status/…  # optional — set by the X mention bot
   hosts directly. The X mention bot fills these when it can identify a product
   confidently. Exact Simple Icons matches are discovered automatically, and
   every remaining integration gets a generated monogram rather than a blank.
+
+- **sources** — optional original material that inspired the bot. Supported
+  kinds are `x`, `youtube`, and `web`; the URL must match the selected kind.
+  YouTube sources can include `start_seconds` to open at the relevant moment.
+  The X mention bot's legacy `added_via` field is displayed as an X source
+  automatically, so existing bot files do not need to be migrated.
 
 - Copy counts are **not** part of the file — they're tracked server-side and
   start at zero for every bot.

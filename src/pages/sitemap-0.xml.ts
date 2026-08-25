@@ -37,6 +37,7 @@ export const GET: APIRoute = async () => {
     { path: '/', lastmod: newest },
     { path: '/categories/', lastmod: newest },
     { path: '/integrations/', lastmod: newest },
+    { path: '/sources/', lastmod: newest },
     { path: '/collections/chief-of-staff/', lastmod: collectionLastmod },
     { path: '/api/' },
     { path: '/grokbot/' },

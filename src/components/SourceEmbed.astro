@@ -1,0 +1,150 @@
+---
+import {
+  sourcePlatformName,
+  xAuthor,
+  xPostId,
+  youtubeEmbedUrl,
+  type Source,
+} from '../lib/sources';
+
+interface Props {
+  source: Source;
+}
+
+const { source } = Astro.props;
+const platform = sourcePlatformName(source.kind);
+const postId = source.kind === 'x' ? xPostId(source.url) : null;
+const author = source.kind === 'x' ? xAuthor(source.url) : null;
+const videoUrl = source.kind === 'youtube' ? youtubeEmbedUrl(source) : null;
+const linkLabel = source.kind === 'x'
+  ? `View post${author ? ` by @${author}` : ''} on X`
+  : source.kind === 'youtube'
+    ? 'Watch on YouTube'
+    : 'Open source';
+---
+
+{
+  source.kind === 'x' && postId ? (
+    <div
+      class="source-embed source-embed-x"
+      data-source-embed="x"
+      data-source-id={postId}
+      data-source-url={source.url}
+    >
+      <div class="source-embed-placeholder" data-source-placeholder>
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22">
+          <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+        </svg>
+        <span>{author ? `Post by @${author}` : 'Post on X'}</span>
+        <a href={source.url} rel="nofollow">{linkLabel}</a>
+      </div>
+      <div class="source-embed-mount" data-source-mount aria-live="polite"></div>
+    </div>
+  ) : source.kind === 'youtube' && videoUrl ? (
+    <div class="source-embed source-embed-video">
+      <iframe
+        src={videoUrl}
+        title="Source video on YouTube"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+  ) : (
+    <a class="source-embed source-embed-link" href={source.url} rel="nofollow">
+      <span class="source-embed-link-platform">{platform}</span>
+      <span>{linkLabel}</span>
+      <span aria-hidden="true">↗</span>
+    </a>
+  )
+}
+
+<script>
+  interface XWidgets {
+    widgets: {
+      createTweet: (
+        id: string,
+        element: HTMLElement,
+        options: Record<string, unknown>,
+      ) => Promise<HTMLElement | undefined>;
+    };
+  }
+
+  declare global {
+    interface Window {
+      twttr?: XWidgets;
+    }
+  }
+
+  let xWidgetsPromise: Promise<XWidgets> | undefined;
+
+  function loadXWidgets(): Promise<XWidgets> {
+    if (window.twttr?.widgets) return Promise.resolve(window.twttr);
+    if (xWidgetsPromise) return xWidgetsPromise;
+
+    xWidgetsPromise = new Promise((resolve, reject) => {
+      const ready = () => {
+        if (window.twttr?.widgets) resolve(window.twttr);
+        else reject(new Error('X widgets loaded without an API'));
+      };
+
+      const existing = document.querySelector<HTMLScriptElement>('script[data-x-widgets]');
+      if (existing) {
+        existing.addEventListener('load', ready, { once: true });
+        existing.addEventListener('error', () => reject(new Error('Could not load X widgets')), { once: true });
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://platform.twitter.com/widgets.js';
+      script.async = true;
+      script.dataset.xWidgets = '';
+      script.addEventListener('load', ready, { once: true });
+      script.addEventListener('error', () => reject(new Error('Could not load X widgets')), { once: true });
+      document.head.appendChild(script);
+    });
+    return xWidgetsPromise;
+  }
+
+  async function renderXPost(root: HTMLElement) {
+    if (root.dataset.sourceState) return;
+    const id = root.dataset.sourceId;
+    const mount = root.querySelector<HTMLElement>('[data-source-mount]');
+    if (!id || !mount) return;
+
+    root.dataset.sourceState = 'loading';
+    try {
+      const x = await loadXWidgets();
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const embed = await x.widgets.createTweet(id, mount, {
+        conversation: 'none',
+        dnt: true,
+        theme,
+      });
+      if (!embed) throw new Error('Post is unavailable');
+      root.dataset.sourceState = 'ready';
+    } catch {
+      // The linked placeholder is the durable fallback for deleted, protected,
+      // blocked, or temporarily unavailable posts.
+      root.dataset.sourceState = 'error';
+    }
+  }
+
+  const roots = document.querySelectorAll<HTMLElement>('[data-source-embed="x"]:not([data-source-state])');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          observer.unobserve(entry.target);
+          void renderXPost(entry.target as HTMLElement);
+        }
+      },
+      { rootMargin: '500px 0px' },
+    );
+    roots.forEach((root) => observer.observe(root));
+  } else {
+    roots.forEach((root) => void renderXPost(root));
+  }
+</script>

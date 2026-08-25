@@ -3,7 +3,7 @@ import { slugify, type Category } from './constants';
 import { COPIES_API } from '../config';
 import sponsorsJson from '../../data/sponsors.json';
 import promosJson from '../../data/promos.json';
-
+import { resolveSources, type Source } from './sources';
 
 export interface SponsorCopyVariant {
   id: string;
@@ -58,6 +58,7 @@ export interface Bot {
   prompt: string;
   url?: string;
   addedVia?: string;
+  sources: Source[];
 }
 
 export const SPONSORS = sponsorsJson as Sponsor[];
@@ -112,21 +113,29 @@ export function toolIcon(name: string): ToolIcon | null {
 /** All bots in a stable A–Z build order; the browser applies the selected sort. */
 export async function getBots(): Promise<Bot[]> {
   const [entries, copyCounts] = await Promise.all([getCollection('bots'), getCopyCounts()]);
-  const bots = entries.map((e) => ({
-    slug: e.id,
-    name: e.data.name,
-    category: e.data.category,
-    addedAt: e.data.added_at,
-    updatedAt: e.data.updated_at,
-    contributor: e.data.contributor,
-    contributorUrl: e.data.contributor_url,
-    scoutedBy: e.data.scouted_by,
-    // Counts live server-side (copies API), never in the repo markdown.
-    copies: Number.isFinite(copyCounts[e.id]) ? copyCounts[e.id] : 0,
-    integrations: e.data.integrations,
-    prompt: (e.body ?? '').trim(),
-    url: e.data.url,
-    addedVia: e.data.added_via,
-  }));
+  const bots = entries.map((e) => {
+    const explicitSources = e.data.sources?.map((source) => ({
+      kind: source.kind,
+      url: source.url,
+      startSeconds: source.start_seconds,
+    }));
+    return {
+      slug: e.id,
+      name: e.data.name,
+      category: e.data.category,
+      addedAt: e.data.added_at,
+      updatedAt: e.data.updated_at,
+      contributor: e.data.contributor,
+      contributorUrl: e.data.contributor_url,
+      scoutedBy: e.data.scouted_by,
+      // Counts live server-side (copies API), never in the repo markdown.
+      copies: Number.isFinite(copyCounts[e.id]) ? copyCounts[e.id] : 0,
+      integrations: e.data.integrations,
+      prompt: (e.body ?? '').trim(),
+      url: e.data.url,
+      addedVia: e.data.added_via,
+      sources: resolveSources(explicitSources, e.data.added_via),
+    };
+  });
   return bots.sort((a, b) => a.name.localeCompare(b.name));
 }

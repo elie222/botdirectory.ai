@@ -4,11 +4,13 @@ import SponsorCard from '../../components/SponsorCard.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import ToolIcon from '../../components/ToolIcon.astro';
+import SourceEmbed from '../../components/SourceEmbed.astro';
 import { CONNECT_SPONSOR, FEATURES, SITE } from '../../config';
 import { catStyle, fmt } from '../../lib/constants';
 import { getBots, SPONSORS, type Bot } from '../../lib/data';
 import { botDescription, botLastModified, categorySlug, integrationSlug, listIntegrations, relatedBots } from '../../lib/seo';
 import { sponsorUrl } from '../../lib/utm';
+import { sourceContentName } from '../../lib/sources';
 
 export async function getStaticPaths() {
   const bots = await getBots();
@@ -24,6 +26,7 @@ interface Props {
 
 const { bot, bots, integrationHubNames } = Astro.props;
 const cat = catStyle(bot.category);
+const primarySource = bot.sources[0];
 const integrationHubs = new Set(integrationHubNames);
 const related = relatedBots(bot, bots);
 const title = `${bot.name} Grok Bot Prompt`;
@@ -40,6 +43,7 @@ const structuredData = [
     description,
     genre: bot.category,
     keywords: [bot.category, ...bot.integrations, 'AI bot prompt', 'Grok Bot prompt'],
+    ...(bot.sources.length && { citation: bot.sources.map((source) => source.url) }),
     isAccessibleForFree: true,
     datePublished: bot.addedAt,
     dateModified: botLastModified(bot),
@@ -83,15 +87,15 @@ const structuredData = [
         <span class="badge-plain" data-copies-slug={bot.slug} data-copies-seed={bot.copies}>{fmt(bot.copies)} copies</span>
       )}
       {
-        (bot.contributor || bot.addedVia || bot.scoutedBy) && (
+        (bot.contributor || primarySource || bot.scoutedBy) && (
           <span class="attribution">
-          {bot.addedVia ? (
+          {primarySource ? (
             <>
-              Based on <a href={bot.addedVia}>this tweet</a>
+              Based on <a href={primarySource.url}>this {sourceContentName(primarySource.kind)}</a>
               {bot.contributor && (
                 <>
-                  {'by '}
-                  <a href={bot.contributorUrl ?? `https://x.com/${bot.contributor}`}>@{bot.contributor}</a>
+                  {' by '}
+                  <a href={bot.contributorUrl ?? (primarySource.kind === 'x' ? `https://x.com/${bot.contributor}` : `https://github.com/${bot.contributor}`)}>@{bot.contributor}</a>
                 </>
               )}
             </>
@@ -181,6 +185,20 @@ const structuredData = [
         <a href={`${SITE.repoUrl}/blob/main/bots/${bot.slug}.md`} class="btn-view-source">View source</a>
       </div>
     </section>
+
+    {
+      bot.sources.length > 0 && (
+        <section class="source-section">
+          <div class="source-section-head">
+            <h2 class="section-title">Original {bot.sources.length === 1 ? 'source' : 'sources'}</h2>
+            <a href="/sources/" class="source-section-all">Browse all sources</a>
+          </div>
+          <div class="source-section-embeds">
+            {bot.sources.map((source) => <SourceEmbed source={source} />)}
+          </div>
+        </section>
+      )
+    }
 
     <section class="reviews-section" id="reviews" data-slug={bot.slug}>
       <div class="reviews-head">
