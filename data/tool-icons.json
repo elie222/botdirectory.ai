@@ -161,5 +161,12 @@
   "MaxFusion": "https://framerusercontent.com/images/hWslTulYc3xM0lOii2Ht9yskhaU.svg",
   "Stacktree": {
     "site": "https://stacktr.ee"
+  },
+  "PhoneZero": "https://raw.githubusercontent.com/function1st/PhoneZero/main/plugins/phonezero/assets/logo.png",
+  "Telnyx": {
+    "site": "https://telnyx.com"
+  },
+  "xAI": {
+    "site": "https://x.ai"
   }
 }
