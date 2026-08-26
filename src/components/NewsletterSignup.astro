@@ -9,7 +9,7 @@ const { source = 'website' } = Astro.props;
 const endpoint = import.meta.env.DEV ? NEWSLETTER_API.localEndpoint : NEWSLETTER_API.endpoint;
 ---
 
-<section class="newsletter-callout" aria-labelledby="newsletter-title">
+<section id="newsletter" class="newsletter-callout" aria-labelledby="newsletter-title">
   <div class="newsletter-copy">
     <h2 id="newsletter-title">Get curated bot drops in your inbox.</h2>
   </div>

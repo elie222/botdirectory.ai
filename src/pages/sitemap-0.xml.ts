@@ -38,6 +38,7 @@ export const GET: APIRoute = async () => {
     { path: '/categories/', lastmod: newest },
     { path: '/integrations/', lastmod: newest },
     { path: '/sources/', lastmod: newest },
+    { path: '/connect/', lastmod: SITE_INFO_LAST_MODIFIED },
     { path: '/collections/chief-of-staff/', lastmod: collectionLastmod },
     { path: '/api/' },
     { path: '/developers/', lastmod: SITE_INFO_LAST_MODIFIED },

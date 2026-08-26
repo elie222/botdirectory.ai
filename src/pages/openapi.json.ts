@@ -502,6 +502,19 @@ const spec = {
           prompt: { type: 'string', minLength: 1 },
           contributor: { type: ['string', 'null'] },
           sourceUrl: { type: ['string', 'null'], format: 'uri' },
+          sources: {
+            type: 'array',
+            items: {
+              type: 'object',
+              additionalProperties: false,
+              required: ['kind', 'url'],
+              properties: {
+                kind: { type: 'string', enum: ['x', 'youtube', 'web'] },
+                url: { type: 'string', format: 'uri' },
+                startSeconds: { type: 'integer', minimum: 0 },
+              },
+            },
+          },
           detailUrl: { type: 'string', format: 'uri' },
         },
       },

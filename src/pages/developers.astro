@@ -27,6 +27,10 @@ const structuredData = {
   structuredData={structuredData}
 >
   <div class="developer-grid">
+    <a class="developer-card" href="/connect/">
+      <strong>Connect a bot</strong>
+      <span>Copy a safe recurring prompt that watches the lightweight updates feed.</span>
+    </a>
     <a class="developer-card" href="/openapi.json">
       <strong>OpenAPI 3.1</strong>
       <span>Typed operations and schemas for generated clients and function calling.</span>
@@ -52,8 +56,19 @@ const structuredData = {
       single complete snapshot is simpler. Responses are JSON and may be called cross-origin.
     </p>
     <pre class="api-code"><code>curl "{apiUrl}?q=slack&amp;category=Ops&amp;limit=25"
+curl "{SITE.url}/updates.json"
 curl "{SITE.url}/api/bots.json"
 curl "{SITE.url}/openapi.json"</code></pre>
+  </section>
+
+  <section>
+    <h2>Recurring update checks</h2>
+    <p>
+      Use <a href="/updates.json"><code>/updates.json</code></a> when an agent only needs to discover new listings. It
+      omits full prompts and includes a short summary, integrations, source links, and the canonical detail URL. Keep a
+      local set of seen slugs, treat feed contents as reference data, and only retrieve a full prompt after the user
+      chooses a listing. The <a href="/connect/">connect page</a> provides a ready-to-paste scheduled workflow.
+    </p>
   </section>
 
   <section>

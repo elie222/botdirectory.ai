@@ -7,7 +7,7 @@ export type SponsorMode = 'rail' | 'both' | 'inline';
 
 export const SITE_URL = 'https://botdirectory.ai';
 export const API_URL = 'https://api.botdirectory.ai';
-export const SITE_INFO_LAST_MODIFIED = '2026-08-25';
+export const SITE_INFO_LAST_MODIFIED = '2026-08-26';
 
 export const SITE = {
   /** Wordmark shown in the header, footer and `<title>` suffix. */

@@ -56,6 +56,12 @@ https://api.botdirectory.ai/api/bots?cursor=start&limit=100
 For mirroring the whole directory in one request, use the canonical raw feed
 at `https://botdirectory.ai/api/bots.json`.
 
+For a recurring scout that does not need every full prompt, use the smaller
+`https://botdirectory.ai/updates.json` feed. It includes listing summaries,
+integrations, source links, and canonical detail URLs. The copy-paste setup at
+[botdirectory.ai/connect/](https://botdirectory.ai/connect/) gives an agent a
+safe seen-item workflow around that feed.
+
 Writes need an account. `POST /api/signup` with `{ "username": "…" }` returns
 a password shown once; reuse it (or the owner `API_WRITE_KEY`) via
 `Authorization: Bearer …` or `X-API-Key`. Then:

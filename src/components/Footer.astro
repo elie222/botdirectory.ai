@@ -7,39 +7,44 @@ import { SITE } from '../config';
     <div class="footer-brand">
       <a href="/" class="footer-wordmark">{SITE.wordmark}</a>
       <p class="footer-blurb">{SITE.tagline}</p>
+      <a href={SITE.xUrl} class="footer-social" rel="me">Follow {SITE.xHandle} on X <span aria-hidden="true">↗</span></a>
     </div>
     <div class="footer-cols">
       <div class="footer-col">
-        <span class="footer-col-title">Directory</span>
+        <span class="footer-col-title">Explore</span>
         <a href="/#browse" class="footer-link">Browse bots</a>
         <a href="/categories/" class="footer-link">Categories</a>
         <a href="/integrations/" class="footer-link">Integrations</a>
+        <a href="/sources/" class="footer-link">In the wild</a>
         <a href="/collections/chief-of-staff/" class="footer-link">Chief of Staff prompts</a>
-        <a href="/#contribute" class="footer-link">Add a bot</a>
-        <a href="/sources/" class="footer-link">Sources</a>
-        <a href="/sponsor/" class="footer-link">Sponsor</a>
-        <a href="/api/" class="footer-link">API</a>
-        <a href="/developers/" class="footer-link">Developers</a>
-        <a href={SITE.repoUrl} class="footer-link">GitHub</a>
       </div>
       <div class="footer-col">
-        <span class="footer-col-title">Run your bots</span>
-        <a href={SITE.rakazoUrl} class="footer-link">Rakazo</a>
-        <a href={SITE.grokUrl} class="footer-link">Grok Bot</a>
-        <a href={SITE.inboxZeroUrl} class="footer-link">Inbox Zero</a>
+        <span class="footer-col-title">Stay current</span>
+        <a href="/connect/" class="footer-link">Connect your bot</a>
+        <a href="/#newsletter" class="footer-link">Email updates</a>
+        <a href="/updates.json" class="footer-link">JSON updates</a>
         <a href="/rss.xml" class="footer-link">RSS feed</a>
       </div>
       <div class="footer-col">
-        <span class="footer-col-title">About</span>
+        <span class="footer-col-title">Build</span>
+        <a href="/api/" class="footer-link">API</a>
+        <a href="/developers/" class="footer-link">Developers</a>
+        <a href="/openapi.json" class="footer-link">OpenAPI</a>
+        <a href="/llms.txt" class="footer-link">Agent instructions</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Project</span>
+        <a href="/#contribute" class="footer-link">Add a bot</a>
+        <a href="/sponsor/" class="footer-link">Sponsor</a>
+        <a href={SITE.repoUrl} class="footer-link">GitHub <span aria-hidden="true">↗</span></a>
         <a href="/about/" class="footer-link">About</a>
         <a href="/contact/" class="footer-link">Contact</a>
         <a href="/privacy/" class="footer-link">Privacy</a>
-        <a href="/llms.txt" class="footer-link">Agent instructions</a>
-        <a href="/openapi.json" class="footer-link">OpenAPI</a>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
     <span class="footer-copyright">© {SITE.copyrightYear} <a href={SITE.inboxZeroUrl}>{SITE.copyrightHolder}</a></span>
+    <span class="footer-products">Run prompts with <a href={SITE.grokUrl}>Grok</a> or <a href={SITE.rakazoUrl}>Rakazo</a></span>
   </div>
 </footer>

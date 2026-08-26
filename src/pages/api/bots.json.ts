@@ -19,6 +19,7 @@ export async function GET() {
         prompt: bot.prompt,
         contributor: bot.contributor ?? null,
         sourceUrl: bot.url ?? null,
+        sources: bot.sources,
         detailUrl: `${SITE.url}/bots/${bot.slug}/`,
       })),
     }),
