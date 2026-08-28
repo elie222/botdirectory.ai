@@ -63,7 +63,7 @@ Content-Type: application/json
   "category": "Ops",
   "prompt": "You summarize my Slack standup…",
   "integrations": ["Slack", "Notion"],
-  "grokShareUrl": "https://x.ai/bot/share/…"
+  "grokShareUrl": "https://x.ai/bot/V1StGXR8_Z5jdHi6B-myT"
 }
 
 {
@@ -227,7 +227,7 @@ curl -H "Accept: application/linkset+json" {apiCatalogUrl}</code></pre>
               <tr><td><code>scoutedBy</code></td><td>Handle of whoever found or submitted someone else's setup</td><td>no</td></tr>
               <tr><td><code>integrationUrls</code></td><td>Object of integration name → official HTTPS homepage</td><td>no</td></tr>
               <tr><td><code>url</code></td><td>Canonical homepage for the bot (dedupe key)</td><td>no</td></tr>
-              <tr><td><code>grokShareUrl</code></td><td>Official Grok Bot share/preview URL on x.ai (maps to frontmatter <code>grok_share_url</code>). Not a tweet. Optional — most listings omit it until the creator publishes a share link.</td><td>no</td></tr>
+              <tr><td><code>grokShareUrl</code></td><td>Official share URL only: <code>https://x.ai/bot/&lt;nanoid-style-id&gt;</code> (maps to frontmatter <code>grok_share_url</code>). Optional — most listings omit it. Link only; never invent or rehost configs.</td><td>no</td></tr>
               <tr><td><code>addedVia</code></td><td>Source URL for how it was submitted</td><td>no</td></tr>
             </tbody>
           </table>
@@ -236,7 +236,7 @@ curl -H "Accept: application/linkset+json" {apiCatalogUrl}</code></pre>
         <p class="api-note">
           Status <code>201</code> with <code>slug</code>, <code>name</code>, <code>category</code>, <code>prNumber</code>, <code>prUrl</code>, and <code>branch</code>.
           Prompt bodies should lead in second person (<code>You…</code>), not <code>Set up a new bot for me…</code>.
-          The private worker that handles <code>POST /api/bots</code> also needs to accept <code>grokShareUrl</code> and write <code>grok_share_url</code> into the markdown frontmatter (follow-up in <code>elie222/botdirectory-automation</code> if not already wired).
+          <code>grokShareUrl</code> must match <code>https://x.ai/bot/&lt;id&gt;</code> (nanoid-style id); the worker writes frontmatter <code>grok_share_url</code>. Site CI rejects other shapes.
         </p>
       </section>
 

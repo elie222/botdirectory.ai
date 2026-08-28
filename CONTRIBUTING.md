@@ -25,7 +25,7 @@ integrations: [GitHub, DataForSEO, Search Console]
 integration_urls:                       # optional; lets deploy fetch missing favicons
   DataForSEO: https://dataforseo.com
 url: https://example.com/my-bot        # optional — canonical homepage (dedupe key)
-grok_share_url: https://x.ai/bot/share/…  # optional — official Grok Bot share/preview link
+grok_share_url: https://x.ai/bot/V1StGXR8_Z5jdHi6B-myT  # optional — official share URL only
 added_via: https://x.com/.../status/…  # optional — set by the X mention bot
 sources:                              # optional — source material beyond added_via
   - kind: youtube
@@ -75,14 +75,15 @@ fix internal links, and open a PR I review before merge.
   confidently. Exact Simple Icons matches are discovered automatically, and
   every remaining integration gets a generated monogram rather than a blank.
 
-- **grok_share_url** — optional official Grok Bot public share/preview URL on
-  `x.ai`. When set, the listing page shows an **Add to Grok Bot** button that
-  opens that link. Recipients preview on x.ai and add a copy to their account.
-  Link the creator's share URL only — do not scrape or rehost packed configs or
-  skills ([bot sharing terms](https://x.ai/legal/bot-sharing-terms)). Tweets and
-  marketing pages are rejected by validation. Omit the field until you have a
-  real share link; never invent one. The public JSON API exposes this as
-  `grokShareUrl`.
+- **grok_share_url** — optional official Grok Bot share URL. **Only** the shape
+  `https://x.ai/bot/<nanoid-style-id>` is accepted (same contract as the private
+  submit API). When set, the listing page shows an **Add to Grok Bot** button
+  that opens that link. Recipients preview on x.ai and add a copy to their
+  account. Link the creator's share URL only — do not scrape or rehost packed
+  configs or skills ([bot sharing terms](https://x.ai/legal/bot-sharing-terms)).
+  Tweets, marketing pages, and other URL shapes are rejected. Omit the field
+  until you have a real share link; never invent one. The public JSON API
+  exposes this as `grokShareUrl`.
 
 - **sources** — optional original material that inspired the bot. Supported
   kinds are `x`, `youtube`, and `web`; the URL must match the selected kind.

@@ -4,7 +4,7 @@
  *
  * Checks: frontmatter schema (including `added_at`), filename = slug(name),
  * unique slug, known category, non-empty prompt body, unique `url` (dedupe key),
- * optional unique `grok_share_url` (official x.ai share/preview link).
+ * optional unique `grok_share_url` (`https://x.ai/bot/<nanoid-style-id>` only).
  * Integrations are free-form strings — any tool name is welcome; entries
  * in data/tool-icons.json only add a brand icon. Copy counts are server-side
  * (the copies API), never in the repo markdown.

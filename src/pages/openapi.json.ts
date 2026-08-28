@@ -505,8 +505,9 @@ const spec = {
           grokShareUrl: {
             type: ['string', 'null'],
             format: 'uri',
+            pattern: '^https://x\\.ai/bot/[A-Za-z0-9_-]{8,64}$',
             description:
-              'Official Grok Bot public share/preview URL on x.ai. Recipients open it and click Add to Grok Bot. Null when the listing has no share link yet.',
+              'Official Grok Bot share URL https://x.ai/bot/<nanoid-style-id>. Recipients open it and click Add to Grok Bot. Null when the listing has no share link yet. Link only — do not fetch or rehost packed configs.',
           },
           sources: {
             type: 'array',
@@ -614,9 +615,9 @@ const spec = {
           grokShareUrl: {
             type: 'string',
             format: 'uri',
-            pattern: '^https://(www\\.)?x\\.ai/',
+            pattern: '^https://x\\.ai/bot/[A-Za-z0-9_-]{8,64}$',
             description:
-              'Official Grok Bot share/preview URL on x.ai (not a tweet). Optional. Write this field in frontmatter as grok_share_url.',
+              'Official Grok Bot share URL https://x.ai/bot/<nanoid-style-id> only. Optional. Frontmatter field: grok_share_url. Link only — do not fetch or rehost packed configs.',
           },
           addedVia: { type: 'string', format: 'uri', pattern: '^https://' },
         },
