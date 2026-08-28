@@ -3,7 +3,8 @@
  * Run with: pnpm validate
  *
  * Checks: frontmatter schema (including `added_at`), filename = slug(name),
- * unique slug, known category, non-empty prompt body, unique `url` (dedupe key).
+ * unique slug, known category, non-empty prompt body, unique `url` (dedupe key),
+ * optional unique `grok_share_url` (official x.ai share/preview link).
  * Integrations are free-form strings — any tool name is welcome; entries
  * in data/tool-icons.json only add a brand icon. Copy counts are server-side
  * (the copies API), never in the repo markdown.
@@ -14,12 +15,17 @@ import { fileURLToPath } from 'node:url';
 import { parse as parseYaml } from 'yaml';
 import { z } from 'zod';
 import { CATEGORIES, slugify } from '../src/lib/constants';
+import { GROK_SHARE_URL_MESSAGE, isOfficialGrokShareUrl } from '../src/lib/grok-share';
 import { SOURCE_KINDS, sourceMatchesKind } from '../src/lib/sources';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const BOTS_DIR = join(ROOT, 'bots');
 
 const httpsUrl = z.string().url().refine((value) => value.startsWith('https://'), 'Must use HTTPS');
+const grokShareUrl = z
+  .string()
+  .url()
+  .refine((value) => isOfficialGrokShareUrl(value), GROK_SHARE_URL_MESSAGE);
 const sourceSchema = z
   .object({
     kind: z.enum(SOURCE_KINDS),
@@ -56,6 +62,7 @@ const schema = z
     integrations: z.array(z.string().min(1)).min(1),
     integration_urls: z.record(z.string().min(1), httpsUrl).optional(),
     url: z.string().url().optional(),
+    grok_share_url: grokShareUrl.optional(),
     added_via: z.string().url().optional(),
     sources: z.array(sourceSchema).min(1).optional(),
   })
@@ -82,6 +89,7 @@ const schema = z
 const errors: string[] = [];
 const seenSlugs = new Map<string, string>();
 const seenUrls = new Map<string, string>();
+const seenGrokShareUrls = new Map<string, string>();
 
 const files = readdirSync(BOTS_DIR).filter((f) => f.endsWith('.md')).sort();
 if (files.length === 0) errors.push('bots/ contains no markdown files');
@@ -127,6 +135,17 @@ for (const file of files) {
     const urlDupe = seenUrls.get(bot.url);
     if (urlDupe) errors.push(`${file}: url "${bot.url}" already used by ${urlDupe} (duplicate bot?)`);
     else seenUrls.set(bot.url, file);
+  }
+
+  if (bot.grok_share_url) {
+    const shareDupe = seenGrokShareUrls.get(bot.grok_share_url);
+    if (shareDupe) {
+      errors.push(
+        `${file}: grok_share_url "${bot.grok_share_url}" already used by ${shareDupe} (duplicate share link?)`,
+      );
+    } else {
+      seenGrokShareUrls.set(bot.grok_share_url, file);
+    }
   }
 }
 

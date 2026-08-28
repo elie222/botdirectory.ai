@@ -1588,6 +1588,13 @@ a.badge-plain:hover { color: var(--iz-ink); }
   gap: 12px;
   margin-bottom: 12px;
 }
+.prompt-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
 .section-title {
   font-family: var(--iz-font-display);
   font-weight: 500;
@@ -1596,6 +1603,18 @@ a.badge-plain:hover { color: var(--iz-ink); }
   color: var(--iz-ink);
   margin: 0;
 }
+.add-grok-btn {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--iz-ink);
+  border: 1px solid var(--iz-ink);
+  border-radius: 9px;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+.add-grok-btn:hover { background: var(--iz-body); border-color: var(--iz-body); color: #fff; }
 .copy-btn {
   cursor: pointer;
   font-size: 13px;

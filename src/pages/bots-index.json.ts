@@ -7,7 +7,13 @@ import { getBots } from '../lib/data';
 export async function GET() {
   const bots = await getBots();
   return new Response(
-    JSON.stringify({ bots: bots.map((b) => ({ slug: b.slug, url: b.url ?? null })) }),
+    JSON.stringify({
+      bots: bots.map((b) => ({
+        slug: b.slug,
+        url: b.url ?? null,
+        grokShareUrl: b.grokShareUrl ?? null,
+      })),
+    }),
     { headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' } },
   );
 }

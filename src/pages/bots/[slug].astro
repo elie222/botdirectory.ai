@@ -44,6 +44,7 @@ const structuredData = [
     genre: bot.category,
     keywords: [bot.category, ...bot.integrations, 'AI bot prompt', 'Grok Bot prompt'],
     ...(bot.sources.length && { citation: bot.sources.map((source) => source.url) }),
+    ...(bot.grokShareUrl && { sameAs: bot.grokShareUrl }),
     isAccessibleForFree: true,
     datePublished: bot.addedAt,
     dateModified: botLastModified(bot),
@@ -121,12 +122,38 @@ const structuredData = [
     <section class="prompt-section">
       <div class="prompt-head">
         <h2 class="section-title">The prompt</h2>
-        <button type="button" class="copy-btn" data-copy-slug={bot.slug} data-copied-label="Copied">Copy prompt</button>
+        <div class="prompt-head-actions">
+          {
+            bot.grokShareUrl && (
+              <a
+                href={bot.grokShareUrl}
+                class="add-grok-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-grok-share
+              >
+                Add to Grok Bot
+              </a>
+            )
+          }
+          <button type="button" class="copy-btn" data-copy-slug={bot.slug} data-copied-label="Copied">Copy prompt</button>
+        </div>
       </div>
       <div class="prompt-block" id="prompt-block">{bot.prompt}</div>
       <p class="section-note">
-        Paste it into <a href={SITE.grokBotUrl}>Grok Bot</a>, <a href={SITE.rakazoUrl}>Rakazo</a> or any agent you
-        already use. It asks for what it needs, then saves itself as a bot.
+        {
+          bot.grokShareUrl ? (
+            <>
+              Prefer the official share link? Use <a href={bot.grokShareUrl} target="_blank" rel="noopener noreferrer">Add to Grok Bot</a> to preview on x.ai, then add a copy to your account.
+              You can still paste the prompt below into <a href={SITE.grokBotUrl}>Grok Bot</a>, <a href={SITE.rakazoUrl}>Rakazo</a>, or any agent you already use.
+            </>
+          ) : (
+            <>
+              Paste it into <a href={SITE.grokBotUrl}>Grok Bot</a>, <a href={SITE.rakazoUrl}>Rakazo</a> or any agent you
+              already use. It asks for what it needs, then saves itself as a bot.
+            </>
+          )
+        }
       </p>
     </section>
 
@@ -176,9 +203,28 @@ const structuredData = [
     <section class="cta-card">
       <div>
         <p class="cta-title">Run {bot.name} yourself</p>
-        <p class="cta-sub">Free to copy, adapt, and edit after setup.</p>
+        <p class="cta-sub">
+          {bot.grokShareUrl
+            ? 'Add via the official Grok Bot share link, or copy the prompt and adapt it.'
+            : 'Free to copy, adapt, and edit after setup.'}
+        </p>
       </div>
       <div class="cta-actions">
+        {
+          bot.grokShareUrl && (
+            <div class="pbtn-wrap">
+              <a
+                href={bot.grokShareUrl}
+                class="pbtn pbtn-44"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-grok-share
+              >
+                Add to Grok Bot
+              </a>
+            </div>
+          )
+        }
         <div class="pbtn-wrap">
           <button type="button" class="pbtn pbtn-44" data-copy-slug={bot.slug} data-copied-label="Copied — now open your agent">Copy and set up</button>
         </div>

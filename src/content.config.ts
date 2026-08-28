@@ -1,9 +1,14 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { CATEGORIES } from './lib/constants';
+import { GROK_SHARE_URL_MESSAGE, isOfficialGrokShareUrl } from './lib/grok-share';
 import { SOURCE_KINDS, sourceMatchesKind } from './lib/sources';
 
 const httpsUrl = z.string().url().refine((value) => value.startsWith('https://'), 'Must use HTTPS');
+const grokShareUrl = z
+  .string()
+  .url()
+  .refine((value) => isOfficialGrokShareUrl(value), GROK_SHARE_URL_MESSAGE);
 const source = z
   .object({
     kind: z.enum(SOURCE_KINDS),
@@ -49,6 +54,11 @@ const bots = defineCollection({
     integration_urls: z.record(z.string().min(1), httpsUrl).optional(),
     /** Optional canonical homepage/GitHub of the bot (dedupe key). */
     url: z.string().url().optional(),
+    /**
+     * Optional official Grok Bot public share/preview URL on x.ai.
+     * Recipients open it and click Add to Grok Bot. Link only — never rehost configs.
+     */
+    grok_share_url: grokShareUrl.optional(),
     /** Optional source tweet URL when added by the X mention bot. */
     added_via: z.string().url().optional(),
     /** First-class source material. `added_via` remains supported for legacy X submissions. */

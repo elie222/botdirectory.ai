@@ -57,6 +57,8 @@ export interface Bot {
   integrations: string[];
   prompt: string;
   url?: string;
+  /** Official Grok Bot share/preview URL on x.ai, when the creator published one. */
+  grokShareUrl?: string;
   addedVia?: string;
   sources: Source[];
 }
@@ -133,6 +135,7 @@ export async function getBots(): Promise<Bot[]> {
       integrations: e.data.integrations,
       prompt: (e.body ?? '').trim(),
       url: e.data.url,
+      grokShareUrl: e.data.grok_share_url,
       addedVia: e.data.added_via,
       sources: resolveSources(explicitSources, e.data.added_via),
     };
