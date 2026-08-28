@@ -502,6 +502,12 @@ const spec = {
           prompt: { type: 'string', minLength: 1 },
           contributor: { type: ['string', 'null'] },
           sourceUrl: { type: ['string', 'null'], format: 'uri' },
+          grokShareUrl: {
+            type: ['string', 'null'],
+            format: 'uri',
+            description:
+              'Official Grok Bot public share/preview URL on x.ai. Recipients open it and click Add to Grok Bot. Null when the listing has no share link yet.',
+          },
           sources: {
             type: 'array',
             items: {
@@ -605,6 +611,13 @@ const spec = {
             additionalProperties: { type: 'string', format: 'uri', pattern: '^https://' },
           },
           url: { type: 'string', format: 'uri', pattern: '^https://' },
+          grokShareUrl: {
+            type: 'string',
+            format: 'uri',
+            pattern: '^https://(www\\.)?x\\.ai/',
+            description:
+              'Official Grok Bot share/preview URL on x.ai (not a tweet). Optional. Write this field in frontmatter as grok_share_url.',
+          },
           addedVia: { type: 'string', format: 'uri', pattern: '^https://' },
         },
       },

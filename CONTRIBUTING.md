@@ -25,6 +25,7 @@ integrations: [GitHub, DataForSEO, Search Console]
 integration_urls:                       # optional; lets deploy fetch missing favicons
   DataForSEO: https://dataforseo.com
 url: https://example.com/my-bot        # optional — canonical homepage (dedupe key)
+grok_share_url: https://x.ai/bot/share/…  # optional — official Grok Bot share/preview link
 added_via: https://x.com/.../status/…  # optional — set by the X mention bot
 sources:                              # optional — source material beyond added_via
   - kind: youtube
@@ -32,7 +33,10 @@ sources:                              # optional — source material beyond adde
     start_seconds: 126                # optional — jump to the relevant moment
 ---
 
-<the prompt, verbatim, as the file body>
+You improve my SEO on a schedule. Walk me through connecting GitHub,
+DataForSEO and Google Search Console, then run every 2 weeks: find pages
+losing impressions or sitting on page two, rewrite titles and metadata,
+fix internal links, and open a PR I review before merge.
 ```
 
 - **name** — what the bot is called on the shelf.
@@ -71,6 +75,15 @@ sources:                              # optional — source material beyond adde
   confidently. Exact Simple Icons matches are discovered automatically, and
   every remaining integration gets a generated monogram rather than a blank.
 
+- **grok_share_url** — optional official Grok Bot public share/preview URL on
+  `x.ai`. When set, the listing page shows an **Add to Grok Bot** button that
+  opens that link. Recipients preview on x.ai and add a copy to their account.
+  Link the creator's share URL only — do not scrape or rehost packed configs or
+  skills ([bot sharing terms](https://x.ai/legal/bot-sharing-terms)). Tweets and
+  marketing pages are rejected by validation. Omit the field until you have a
+  real share link; never invent one. The public JSON API exposes this as
+  `grokShareUrl`.
+
 - **sources** — optional original material that inspired the bot. Supported
   kinds are `x`, `youtube`, and `web`; the URL must match the selected kind.
   YouTube sources can include `start_seconds` to open at the relevant moment.
@@ -80,7 +93,8 @@ sources:                              # optional — source material beyond adde
 - Copy counts are **not** part of the file — they're tracked server-side and
   start at zero for every bot.
 - The **body is the prompt itself** — exactly what someone pastes into Grok Bot
-  or Rakazo. No extra prose around it.
+  or Rakazo. No extra prose around it. Prefer second person that leads with
+  **You…** (the bot's identity), not "Set up a new bot for me…".
 
 The value is the chip's dot color — pick the closest family color already in use.
 

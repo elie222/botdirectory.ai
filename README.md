@@ -21,12 +21,13 @@ added_at: "2026-08-18T12:00:00.000Z"
 contributor: rakazo
 integrations: [GitHub, DataForSEO, Search Console]
 integration_urls: { DataForSEO: https://dataforseo.com }
+# optional: grok_share_url: https://x.ai/bot/share/…  (official Add to Grok Bot link)
 ---
 
-Set up a new bot for me. Walk me through connecting GitHub, DataForSEO and
-Google Search Console, then schedule it every 2 weeks: find pages losing
-impressions or sitting on page two, rewrite titles and metadata, fix internal
-links, and open a PR I review before merge.
+You improve my SEO on a schedule. Walk me through connecting GitHub, DataForSEO and
+Google Search Console, then every 2 weeks: find pages losing impressions or sitting
+on page two, rewrite titles and metadata, fix internal links, and open a PR I review
+before merge.
 ```
 
 1. Fork this repo and add `bots/<slug>.md` (slug = name, lowercased,
@@ -35,6 +36,10 @@ links, and open a PR I review before merge.
 
 Or skip git entirely: **tag [@botdirectoryai](https://x.com/botdirectoryai) on X**
 with your prompt and the mention bot opens the PR for you.
+
+Prefer second-person prompts that lead with **You…**. When you have an official
+Grok Bot share link on x.ai, set `grok_share_url` — we surface **Add to Grok Bot**
+and never rehost packed configs.
 
 Full contract, category list, and quality bar: [CONTRIBUTING.md](CONTRIBUTING.md).
 

@@ -23,6 +23,7 @@ export const GET: APIRoute = async () => {
         integrations: bot.integrations,
         addedAt: bot.addedAt,
         detailUrl: `${SITE.url}/bots/${bot.slug}/`,
+        grokShareUrl: bot.grokShareUrl ?? null,
         sources: bot.sources.map((source) => ({
           platform: sourcePlatformName(source.kind),
           url: source.url,

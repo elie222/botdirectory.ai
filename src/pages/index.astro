@@ -243,7 +243,9 @@ const structuredData = [
           <h2 class="contribute-title">A bot is one file in a repo</h2>
           <p class="contribute-copy">
             No plugin API, no review board. Add a markdown file with the prompt and the integrations it needs, open a
-            pull request, and it shows up here.
+            pull request, and it shows up here. Prefer a second-person prompt that leads with <em>You…</em>. If you have
+            an official Grok Bot share link on x.ai, add it as <code>grok_share_url</code> — we link it, we never rehost
+            packed configs.
           </p>
           <div class="cta-row">
             <PrimaryButton href={SITE.repoUrl}>Open a pull request</PrimaryButton>
@@ -256,7 +258,7 @@ const structuredData = [
           </p>
           <p class="contribute-alt">
             Building a bot that watches the directory? <a href="https://api.botdirectory.ai/api/bots">Use the public JSON API</a>
-            — search, filter, and page through every listing.
+            — search, filter, and page through every listing. Submissions accept optional <code>grokShareUrl</code>.
           </p>
         </div>
         <div class="file-card">
@@ -269,15 +271,16 @@ category: Marketing
 added_at: "2026-08-18T12:00:00.000Z"
 contributor: elie2222
 integrations: [GitHub, DataForSEO, Search Console]
+grok_share_url: https://x.ai/bot/share/…
 ---
 
-Set up a new bot for me. Walk me through
-connecting GitHub, DataForSEO and Google
-Search Console, then schedule it every 2
-weeks: find pages losing impressions or
-sitting on page two, rewrite titles and
-metadata, fix internal links, and open a PR
-I review before merge.</pre>
+You improve my SEO on a schedule. Walk me
+through connecting GitHub, DataForSEO and
+Google Search Console, then every 2 weeks:
+find pages losing impressions or sitting on
+page two, rewrite titles and metadata, fix
+internal links, and open a PR I review
+before merge.</pre>
         </div>
       </div>
     </section>
