@@ -21,7 +21,7 @@ added_at: "2026-08-18T12:00:00.000Z"
 contributor: rakazo
 integrations: [GitHub, DataForSEO, Search Console]
 integration_urls: { DataForSEO: https://dataforseo.com }
-# optional: grok_share_url: https://x.ai/bot/share/…  (official Add to Grok Bot link)
+# optional: grok_share_url: https://x.ai/bot/<nanoid-id>  (official Add to Grok Bot link)
 ---
 
 You improve my SEO on a schedule. Walk me through connecting GitHub, DataForSEO and
