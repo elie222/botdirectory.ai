@@ -31,6 +31,9 @@ const integrationHubs = new Set(integrationHubNames);
 const related = relatedBots(bot, bots);
 const hasPrompt = botHasPrompt(bot);
 const listingBlurb = bot.description?.trim() || '';
+/** Grok always works in Grok Bot — never show it as something to "Connect first". */
+const ALWAYS_AVAILABLE = new Set(['grok', 'grok bot', 'grok bots']);
+const connectIntegrations = bot.integrations.filter((name) => !ALWAYS_AVAILABLE.has(name.trim().toLowerCase()));
 const title = hasPrompt ? `${bot.name} Grok Bot Prompt` : `${bot.name} Grok Bot`;
 const description = botDescription(bot);
 const pageUrl = `${SITE.url}/bots/${bot.slug}/`;
@@ -170,50 +173,54 @@ const structuredData = [
             </div>
           </div>
           <div class="prompt-block description-block">{listingBlurb}</div>
-          <p class="section-note">
-            This is the public description from the bot's share page — not a copy-paste system prompt.
-            Use <strong>Add to Grok Bot</strong> for the official setup.
-          </p>
         </section>
       )
     }
 
-    <section class="connect-section">
-      <h2 class="section-title">Connect first</h2>
-      <div class="connect-chips">
-        {
-          bot.integrations.map((t) => (
-            integrationHubs.has(t) ? (
-              <a href={`/integrations/${integrationSlug(t)}/`} class="connect-chip"><ToolIcon name={t} size={18} />{t}</a>
-            ) : (
-              <span class="connect-chip"><ToolIcon name={t} size={18} />{t}</span>
+    {
+      (connectIntegrations.length > 0 || CONNECT_SPONSOR.enabled) && (
+        <section class="connect-section">
+          {connectIntegrations.length > 0 && (
+            <>
+              <h2 class="section-title">Connect first</h2>
+              <div class="connect-chips">
+                {
+                  connectIntegrations.map((t) => (
+                    integrationHubs.has(t) ? (
+                      <a href={`/integrations/${integrationSlug(t)}/`} class="connect-chip"><ToolIcon name={t} size={18} />{t}</a>
+                    ) : (
+                      <span class="connect-chip"><ToolIcon name={t} size={18} />{t}</span>
+                    )
+                  ))
+                }
+              </div>
+              <p class="section-note">
+                {hasPrompt
+                  ? 'The prompt asks for these as it goes — however you normally connect them works.'
+                  : 'Connect these after you add the official share link — however you normally connect them works.'}
+              </p>
+            </>
+          )}
+          {
+            CONNECT_SPONSOR.enabled && (
+              <a
+                href={sponsorUrl(CONNECT_SPONSOR.url, 'connect')}
+                class="connect-sponsor"
+                data-sponsor={CONNECT_SPONSOR.name}
+                data-sponsor-placement="connect"
+                rel="sponsored"
+              >
+                <img src={CONNECT_SPONSOR.logo} alt={`${CONNECT_SPONSOR.name} logo`} width="128" height="128" class="connect-sponsor-logo" loading="lazy" />
+                <span class="connect-sponsor-copy">
+                  {CONNECT_SPONSOR.copy} <span class="connect-sponsor-cta">{CONNECT_SPONSOR.cta}</span>
+                </span>
+                <span class="connect-sponsor-label">Sponsored</span>
+              </a>
             )
-          ))
-        }
-      </div>
-      <p class="section-note">
-        {hasPrompt
-          ? 'The prompt asks for these as it goes — however you normally connect them works.'
-          : 'Connect these in Grok Bot after you add the official share link — however you normally connect them works.'}
-      </p>
-      {
-        CONNECT_SPONSOR.enabled && (
-          <a
-            href={sponsorUrl(CONNECT_SPONSOR.url, 'connect')}
-            class="connect-sponsor"
-            data-sponsor={CONNECT_SPONSOR.name}
-            data-sponsor-placement="connect"
-            rel="sponsored"
-          >
-            <img src={CONNECT_SPONSOR.logo} alt={`${CONNECT_SPONSOR.name} logo`} width="128" height="128" class="connect-sponsor-logo" loading="lazy" />
-            <span class="connect-sponsor-copy">
-              {CONNECT_SPONSOR.copy} <span class="connect-sponsor-cta">{CONNECT_SPONSOR.cta}</span>
-            </span>
-            <span class="connect-sponsor-label">Sponsored</span>
-          </a>
-        )
-      }
-    </section>
+          }
+        </section>
+      )
+    }
 
     {
       hasPrompt ? (
@@ -221,7 +228,7 @@ const structuredData = [
           <h2 class="section-title">How to use this prompt</h2>
           <ol class="setup-steps">
             <li><strong>Copy the full prompt.</strong> Keep the instructions together so the agent sees the workflow, tools, and guardrails.</li>
-            <li><strong>Paste it into your agent.</strong> Answer the setup questions and connect {bot.integrations.length === 1 ? 'the required tool' : 'the required tools'} when asked.</li>
+            <li><strong>Paste it into your agent.</strong> Answer the setup questions{connectIntegrations.length > 0 ? ` and connect ${connectIntegrations.length === 1 ? 'the required tool' : 'the required tools'} when asked` : ''}.</li>
             <li><strong>Review the first run.</strong> Confirm the output and approval rules before saving it for on-demand or scheduled use.</li>
           </ol>
           {isChiefOfStaff && <p class="section-note"><a href="/collections/chief-of-staff/">Compare every Chief of Staff prompt</a> by job, cadence, and integrations.</p>}
@@ -232,7 +239,7 @@ const structuredData = [
           <ol class="setup-steps">
             <li><strong>Open the official share link.</strong> Use Add to Grok Bot — we only link the creator's x.ai share URL.</li>
             <li><strong>Add it to your account.</strong> Preview on x.ai, then add a copy to your Grok Bot workspace.</li>
-            <li><strong>Connect tools and review.</strong> Wire up {bot.integrations.length === 1 ? 'the required tool' : 'the required tools'} and confirm behavior before trusting scheduled or consequential actions.</li>
+            <li><strong>{connectIntegrations.length > 0 ? 'Connect tools and review.' : 'Review the first run.'}</strong> {connectIntegrations.length > 0 ? `Wire up ${connectIntegrations.length === 1 ? 'the required tool' : 'the required tools'} and confirm behavior` : 'Confirm behavior'} before trusting scheduled or consequential actions.</li>
           </ol>
           {isChiefOfStaff && <p class="section-note"><a href="/collections/chief-of-staff/">Compare every Chief of Staff listing</a> by job, cadence, and integrations.</p>}
         </section>
