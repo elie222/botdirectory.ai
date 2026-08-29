@@ -6,6 +6,6 @@ contributor: buuxbt
 contributor_url: https://x.com/buuxbt
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/0y-dcpVFqFkjibKs2M48D
+description: |
+  Checks Y Combinator podcasts every hour, flags new episodes, and sends short founder-useful notes with startup-idea angles.
 ---
-
-Checks Y Combinator podcasts every hour, flags new episodes, and sends short founder-useful notes with startup-idea angles.

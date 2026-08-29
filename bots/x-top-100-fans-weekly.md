@@ -6,6 +6,6 @@ contributor: AdamLowisz
 contributor_url: https://x.com/AdamLowisz
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/HU7XArfGhUgLnzVcr7neB
+description: |
+  Ranks your top 100 X fans each week by how they engaged with your posts, then sends you the digest.
 ---
-
-Ranks your top 100 X fans each week by how they engaged with your posts, then sends you the digest.

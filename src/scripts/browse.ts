@@ -12,7 +12,7 @@ interface BrowseState {
   view: 'table' | 'cards';
 }
 
-type BotFeedItem = Pick<Bot, 'slug' | 'name' | 'category' | 'integrations' | 'prompt'> & {
+type BotFeedItem = Pick<Bot, 'slug' | 'name' | 'category' | 'integrations' | 'prompt' | 'description'> & {
   contributor: string | null;
 };
 
@@ -27,12 +27,16 @@ function loadBotDetails(): Promise<void> {
       if (!response.ok) throw new Error(`bot feed returned ${response.status}`);
       const payload = (await response.json()) as { bots?: BotFeedItem[] };
       for (const bot of payload.bots ?? []) {
+        const listingText = bot.prompt || bot.description || '';
         searchIndex.set(
           bot.slug,
-          [bot.name, bot.category, ...bot.integrations, bot.contributor, bot.prompt].filter(Boolean).join(' ').toLowerCase(),
+          [bot.name, bot.category, ...bot.integrations, bot.contributor, listingText]
+            .filter(Boolean)
+            .join(' ')
+            .toLowerCase(),
         );
         const summary = document.querySelector<HTMLElement>(`[data-prompt-slug="${CSS.escape(bot.slug)}"]`);
-        if (summary) summary.textContent = promptExcerpt(bot.prompt);
+        if (summary && listingText) summary.textContent = promptExcerpt(listingText);
       }
     })
     .catch(() => {

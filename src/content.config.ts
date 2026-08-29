@@ -59,6 +59,11 @@ const bots = defineCollection({
      * Recipients open it and click Add to Grok Bot. Link only — never rehost configs.
      */
     grok_share_url: grokShareUrl.optional(),
+    /**
+     * Public listing blurb (e.g. the x.ai share-page description). Not a pasteable
+     * system prompt — keep those in the markdown body.
+     */
+    description: z.string().min(1).optional(),
     /** Optional source tweet URL when added by the X mention bot. */
     added_via: z.string().url().optional(),
     /** First-class source material. `added_via` remains supported for legacy X submissions. */

@@ -85,6 +85,14 @@ fix internal links, and open a PR I review before merge.
   until you have a real share link; never invent one. The public JSON API
   exposes this as `grokShareUrl`.
 
+- **description** — optional public blurb (for example the short text shown on an
+  official x.ai share page). This is **not** a pasteable system prompt. Use it
+  when you are indexing a share URL and do not have the real prompt; leave the
+  markdown body empty in that case. The listing page labels it **Description**
+  and does not show Copy prompt. Do not invent prompts to fill the gap. The
+  public JSON feed exposes this as `description` and sets `prompt` to `null`
+  when there is no body.
+
 - **sources** — optional original material that inspired the bot. Supported
   kinds are `x`, `youtube`, and `web`; the URL must match the selected kind.
   YouTube sources can include `start_seconds` to open at the relevant moment.
@@ -93,9 +101,10 @@ fix internal links, and open a PR I review before merge.
 
 - Copy counts are **not** part of the file — they're tracked server-side and
   start at zero for every bot.
-- The **body is the prompt itself** — exactly what someone pastes into Grok Bot
-  or Rakazo. No extra prose around it. Prefer second person that leads with
-  **You…** (the bot's identity), not "Set up a new bot for me…".
+- The **body is the prompt itself** when you have one — exactly what someone
+  pastes into Grok Bot or Rakazo. No extra prose around it. Prefer second
+  person that leads with **You…** (the bot's identity), not "Set up a new bot
+  for me…". A listing needs a prompt body, a `description`, or both.
 
 The value is the chip's dot color — pick the closest family color already in use.
 
@@ -112,7 +121,7 @@ The value is the chip's dot color — pick the closest family color already in u
 ## Checks
 
 Every PR runs `pnpm validate` (schema, filename = slug, unique slug, known
-category, non-empty prompt, unique `url`) plus `astro check` and a full
+category, prompt body and/or `description`, unique `url`) plus `astro check` and a full
 build. Run them locally:
 
 ```sh

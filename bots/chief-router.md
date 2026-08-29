@@ -7,6 +7,6 @@ contributor_url: https://x.com/nykdotdev
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/JugVUSPe_wSZg-in69owM
 added_via: https://x.com/nykdotdev/status/2093395691452457171
+description: |
+  Router only, never the worker. Assigns one object owner, then stays out of the pair. The product seat owns public PRs through QA; design and eng own their lanes.
 ---
-
-Router only, never the worker. Assigns one object owner, then stays out of the pair. The product seat owns public PRs through QA; design and eng own their lanes.

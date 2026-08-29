@@ -7,6 +7,6 @@ contributor_url: https://x.com/scheemunai
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/MGiEdMz0TNxBkvMgUZAbf
 added_via: https://x.com/scheemunai/status/2093399328836440571
+description: |
+  Landed-cost shopping: real prices, shipping and tax, preferred retailers. Watchlist optional. Never buys unless asked.
 ---
-
-Landed-cost shopping: real prices, shipping and tax, preferred retailers. Watchlist optional. Never buys unless asked.

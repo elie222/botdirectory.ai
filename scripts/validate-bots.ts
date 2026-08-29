@@ -3,8 +3,9 @@
  * Run with: pnpm validate
  *
  * Checks: frontmatter schema (including `added_at`), filename = slug(name),
- * unique slug, known category, non-empty prompt body, unique `url` (dedupe key),
- * optional unique `grok_share_url` (`https://x.ai/bot/<nanoid-style-id>` only).
+ * unique slug, known category, non-empty prompt body and/or `description`,
+ * unique `url` (dedupe key), optional unique `grok_share_url`
+ * (`https://x.ai/bot/<nanoid-style-id>` only).
  * Integrations are free-form strings — any tool name is welcome; entries
  * in data/tool-icons.json only add a brand icon. Copy counts are server-side
  * (the copies API), never in the repo markdown.
@@ -63,6 +64,7 @@ const schema = z
     integration_urls: z.record(z.string().min(1), httpsUrl).optional(),
     url: z.string().url().optional(),
     grok_share_url: grokShareUrl.optional(),
+    description: z.string().min(1).optional(),
     added_via: z.string().url().optional(),
     sources: z.array(sourceSchema).min(1).optional(),
   })
@@ -129,7 +131,10 @@ for (const file of files) {
   else seenSlugs.set(slug, file);
 
   const body = raw.slice(match[0].length).trim();
-  if (!body) errors.push(`${file}: prompt body is empty`);
+  const description = bot.description?.trim() ?? '';
+  if (!body && !description) {
+    errors.push(`${file}: need a prompt body and/or a frontmatter description`);
+  }
 
   if (bot.url) {
     const urlDupe = seenUrls.get(bot.url);

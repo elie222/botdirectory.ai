@@ -7,6 +7,6 @@ contributor_url: https://x.com/GuleidAmina
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/Rm6VqcE8cOWXwotPth9qM
 added_via: https://x.com/GuleidAmina/status/2093386135452152155
+description: |
+  Helps doctors, patients, and families turn one health or health-system question into a 3-minute brief: evidence, cheaper options, and when to see a clinician. Not a doctor.
 ---
-
-Helps doctors, patients, and families turn one health or health-system question into a 3-minute brief: evidence, cheaper options, and when to see a clinician. Not a doctor.

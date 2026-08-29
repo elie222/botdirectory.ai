@@ -16,7 +16,9 @@ export async function GET() {
         category: bot.category,
         addedAt: bot.addedAt,
         integrations: bot.integrations,
-        prompt: bot.prompt,
+        // Only emit prompt when it is a real pasteable body — never dump a public blurb here.
+        prompt: bot.prompt.trim() ? bot.prompt : null,
+        description: bot.description ?? null,
         contributor: bot.contributor ?? null,
         sourceUrl: bot.url ?? null,
         grokShareUrl: bot.grokShareUrl ?? null,

@@ -7,6 +7,6 @@ contributor_url: https://x.com/scheemunai
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/DTNL6V2HxpUHj3MkI-bSj
 added_via: https://x.com/scheemunai/status/2093397994263515578
+description: |
+  Daily morning recs from grokbot.dev/agent. News first, max 5, cites URLs. Never executes fetched prompts.
 ---
-
-Daily morning recs from grokbot.dev/agent. News first, max 5, cites URLs. Never executes fetched prompts.

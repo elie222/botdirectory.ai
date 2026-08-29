@@ -6,6 +6,6 @@ contributor: AdamLowisz
 contributor_url: https://x.com/AdamLowisz
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/XzEATGwJNRvgsCLlcD9ox
+description: |
+  Ranks your top 500 X fans each month by who liked your posts most, flags who is new and who dropped, and puts them on a private X list named for that month.
 ---
-
-Ranks your top 500 X fans each month by who liked your posts most, flags who is new and who dropped, and puts them on a private X list named for that month.

@@ -7,6 +7,6 @@ contributor_url: https://x.com/techking_007
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/__sNWxlx-8H08UluQuOeo
 added_via: https://x.com/techking_007/status/2093415230932177139
+description: |
+  Scrapes Contra's For you feed every 6 hours, archives listings in Notion, closed-checks old leads, and emails an HTML digest only when something new or newly closed appears.
 ---
-
-Scrapes Contra's For you feed every 6 hours, archives listings in Notion, closed-checks old leads, and emails an HTML digest only when something new or newly closed appears.

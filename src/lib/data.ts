@@ -55,7 +55,13 @@ export interface Bot {
   scoutedBy?: string;
   copies: number;
   integrations: string[];
+  /**
+   * Pasteable system prompt (markdown body). Empty when the listing only has a
+   * public description (typical share-URL index entries).
+   */
   prompt: string;
+  /** Public blurb / x.ai share-page description. Not a prompt. */
+  description?: string;
   url?: string;
   /** Official Grok Bot share/preview URL on x.ai, when the creator published one. */
   grokShareUrl?: string;
@@ -134,6 +140,7 @@ export async function getBots(): Promise<Bot[]> {
       copies: Number.isFinite(copyCounts[e.id]) ? copyCounts[e.id] : 0,
       integrations: e.data.integrations,
       prompt: (e.body ?? '').trim(),
+      description: e.data.description?.trim() || undefined,
       url: e.data.url,
       grokShareUrl: e.data.grok_share_url,
       addedVia: e.data.added_via,
@@ -141,4 +148,14 @@ export async function getBots(): Promise<Bot[]> {
     };
   });
   return bots.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/** Text shown in cards, feeds, and search when a listing may lack a prompt. */
+export function botListingText(bot: Pick<Bot, 'prompt' | 'description'>): string {
+  return bot.prompt || bot.description || '';
+}
+
+/** True when the listing has a pasteable prompt (not only a public description). */
+export function botHasPrompt(bot: Pick<Bot, 'prompt'>): boolean {
+  return Boolean(bot.prompt.trim());
 }

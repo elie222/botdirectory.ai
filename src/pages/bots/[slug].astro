@@ -7,7 +7,7 @@ import ToolIcon from '../../components/ToolIcon.astro';
 import SourceEmbed from '../../components/SourceEmbed.astro';
 import { CONNECT_SPONSOR, FEATURES, SITE } from '../../config';
 import { catStyle, fmt } from '../../lib/constants';
-import { getBots, SPONSORS, type Bot } from '../../lib/data';
+import { botHasPrompt, getBots, SPONSORS, type Bot } from '../../lib/data';
 import { botDescription, botLastModified, categorySlug, integrationSlug, listIntegrations, relatedBots } from '../../lib/seo';
 import { sponsorUrl } from '../../lib/utm';
 import { sourceContentName } from '../../lib/sources';
@@ -29,7 +29,8 @@ const cat = catStyle(bot.category);
 const primarySource = bot.sources[0];
 const integrationHubs = new Set(integrationHubNames);
 const related = relatedBots(bot, bots);
-const title = `${bot.name} Grok Bot Prompt`;
+const hasPrompt = botHasPrompt(bot);
+const title = hasPrompt ? `${bot.name} Grok Bot Prompt` : `${bot.name} Grok Bot`;
 const description = botDescription(bot);
 const pageUrl = `${SITE.url}/bots/${bot.slug}/`;
 const categoryUrl = `${SITE.url}/categories/${categorySlug(bot.category)}/`;
@@ -38,11 +39,15 @@ const structuredData = [
   {
     '@context': 'https://schema.org',
     '@type': 'CreativeWork',
-    name: `${bot.name} bot prompt`,
+    name: hasPrompt ? `${bot.name} bot prompt` : `${bot.name} Grok Bot`,
     url: pageUrl,
     description,
     genre: bot.category,
-    keywords: [bot.category, ...bot.integrations, 'AI bot prompt', 'Grok Bot prompt'],
+    keywords: [
+      bot.category,
+      ...bot.integrations,
+      ...(hasPrompt ? ['AI bot prompt', 'Grok Bot prompt'] : ['Grok Bot', 'AI bot']),
+    ],
     ...(bot.sources.length && { citation: bot.sources.map((source) => source.url) }),
     ...(bot.grokShareUrl && { sameAs: bot.grokShareUrl }),
     isAccessibleForFree: true,
@@ -83,7 +88,7 @@ const structuredData = [
 
     <div class="badge-row">
       <span class="badge-cat" style={`color: ${cat.catFg}; background: ${cat.catBg}; border-color: ${cat.catBorder};`}>{bot.category}</span>
-      {FEATURES.showCopies && (
+      {FEATURES.showCopies && hasPrompt && (
         <span class="badge-plain" data-copies-slug={bot.slug} data-copies-seed={bot.copies}>{fmt(bot.copies)} copies</span>
       )}
       {
@@ -120,7 +125,7 @@ const structuredData = [
 
     <section class="prompt-section">
       <div class="prompt-head">
-        <h2 class="section-title">The prompt</h2>
+        <h2 class="section-title">{hasPrompt ? 'The prompt' : 'Description'}</h2>
         <div class="prompt-head-actions">
           {
             bot.grokShareUrl && (
@@ -135,10 +140,28 @@ const structuredData = [
               </a>
             )
           }
-          <button type="button" class="copy-btn" data-copy-slug={bot.slug} data-copied-label="Copied">Copy prompt</button>
+          {
+            hasPrompt && (
+              <button type="button" class="copy-btn" data-copy-slug={bot.slug} data-copied-label="Copied">Copy prompt</button>
+            )
+          }
         </div>
       </div>
-      <div class="prompt-block" id="prompt-block">{bot.prompt}</div>
+      {
+        hasPrompt ? (
+          <div class="prompt-block" id="prompt-block">{bot.prompt}</div>
+        ) : (
+          <div class="description-block">{bot.description}</div>
+        )
+      }
+      {
+        !hasPrompt && bot.grokShareUrl && (
+          <p class="section-note">
+            This is the public description from the official share page — not a copy-paste system prompt. Use{' '}
+            <a href={bot.grokShareUrl} target="_blank" rel="noopener noreferrer">Add to Grok Bot</a> to install the real config.
+          </p>
+        )
+      }
     </section>
 
     <section class="connect-section">
@@ -154,7 +177,13 @@ const structuredData = [
           ))
         }
       </div>
-      <p class="section-note">The prompt asks for these as it goes — however you normally connect them works.</p>
+      <p class="section-note">
+        {
+          hasPrompt
+            ? 'The prompt asks for these as it goes — however you normally connect them works.'
+            : 'Connect these in Grok after you add the bot from the official share link.'
+        }
+      </p>
       {
         CONNECT_SPONSOR.enabled && (
           <a
@@ -174,23 +203,40 @@ const structuredData = [
       }
     </section>
 
-    <section class="setup-section">
-      <h2 class="section-title">How to use this prompt</h2>
-      <ol class="setup-steps">
-        <li><strong>Copy the full prompt.</strong> Keep the instructions together so the agent sees the workflow, tools, and guardrails.</li>
-        <li><strong>Paste it into your agent.</strong> Answer the setup questions and connect {bot.integrations.length === 1 ? 'the required tool' : 'the required tools'} when asked.</li>
-        <li><strong>Review the first run.</strong> Confirm the output and approval rules before saving it for on-demand or scheduled use.</li>
-      </ol>
-      {isChiefOfStaff && <p class="section-note"><a href="/collections/chief-of-staff/">Compare every Chief of Staff prompt</a> by job, cadence, and integrations.</p>}
-    </section>
+    {
+      hasPrompt ? (
+        <section class="setup-section">
+          <h2 class="section-title">How to use this prompt</h2>
+          <ol class="setup-steps">
+            <li><strong>Copy the full prompt.</strong> Keep the instructions together so the agent sees the workflow, tools, and guardrails.</li>
+            <li><strong>Paste it into your agent.</strong> Answer the setup questions and connect {bot.integrations.length === 1 ? 'the required tool' : 'the required tools'} when asked.</li>
+            <li><strong>Review the first run.</strong> Confirm the output and approval rules before saving it for on-demand or scheduled use.</li>
+          </ol>
+          {isChiefOfStaff && <p class="section-note"><a href="/collections/chief-of-staff/">Compare every Chief of Staff prompt</a> by job, cadence, and integrations.</p>}
+        </section>
+      ) : bot.grokShareUrl ? (
+        <section class="setup-section">
+          <h2 class="section-title">How to add this bot</h2>
+          <ol class="setup-steps">
+            <li><strong>Open the official share link.</strong> Preview the bot on x.ai — we do not rehost private configs.</li>
+            <li><strong>Click Add to Grok Bot.</strong> That installs the creator’s setup into your account.</li>
+            <li><strong>Connect tools and review the first run.</strong> Confirm permissions and approval rules before relying on it.</li>
+          </ol>
+        </section>
+      ) : null
+    }
 
     <section class="cta-card">
       <div>
         <p class="cta-title">Run {bot.name} yourself</p>
         <p class="cta-sub">
-          {bot.grokShareUrl
-            ? 'Add via the official Grok Bot share link, or copy the prompt and adapt it.'
-            : 'Free to copy, adapt, and edit after setup.'}
+          {
+            bot.grokShareUrl && !hasPrompt
+              ? 'Add via the official Grok Bot share link.'
+              : bot.grokShareUrl
+                ? 'Add via the official Grok Bot share link, or copy the prompt and adapt it.'
+                : 'Free to copy, adapt, and edit after setup.'
+          }
         </p>
       </div>
       <div class="cta-actions">
@@ -209,9 +255,13 @@ const structuredData = [
             </div>
           )
         }
-        <div class="pbtn-wrap">
-          <button type="button" class="pbtn pbtn-44" data-copy-slug={bot.slug} data-copied-label="Copied — now open your agent">Copy and set up</button>
-        </div>
+        {
+          hasPrompt && (
+            <div class="pbtn-wrap">
+              <button type="button" class="pbtn pbtn-44" data-copy-slug={bot.slug} data-copied-label="Copied — now open your agent">Copy and set up</button>
+            </div>
+          )
+        }
         <a href={`${SITE.repoUrl}/blob/main/bots/${bot.slug}.md`} class="btn-view-source">View source</a>
       </div>
     </section>
@@ -255,7 +305,7 @@ const structuredData = [
             <a href={`/bots/${x.slug}/`} class="related-card">
               <span class="related-name">{x.name}</span>
               <span class="related-meta">
-                {x.integrations.slice(0, 2).join(', ')}{FEATURES.showCopies && (
+                {x.integrations.slice(0, 2).join(', ')}{FEATURES.showCopies && botHasPrompt(x) && (
                   <> · <span data-copies-slug={x.slug} data-copies-seed={x.copies}>{fmt(x.copies)} copies</span></>
                 )}
               </span>
@@ -304,19 +354,21 @@ const structuredData = [
   const prompt = promptBlock?.textContent ?? '';
   const buttons = document.querySelectorAll<HTMLElement>('[data-copy-slug]');
 
-  buttons.forEach((btn) =>
-    btn.addEventListener('click', () => {
-      if (navigator.clipboard && prompt) navigator.clipboard.writeText(prompt).catch(() => {});
-      trackCopy(btn.dataset.copySlug || '');
-      buttons.forEach((b) => {
-        b.textContent = b.dataset.copiedLabel || 'Copied';
-      });
-      refreshCopyLabels();
-    })
-  );
+  if (promptBlock && buttons.length) {
+    buttons.forEach((btn) =>
+      btn.addEventListener('click', () => {
+        if (navigator.clipboard && prompt) navigator.clipboard.writeText(prompt).catch(() => {});
+        trackCopy(btn.dataset.copySlug || '');
+        buttons.forEach((b) => {
+          b.textContent = b.dataset.copiedLabel || 'Copied';
+        });
+        refreshCopyLabels();
+      })
+    );
 
-  refreshCopyLabels();
-  void loadCopyCounts();
+    refreshCopyLabels();
+    void loadCopyCounts();
+  }
 
   const reviewsRoot = document.querySelector<HTMLElement>('#reviews');
   if (reviewsRoot) mountReviews(reviewsRoot);

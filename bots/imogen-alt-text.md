@@ -7,6 +7,6 @@ contributor_url: https://x.com/kentcdodds
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/9y2GcFkKMAUhYlMxRUS0X
 added_via: https://x.com/kentcdodds/status/2093405822730825820
+description: |
+  Imogen the Impala Image Interpreter writes brief, copyable alt text focused on the most important part of an image, so images are accessible to blind people.
 ---
-
-Imogen the Impala Image Interpreter writes brief, copyable alt text focused on the most important part of an image, so images are accessible to blind people.

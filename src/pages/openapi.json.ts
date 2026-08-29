@@ -492,14 +492,23 @@ const spec = {
       Bot: {
         type: 'object',
         additionalProperties: true,
-        required: ['slug', 'name', 'category', 'addedAt', 'integrations', 'prompt', 'detailUrl'],
+        required: ['slug', 'name', 'category', 'addedAt', 'integrations', 'prompt', 'description', 'detailUrl'],
         properties: {
           slug: { $ref: '#/components/schemas/Slug' },
           name: { type: 'string', minLength: 1, maxLength: 80 },
           category: { type: 'string', enum: CATEGORIES },
           addedAt: { type: 'string', format: 'date-time' },
           integrations: { type: 'array', minItems: 1, items: { type: 'string' } },
-          prompt: { type: 'string', minLength: 1 },
+          prompt: {
+            type: ['string', 'null'],
+            description:
+              'Pasteable system prompt when the directory has one. Null when the listing only has a public description (typical official share-URL indexes).',
+          },
+          description: {
+            type: ['string', 'null'],
+            description:
+              'Public listing blurb (for example the x.ai share-page description). Not a pasteable system prompt. Null when omitted.',
+          },
           contributor: { type: ['string', 'null'] },
           sourceUrl: { type: ['string', 'null'], format: 'uri' },
           grokShareUrl: {
@@ -593,11 +602,23 @@ const spec = {
       BotSubmission: {
         type: 'object',
         additionalProperties: false,
-        required: ['name', 'category', 'prompt', 'integrations'],
+        required: ['name', 'category', 'integrations'],
         properties: {
           name: { type: 'string', minLength: 1, maxLength: 80 },
           category: { type: 'string', enum: CATEGORIES },
-          prompt: { type: 'string', minLength: 1, maxLength: 20000 },
+          prompt: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 20000,
+            description: 'Pasteable system prompt (markdown body). Prefer for real setups.',
+          },
+          description: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 5000,
+            description:
+              'Public blurb when indexing a share URL without a pasteable prompt. Not a system prompt.',
+          },
           integrations: {
             type: 'array',
             minItems: 1,

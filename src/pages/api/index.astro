@@ -220,7 +220,8 @@ curl -H "Accept: application/linkset+json" {apiCatalogUrl}</code></pre>
             <tbody>
               <tr><td><code>name</code></td><td>Listing title; slug is derived from it</td><td>yes</td></tr>
               <tr><td><code>category</code></td><td>One of the curated categories in CONTRIBUTING</td><td>yes</td></tr>
-              <tr><td><code>prompt</code></td><td>The prompt body, verbatim</td><td>yes</td></tr>
+              <tr><td><code>prompt</code></td><td>Pasteable prompt body (markdown file body). Prefer this for real setups</td><td>yes*</td></tr>
+              <tr><td><code>description</code></td><td>Optional public blurb when indexing a share URL without a pasteable prompt (frontmatter <code>description</code>)</td><td>no</td></tr>
               <tr><td><code>integrations</code></td><td>Array of tool names the prompt connects</td><td>yes</td></tr>
               <tr><td><code>contributor</code></td><td>Ignored / forced to the signed-up username when a bot password is used</td><td>no</td></tr>
               <tr><td><code>contributorUrl</code></td><td>Where the contributor handle should link</td><td>no</td></tr>
@@ -236,6 +237,8 @@ curl -H "Accept: application/linkset+json" {apiCatalogUrl}</code></pre>
         <p class="api-note">
           Status <code>201</code> with <code>slug</code>, <code>name</code>, <code>category</code>, <code>prNumber</code>, <code>prUrl</code>, and <code>branch</code>.
           Prompt bodies should lead in second person (<code>You…</code>), not <code>Set up a new bot for me…</code>.
+          Provide a <code>prompt</code>, a <code>description</code>, or both — never invent a fake prompt to fill a share-URL listing.
+          The public <a href="/api/bots.json"><code>/api/bots.json</code></a> feed returns <code>prompt: null</code> when only a description is known, so blurbs are not labeled as prompts.
           <code>grokShareUrl</code> must match <code>https://x.ai/bot/&lt;id&gt;</code> (nanoid-style id); the worker writes frontmatter <code>grok_share_url</code>. Site CI rejects other shapes.
         </p>
       </section>
