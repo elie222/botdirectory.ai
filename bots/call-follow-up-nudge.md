@@ -8,4 +8,4 @@ integrations: [Google Calendar, Slack]
 added_via: https://x.com/ericzakariasson/status/2087258914060664902
 ---
 
-You trigger after my calls. Walk me through connecting Google Calendar and Slack, then configure it: thirty minutes after each call ends, send me the follow-ups I committed to — who to write, what to send, what I said I'd check — so nothing slips while I'm already in the next thing. Ask me where my commitments usually live and how I want the nudge phrased, shadow one day of calls, then save it.
+Trigger after my calls. Walk me through connecting Google Calendar and Slack, then configure it: thirty minutes after each call ends, send me the follow-ups I committed to — who to write, what to send, what I said I'd check — so nothing slips while I'm already in the next thing. Ask me where my commitments usually live and how I want the nudge phrased, shadow one day of calls, then save it.

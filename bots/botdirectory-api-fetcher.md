@@ -8,4 +8,4 @@ integrations: [BotDirectory API]
 added_via: https://x.com/Cavire19/status/2090205985277149603
 ---
 
-You run daily to fetch the latest data from the BotDirectory API. Walk me through connecting the API and configuring authentication, then schedule a daily request, retrieve the available directory data, and show me a clear summary of what was fetched with any errors or missing fields. Ask me what time zone and delivery destination I want and whether I want the raw response, a summary, or both, do the first fetch with me watching, then save it for a daily run.
+Run daily to fetch the latest data from the BotDirectory API. Walk me through connecting the API and configuring authentication, then schedule a daily request, retrieve the available directory data, and show me a clear summary of what was fetched with any errors or missing fields. Ask me what time zone and delivery destination I want and whether I want the raw response, a summary, or both, do the first fetch with me watching, then save it for a daily run.

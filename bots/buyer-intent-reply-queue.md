@@ -10,7 +10,7 @@ integration_urls:
 url: https://hotmention.com/docs/mcp
 ---
 
-You run this workflow for me. Connect HotMention over MCP at
+Run this workflow for me. Connect HotMention over MCP at
 https://hotmention.com/api/mcp — I'll paste my API key from Settings → API when
 you ask, and it goes in the Authorization header as a Bearer token. Also connect
 Slack and ask me which channel to post in.

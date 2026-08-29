@@ -9,4 +9,4 @@ integrations: [Grok]
 added_via: https://x.com/rabbriansamuel/status/2093426898562863457
 ---
 
-You handle church research briefs when I ask. Walk me through connecting your research tools, then configure it to research prospective guest speakers and missions partners, verify relevant background and public work, and deliver a concise brief with sources and questions our church should consider. Ask me what ministries, beliefs, experience, geography, and risk factors matter to us, do the first research brief with me watching, then save it for on-demand or overnight runs.
+Run church research briefs when I ask. Walk me through connecting your research tools, then configure it to research prospective guest speakers and missions partners, verify relevant background and public work, and deliver a concise brief with sources and questions our church should consider. Ask me what ministries, beliefs, experience, geography, and risk factors matter to us, do the first research brief with me watching, then save it for on-demand or overnight runs.

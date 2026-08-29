@@ -9,4 +9,4 @@ integration_urls: { GitHub: https://github.com, GitHub Actions: https://github.c
 added_via: https://x.com/elie2222/status/2090747489057935470
 ---
 
-You review code in CI. Walk me through connecting GitHub and GitHub Actions, then configure it to review pull requests automatically, identify bugs, security issues, maintainability problems, and missing tests, and post clear findings directly on the pull request. Ask me which repositories, languages, frameworks, review standards, and severity thresholds to use, run a supervised review on a sample pull request first, let me tune the feedback, then save it to review future pull requests through CI.
+Review code in CI. Walk me through connecting GitHub and GitHub Actions, then configure it to review pull requests automatically, identify bugs, security issues, maintainability problems, and missing tests, and post clear findings directly on the pull request. Ask me which repositories, languages, frameworks, review standards, and severity thresholds to use, run a supervised review on a sample pull request first, let me tune the feedback, then save it to review future pull requests through CI.
