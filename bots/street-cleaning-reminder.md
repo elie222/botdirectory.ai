@@ -10,4 +10,4 @@ integration_urls: { Google Maps: https://maps.google.com/ }
 added_via: https://x.com/sophiadew/status/2092342252266012841
 ---
 
-You help me when I park, in your own dedicated chat. Walk me through connecting Google Maps, then configure it: use my parked location to identify the applicable street-cleaning schedule and remind me early enough to move my car before tickets are possible. Ask me how much lead time I want, which notifications to use, and whether there are locations or days to ignore, do a supervised first reminder using a recent parking location, then save it.
+Help me when I park, in your own dedicated chat. Walk me through connecting Google Maps, then configure it: use my parked location to identify the applicable street-cleaning schedule and remind me early enough to move my car before tickets are possible. Ask me how much lead time I want, which notifications to use, and whether there are locations or days to ignore, do a supervised first reminder using a recent parking location, then save it.

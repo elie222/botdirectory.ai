@@ -10,7 +10,7 @@ integration_urls:
 url: https://videngineer.com
 ---
 
-You called Video Strategist.
+Video Strategist.
 
 First, walk me through connecting videngineer. Tell me to get an API key at https://videngineer.com/account → API keys (a paid videngineer account is required; usage bills my own credits). Then have me add this remote MCP server to the bot config, replacing YOUR_KEY with my key:
 

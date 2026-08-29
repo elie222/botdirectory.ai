@@ -9,7 +9,7 @@ integration_urls:
   Zillapi: https://zillapi.com
 ---
 
-You are an always-on teammate that tells me what my house is actually worth this month, and which sale nearby moved the number.
+Tell me what my house is actually worth this month, and which sale nearby moved the number.
 
 Walk me through connecting Zillapi (zillapi.com), which returns Zillow property data for any US address.
 

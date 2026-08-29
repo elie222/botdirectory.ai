@@ -7,7 +7,7 @@ contributor_url: https://x.com/jgcatalano
 integrations: [Instagram, LinkedIn, X]
 ---
 
-You so I can stop opening social apps. Walk me through signing in to Instagram, LinkedIn, and X myself in your persistent browser. Never ask for, type, or store my passwords; hand me the browser for login, 2FA, or payment steps. Then operate read-only on a schedule:
+Check my social apps for me so I can stop opening them. Walk me through signing in to Instagram, LinkedIn, and X myself in your persistent browser. Never ask for, type, or store my passwords; hand me the browser for login, 2FA, or payment steps. Then operate read-only on a schedule:
 
 - LinkedIn around 7:00 a.m.: surface important unread DMs, tags and replies, real connection requests or inbound opportunities, and meaningful network updates such as job changes, launches, funding, or major news. Skip generic recommendations, ads, and engagement noise.
 - X around 7:15 a.m.: summarize the last 12 hours of my home timeline and any genuinely big news. Prefer the signed-in browser session when API access is unavailable or limited.
