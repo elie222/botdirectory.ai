@@ -85,6 +85,13 @@ fix internal links, and open a PR I review before merge.
   until you have a real share link; never invent one. The public JSON API
   exposes this as `grokShareUrl`.
 
+- **description** — optional public blurb (what the bot does on the shelf / on
+  the x.ai share page). **Not** copy-paste instructions. Use this when you have
+  an official share URL but not the private system prompt — the site labels it
+  **Description** and does not offer **Copy prompt**. Prefer second person
+  ("You get a weekly digest…") for blurbs too, but never pretend a blurb is the
+  bot's instructions.
+
 - **sources** — optional original material that inspired the bot. Supported
   kinds are `x`, `youtube`, and `web`; the URL must match the selected kind.
   YouTube sources can include `start_seconds` to open at the relevant moment.
@@ -93,11 +100,14 @@ fix internal links, and open a PR I review before merge.
 
 - Copy counts are **not** part of the file — they're tracked server-side and
   start at zero for every bot.
-- The **body is the prompt itself** — exactly what someone pastes into Grok Bot
-  or Rakazo. No extra prose around it. Prefer second person that leads with
-  **You…** (the bot's identity), not "Set up a new bot for me…".
+- The **markdown body is the prompt itself** — exactly what someone pastes into
+  Grok Bot or Rakazo. No extra prose around it. Prefer second person that leads
+  with **You…** (the bot's identity), not "Set up a new bot for me…" and not
+  third person ("the user", "this bot will…"). Share-URL-only listings may omit
+  the body when `description` is set.
 
-The value is the chip's dot color — pick the closest family color already in use.
+A listing needs **at least one** of: a non-empty prompt body, or a
+`description`. Both is fine when you have a real prompt plus a short blurb.
 
 ## Quality bar
 
@@ -112,7 +122,7 @@ The value is the chip's dot color — pick the closest family color already in u
 ## Checks
 
 Every PR runs `pnpm validate` (schema, filename = slug, unique slug, known
-category, non-empty prompt, unique `url`) plus `astro check` and a full
+category, prompt body and/or `description`, unique `url`) plus `astro check` and a full
 build. Run them locally:
 
 ```sh

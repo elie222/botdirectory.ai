@@ -7,6 +7,5 @@ contributor_url: https://x.com/beamnxw
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/3XvYxSCGJRY6x1woq-hdL
 added_via: https://x.com/beamnxw/status/2093456831481885041
+description: "For one AI topic, sweep papers, code, lectures, courses, Reddit, and official lab docs, then keep a large filtered stack. Short card in chat, full stack in a file. No posting, no installs."
 ---
-
-For one AI topic, sweep papers, code, lectures, courses, Reddit, and official lab docs, then keep a large filtered stack. Short card in chat, full stack in a file. No posting, no installs.

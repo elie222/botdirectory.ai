@@ -55,12 +55,31 @@ export interface Bot {
   scoutedBy?: string;
   copies: number;
   integrations: string[];
+  /**
+   * Copy-paste instructions for the agent. Empty when the listing only has a
+   * public description (typical grok_share_url blurbs from x.ai).
+   */
   prompt: string;
+  /**
+   * Public blurb about what the bot does. Distinct from `prompt` — never treat
+   * as copy-paste instructions.
+   */
+  description?: string;
   url?: string;
   /** Official Grok Bot share/preview URL on x.ai, when the creator published one. */
   grokShareUrl?: string;
   addedVia?: string;
   sources: Source[];
+}
+
+/** Text to show in cards/feeds: prefer the real prompt, else the public description. */
+export function botListingText(bot: Pick<Bot, 'prompt' | 'description'>): string {
+  return bot.prompt.trim() || bot.description?.trim() || '';
+}
+
+/** True when the listing has copy-paste prompt instructions. */
+export function botHasPrompt(bot: Pick<Bot, 'prompt'>): boolean {
+  return bot.prompt.trim().length > 0;
 }
 
 export const SPONSORS = sponsorsJson as Sponsor[];
@@ -134,6 +153,7 @@ export async function getBots(): Promise<Bot[]> {
       copies: Number.isFinite(copyCounts[e.id]) ? copyCounts[e.id] : 0,
       integrations: e.data.integrations,
       prompt: (e.body ?? '').trim(),
+      description: e.data.description?.trim() || undefined,
       url: e.data.url,
       grokShareUrl: e.data.grok_share_url,
       addedVia: e.data.added_via,

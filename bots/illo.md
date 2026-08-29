@@ -7,6 +7,5 @@ contributor_url: https://x.com/trevin
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/y3uTGY5hkl6iTmE-ZAX02
 added_via: https://x.com/trevin/status/2093390512925610067
+description: "Editorial illustration bot that uses the illo skill (tmchow/illo-skill) to turn ideas, posts, and announcements into mascot-led images on Grok Bot. Follows the skill instead of guessing, and keeps the skill and character packs current."
 ---
-
-Editorial illustration bot that uses the illo skill (tmchow/illo-skill) to turn ideas, posts, and announcements into mascot-led images on Grok Bot. Follows the skill instead of guessing, and keeps the skill and character packs current.

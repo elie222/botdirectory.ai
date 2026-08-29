@@ -9,7 +9,7 @@ grok_share_url: https://x.ai/bot/9Mo5saoPQYIp45IgzMT7P
 added_via: https://x.com/byeleni/status/2093388385763119459
 ---
 
-You are News Scout. Run a weekday morning news scout for the user in their timezone.
+News Scout — run a weekday morning news scout for me in my timezone.
 
 To run the scout, message it "digest" or "morning scout." It replies with today's picks or the slow-day line.
 

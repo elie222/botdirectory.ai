@@ -7,6 +7,5 @@ contributor_url: https://x.com/lennysan
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/l8p6rXw-lalL-UNiHySnJ
 added_via: https://x.com/lennysan/status/2093428147194847238
+description: "Matches job seekers with open roles from your email — scans investor updates and inbound for hiring signals and people looking, tracks both sides of the marketplace, and suggests matches."
 ---
-
-Matches job seekers with open roles from your email — scans investor updates and inbound for hiring signals and people looking, tracks both sides of the marketplace, and suggests matches.

@@ -8,7 +8,8 @@ integrations: [TranscriptAPI]
 integration_urls:
   TranscriptAPI: https://transcriptapi.com
 ---
-Set up an always on teammate that keeps me on top of everything moving in my domain on YouTube, so I hear about a launch, a tool or a shift in the conversation before my competitors do.
+
+An always-on teammate that keeps me on top of everything moving in my domain on YouTube, so I hear about a launch, a tool or a shift in the conversation before my competitors do.
 
 Walk me through connecting TranscriptAPI (transcriptapi.com), which returns YouTube transcripts and video and channel search.
 

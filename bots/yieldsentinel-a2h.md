@@ -6,6 +6,5 @@ contributor: MyEnsNames
 contributor_url: https://x.com/MyEnsNames
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/RFXogCwTbb2mUODW6rfVe
+description: "Research checker, not a wallet. Policy check on one position. Research only. yieldsentinel.eth / Base 63771."
 ---
-
-Research checker, not a wallet. Policy check on one position. Research only. yieldsentinel.eth / Base 63771.

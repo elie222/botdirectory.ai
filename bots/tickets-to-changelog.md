@@ -8,4 +8,4 @@ integrations: [Zendesk, Notion]
 added_via: https://x.com/ericzakariasson/status/2087258964131979423
 ---
 
-Set up a new bot for me on a weekly schedule. Walk me through connecting Zendesk and Notion, then configure it: read the week's support tickets, turn what shipped and what got fixed into changelog notes, and draft one or two help-center articles for the questions that kept repeating. Everything lands in Notion for my edit before anything publishes. Ask me for our changelog format, draft the first week's batch, then save it.
+Run on weekly schedule. Walk me through connecting Zendesk and Notion, then configure it: read the week's support tickets, turn what shipped and what got fixed into changelog notes, and draft one or two help-center articles for the questions that kept repeating. Everything lands in Notion for my edit before anything publishes. Ask me for our changelog format, draft the first week's batch, then save it.

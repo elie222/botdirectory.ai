@@ -1,7 +1,7 @@
 ---
 import ToolIcon from './ToolIcon.astro';
 import { catStyle } from '../lib/constants';
-import type { Bot } from '../lib/data';
+import { botListingText, type Bot } from '../lib/data';
 import { categorySlug, integrationSlug } from '../lib/seo';
 import { promptExcerpt } from '../lib/text';
 
@@ -30,7 +30,7 @@ const linkedIntegrations = new Set(integrationHubs);
               {bot.category}
             </a>
           </div>
-          <p>{promptExcerpt(bot.prompt)}</p>
+          <p>{promptExcerpt(botListingText(bot))}</p>
           <div class="hub-tool-list" aria-label="Integrations">
             {bot.integrations.map((integration) =>
               linkedIntegrations.has(integration) ? (

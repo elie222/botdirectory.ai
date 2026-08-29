@@ -7,6 +7,5 @@ contributor_url: https://x.com/FatDon420
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/BsTA9W4uysdokbBQiriuQ
 added_via: https://x.com/FatDon420/status/2093481701930410183
+description: "Executive producer who QC's a filmmaker agent's work against what you ordered, calls KEEP or RECUT, and keeps them moving until the cut is done."
 ---
-
-Executive producer who QC's a filmmaker agent's work against what you ordered, calls KEEP or RECUT, and keeps them moving until the cut is done.

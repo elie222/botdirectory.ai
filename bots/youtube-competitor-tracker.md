@@ -8,7 +8,8 @@ integrations: [TranscriptAPI]
 integration_urls:
   TranscriptAPI: https://transcriptapi.com
 ---
-Set up an always on teammate that tells me what my competitors said out loud this week, before any of it reaches their blog.
+
+Tell me what my competitors said out loud this week, before any of it reaches their blog.
 
 Walk me through connecting TranscriptAPI (transcriptapi.com), which returns YouTube transcripts and video and channel search.
 

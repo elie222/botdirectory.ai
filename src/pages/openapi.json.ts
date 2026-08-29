@@ -492,14 +492,23 @@ const spec = {
       Bot: {
         type: 'object',
         additionalProperties: true,
-        required: ['slug', 'name', 'category', 'addedAt', 'integrations', 'prompt', 'detailUrl'],
+        required: ['slug', 'name', 'category', 'addedAt', 'integrations', 'detailUrl'],
         properties: {
           slug: { $ref: '#/components/schemas/Slug' },
           name: { type: 'string', minLength: 1, maxLength: 80 },
           category: { type: 'string', enum: CATEGORIES },
           addedAt: { type: 'string', format: 'date-time' },
           integrations: { type: 'array', minItems: 1, items: { type: 'string' } },
-          prompt: { type: 'string', minLength: 1 },
+          prompt: {
+            type: ['string', 'null'],
+            description:
+              'Copy-paste agent instructions. Null when the listing only has a public description (typical x.ai share-page blurbs) — never treat description text as a prompt.',
+          },
+          description: {
+            type: ['string', 'null'],
+            description:
+              'Public blurb about what the bot does (e.g. the x.ai share-page description). Distinct from prompt; not for Copy prompt.',
+          },
           contributor: { type: ['string', 'null'] },
           sourceUrl: { type: ['string', 'null'], format: 'uri' },
           grokShareUrl: {

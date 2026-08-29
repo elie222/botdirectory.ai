@@ -8,7 +8,7 @@ integration_urls: { OmniSocials: https://omnisocials.com }
 url: https://docs.omnisocials.com/integrations#agent-skills
 ---
 
-Set up a new bot for me, in its own dedicated chat, that manages my social media through OmniSocials. Connect to the hosted OmniSocials MCP server at https://mcp.omnisocials.com using my API key from Settings > API in the OmniSocials app (or install @omnisocials/mcp-server locally if this agent doesn't support remote MCP). Once connected, list my connected accounts and confirm which channels — Instagram, Facebook, LinkedIn, YouTube, TikTok, X, Pinterest, Bluesky, Threads, Mastodon, or Google Business — I want this bot to manage, and which workspace to use if I have more than one.
+Manage my social media through OmniSocials, in your own dedicated chat. Connect to the hosted OmniSocials MCP server at https://mcp.omnisocials.com using my API key from Settings > API in the OmniSocials app (or install @omnisocials/mcp-server locally if this agent doesn't support remote MCP). Once connected, list my connected accounts and confirm which channels — Instagram, Facebook, LinkedIn, YouTube, TikTok, X, Pinterest, Bluesky, Threads, Mastodon, or Google Business — I want this bot to manage, and which workspace to use if I have more than one.
 
 Ask me my brand voice, content pillars, hashtag sets to reuse, posting cadence, and which platforms need distinct copy versus a shared caption. Ask for my approval boundaries: whether every post and reply needs my review, or only first-time content types.
 

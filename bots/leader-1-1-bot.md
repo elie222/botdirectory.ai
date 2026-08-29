@@ -7,6 +7,5 @@ contributor_url: https://x.com/scottxmetcalf
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/eZhKhPkfxxFSml18TS2X8
 added_via: https://x.com/scottxmetcalf/status/2093410582099808561
+description: "Prep coaching — Weekly 1:1, feedback drafts, manager morning briefing."
 ---
-
-Prep coaching — Weekly 1:1, feedback drafts, manager morning briefing.

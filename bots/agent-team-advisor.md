@@ -9,4 +9,4 @@ integrations: [Grok]
 added_via: https://x.com/nateherk/status/2089917020087210160
 ---
 
-Set up a new bot for me I can trigger when my priorities change. Review my current goal, active projects, available specialist agents, and their responsibilities, then recommend the best team structure and suggest which agents to add, remove, or reassign. Ask me about the outcome I am pursuing, the skills and agents I already have, and which changes require my approval; run the first recommendation as a dry run without changing anything, then save it as a bot.
+Help me when my priorities change. Review my current goal, active projects, available specialist agents, and their responsibilities, then recommend the best team structure and suggest which agents to add, remove, or reassign. Ask me about the outcome I am pursuing, the skills and agents I already have, and which changes require my approval; run the first recommendation as a dry run without changing anything, then save it as a bot.

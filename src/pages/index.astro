@@ -13,9 +13,10 @@ import Select from '../components/Select.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 import { FEATURES, SITE, SPONSORING } from '../config';
 import { CATEGORIES, catStyle, fmt } from '../lib/constants';
-import { getBots, SPONSORS, PROMOS, type Bot, type Promo } from '../lib/data';
+import { botHasPrompt, botListingText, getBots, SPONSORS, PROMOS, type Bot, type Promo } from '../lib/data';
 import { categorySlug, listIntegrations, MIN_INTEGRATION_HUB_BOTS, organizationStructuredData } from '../lib/seo';
 import { sponsorUrl } from '../lib/utm';
+import { promptExcerpt } from '../lib/text';
 
 const bots = [...(await getBots())].sort(
   (a, b) => b.copies - a.copies || a.name.localeCompare(b.name),
@@ -156,7 +157,12 @@ const structuredData = [
                           <span class="bot-row-nameline">
                             <span class="bot-row-name">{row.bot.name}</span>
                           </span>
-                          <span class="directory-card-summary" data-prompt-slug={row.bot.slug}>View the full prompt and setup instructions.</span>
+                          <span class="directory-card-summary" data-prompt-slug={row.bot.slug}>
+                            {promptExcerpt(botListingText(row.bot)) ||
+                              (botHasPrompt(row.bot)
+                                ? 'View the full prompt and setup instructions.'
+                                : 'View the description and Add to Grok Bot link.')}
+                          </span>
                         </span>
                         <span
                           class="cat-pill"

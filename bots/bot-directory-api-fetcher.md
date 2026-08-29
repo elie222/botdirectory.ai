@@ -8,4 +8,4 @@ integrations: [BotDirectory API]
 added_via: https://x.com/elie2222/status/2089806675246993901
 ---
 
-Set up a new bot for me I can trigger for a daily fetch. Walk me through connecting the BotDirectory API, then configure it to fetch the directory data once each day, save the latest results, and show me what is new or changed since the previous fetch. Ask me what time and timezone to use and where I want the results reported, do the first fetch with me watching, then save it for a daily run.
+Handle a daily fetch when I ask. Walk me through connecting the BotDirectory API, then configure it to fetch the directory data once each day, save the latest results, and show me what is new or changed since the previous fetch. Ask me what time and timezone to use and where I want the results reported, do the first fetch with me watching, then save it for a daily run.

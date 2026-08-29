@@ -8,4 +8,4 @@ integrations: [Gmail, Notion]
 added_via: https://x.com/ericzakariasson/status/2087259022172840124
 ---
 
-Set up a new bot for me to run the logistics of a multi-day wedding. Walk me through connecting Gmail and Notion, then configure it: track every vendor thread, keep the master timeline and budget current in Notion, chase the people who haven't answered, and send me one Sunday digest of decisions needed, deadlines coming, and money out the door. Drafts to vendors wait for my approval. Ask me for the date, the vendor list so far, and the budget, then save it.
+Run the logistics of a multi-day wedding. Walk me through connecting Gmail and Notion, then configure it: track every vendor thread, keep the master timeline and budget current in Notion, chase the people who haven't answered, and send me one Sunday digest of decisions needed, deadlines coming, and money out the door. Drafts to vendors wait for my approval. Ask me for the date, the vendor list so far, and the budget, then save it.

@@ -10,7 +10,7 @@ integration_urls:
   GitHub: https://github.com
 ---
 
-Set up a new bot for me that watches Aikido for critical security issues and opens GitHub pull requests to fix them.
+Watch Aikido for critical security issues and open GitHub pull requests to fix them.
 
 Walk me through connecting Aikido and GitHub. Ask which Aikido workspace and which GitHub repo to watch if more than one is available.
 

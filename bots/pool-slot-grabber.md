@@ -8,4 +8,4 @@ integrations: [Slack]
 added_via: https://x.com/ericzakariasson/status/2087258964131979423
 ---
 
-Set up a new bot for me for the gym pool slots that are always booked. Walk me through connecting Slack, then configure it: watch the booking page for the times I actually swim, grab a spot the moment one opens, and message me the confirmation. Ask me for my gym, my preferred times, and how many bookings a week is enough, catch one cancellation live so I can see it work, then save it.
+For the gym pool slots that are always booked. Walk me through connecting Slack, then configure it: watch the booking page for the times I actually swim, grab a spot the moment one opens, and message me the confirmation. Ask me for my gym, my preferred times, and how many bookings a week is enough, catch one cancellation live so I can see it work, then save it.

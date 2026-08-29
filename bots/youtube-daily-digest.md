@@ -8,7 +8,8 @@ integrations: [TranscriptAPI]
 integration_urls:
   TranscriptAPI: https://transcriptapi.com
 ---
-Set up an always on teammate that reads the new videos from the channels I follow so I do not have to watch them.
+
+Read the new videos from the channels I follow so I do not have to watch them.
 
 Walk me through connecting TranscriptAPI (transcriptapi.com), which returns YouTube transcripts and video and channel search.
 

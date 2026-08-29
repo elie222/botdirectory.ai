@@ -8,7 +8,8 @@ integrations: [TranscriptAPI]
 integration_urls:
   TranscriptAPI: https://transcriptapi.com
 ---
-Set up an always on teammate that keeps score on the people I listen to.
+
+Keep score on the people I listen to.
 
 Walk me through connecting TranscriptAPI (transcriptapi.com), which returns YouTube transcripts and video and channel search.
 

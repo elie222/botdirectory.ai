@@ -8,7 +8,7 @@ integration_urls:
   BulkPublish: https://www.bulkpublish.com
 ---
 
-Set up a new bot for me in its own dedicated chat that fills and runs my social publishing queue for the week. Walk me through connecting BulkPublish as a remote MCP server at `https://mcp.bulkpublish.com/mcp` — it uses OAuth 2.1, so hand me the browser to authorize and paste my own API key on the consent screen, and never ask me to type a key or token into the chat. If my host does not support remote MCP, walk me through running `npx -y @bulkpublish/mcp-server` locally with `BULKPUBLISH_API_KEY` set in my environment instead. Also connect Notion for my content backlog.
+Fill and run my social publishing queue for the week, in your own dedicated chat. Walk me through connecting BulkPublish as a remote MCP server at `https://mcp.bulkpublish.com/mcp` — it uses OAuth 2.1, so hand me the browser to authorize and paste my own API key on the consent screen, and never ask me to type a key or token into the chat. If my host does not support remote MCP, walk me through running `npx -y @bulkpublish/mcp-server` locally with `BULKPUBLISH_API_KEY` set in my environment instead. Also connect Notion for my content backlog.
 
 Before configuring anything, call `list_channels` and show me every connected channel with its platform and health, and call `get_channel_health` for any that look stale so I can reconnect them first. Ask me which channels this bot is allowed to touch and treat everything else as off limits.
 
