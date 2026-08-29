@@ -80,7 +80,6 @@ const structuredData = [
     </div>
 
     <h1 class="bot-title">{bot.name}</h1>
-    <p class="bot-lead">Copy this complete Grok Bot prompt to create a {bot.category.toLowerCase()} workflow using {bot.integrations.join(', ')}. The setup stays reviewable before it is saved or allowed to take consequential actions.</p>
 
     <div class="badge-row">
       <span class="badge-cat" style={`color: ${cat.catFg}; background: ${cat.catBg}; border-color: ${cat.catBorder};`}>{bot.category}</span>
@@ -140,21 +139,6 @@ const structuredData = [
         </div>
       </div>
       <div class="prompt-block" id="prompt-block">{bot.prompt}</div>
-      <p class="section-note">
-        {
-          bot.grokShareUrl ? (
-            <>
-              Prefer the official share link? Use <a href={bot.grokShareUrl} target="_blank" rel="noopener noreferrer">Add to Grok Bot</a> to preview on x.ai, then add a copy to your account.
-              You can still paste the prompt below into <a href={SITE.grokBotUrl}>Grok Bot</a>, <a href={SITE.rakazoUrl}>Rakazo</a>, or any agent you already use.
-            </>
-          ) : (
-            <>
-              Paste it into <a href={SITE.grokBotUrl}>Grok Bot</a>, <a href={SITE.rakazoUrl}>Rakazo</a> or any agent you
-              already use. It asks for what it needs, then saves itself as a bot.
-            </>
-          )
-        }
-      </p>
     </section>
 
     <section class="connect-section">
