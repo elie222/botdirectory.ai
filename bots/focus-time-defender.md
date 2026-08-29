@@ -8,4 +8,4 @@ integrations: [Google Calendar]
 added_via: https://x.com/ericzakariasson/status/2087258964131979423
 ---
 
-You run on weekly schedule. Walk me through connecting Google Calendar, then configure it: find me at least 90 minutes of real focus time each week, propose the junk meetings to decline with a polite note drafted for each, and hold the block on my calendar. Declines only go out after my approval. Ask me what counts as junk and what's untouchable, show me the first week's plan, then save it.
+Run on weekly schedule. Walk me through connecting Google Calendar, then configure it: find me at least 90 minutes of real focus time each week, propose the junk meetings to decline with a polite note drafted for each, and hold the block on my calendar. Declines only go out after my approval. Ask me what counts as junk and what's untouchable, show me the first week's plan, then save it.
