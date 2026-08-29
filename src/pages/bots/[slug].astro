@@ -95,10 +95,9 @@ const structuredData = [
       {FEATURES.showCopies && hasPrompt && (
         <span class="badge-plain" data-copies-slug={bot.slug} data-copies-seed={bot.copies}>{fmt(bot.copies)} copies</span>
       )}
-      {
-        (bot.contributor || primarySource || bot.scoutedBy) && (
-          <span class="attribution">
-          {primarySource ? (
+      <span class="attribution">
+        {
+          primarySource ? (
             <>
               Based on <a href={primarySource.url}>this {sourceContentName(primarySource.kind)}</a>
               {bot.contributor && (
@@ -115,16 +114,17 @@ const structuredData = [
                 <a href={bot.contributorUrl ?? `https://github.com/${bot.contributor}`}>@{bot.contributor}</a>
               </>
             )
-          )}
-          {bot.scoutedBy && (
-            <>
-              {' · scouted by '}
-              <a href={`https://x.com/${bot.scoutedBy}`}>@{bot.scoutedBy}</a>
-            </>
-          )}
-          </span>
-        )
-      }
+          )
+        }
+        {bot.scoutedBy && (
+          <>
+            {(bot.contributor || primarySource) ? ' · ' : ''}
+            scouted by <a href={`https://x.com/${bot.scoutedBy}`}>@{bot.scoutedBy}</a>
+          </>
+        )}
+        {(bot.contributor || primarySource || bot.scoutedBy) && ' · '}
+        <a href={`${SITE.repoUrl}/blob/main/bots/${bot.slug}.md`}>View source</a>
+      </span>
     </div>
 
     {
@@ -246,44 +246,6 @@ const structuredData = [
       )
     }
 
-    <section class="cta-card">
-      <div>
-        <p class="cta-title">Run {bot.name} yourself</p>
-        <p class="cta-sub">
-          {bot.grokShareUrl && hasPrompt
-            ? 'Add via the official Grok Bot share link, or copy the prompt and adapt it.'
-            : bot.grokShareUrl
-              ? 'Add via the official Grok Bot share link.'
-              : 'Free to copy, adapt, and edit after setup.'}
-        </p>
-      </div>
-      <div class="cta-actions">
-        {
-          bot.grokShareUrl && (
-            <div class="pbtn-wrap">
-              <a
-                href={bot.grokShareUrl}
-                class="pbtn pbtn-44"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-grok-share
-              >
-                Add to Grok Bot
-              </a>
-            </div>
-          )
-        }
-        {
-          hasPrompt && (
-            <div class="pbtn-wrap">
-              <button type="button" class="pbtn pbtn-44" data-copy-slug={bot.slug} data-copied-label="Copied — now open your agent">Copy and set up</button>
-            </div>
-          )
-        }
-        <a href={`${SITE.repoUrl}/blob/main/bots/${bot.slug}.md`} class="btn-view-source">View source</a>
-      </div>
-    </section>
-
     {
       bot.sources.length > 0 && (
         <section class="source-section">
@@ -372,6 +334,7 @@ const structuredData = [
 
       const promptBlock = document.getElementById('prompt-block');
       const prompt = promptBlock?.textContent ?? '';
+      const pageSlug = document.querySelector<HTMLElement>('article.bot-article')?.dataset.slug || '';
       const buttons = document.querySelectorAll<HTMLElement>('[data-copy-slug]');
 
       buttons.forEach((btn) =>
@@ -381,6 +344,15 @@ const structuredData = [
           buttons.forEach((b) => {
             b.textContent = b.dataset.copiedLabel || 'Copied';
           });
+          refreshCopyLabels();
+        })
+      );
+
+      // Count Add to Grok Bot the same as Copy prompt (fire-and-forget; don't block navigation).
+      // trackCopy dedupes per slug in-session/localStorage so a single gesture can't double-count.
+      document.querySelectorAll<HTMLAnchorElement>('[data-grok-share]').forEach((link) =>
+        link.addEventListener('click', () => {
+          trackCopy(pageSlug);
           refreshCopyLabels();
         })
       );
@@ -397,7 +369,18 @@ const structuredData = [
 {
   !hasPrompt && (
     <script>
+      import { trackCopy, refreshCopyLabels } from '../../scripts/copies';
       import { mountReviews } from '../../scripts/reviews';
+
+      const pageSlug = document.querySelector<HTMLElement>('article.bot-article')?.dataset.slug || '';
+
+      // Description-only listings still count Add to Grok Bot via the same copies API.
+      document.querySelectorAll<HTMLAnchorElement>('[data-grok-share]').forEach((link) =>
+        link.addEventListener('click', () => {
+          trackCopy(pageSlug);
+          refreshCopyLabels();
+        })
+      );
 
       const reviewsRoot = document.querySelector<HTMLElement>('#reviews');
       if (reviewsRoot) mountReviews(reviewsRoot);
