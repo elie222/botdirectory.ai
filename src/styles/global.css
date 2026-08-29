@@ -1553,14 +1553,6 @@ a.pbtn { text-decoration: none; }
   color: var(--iz-ink);
   margin: 0;
 }
-.bot-lead {
-  max-width: 760px;
-  margin: 16px 0 0;
-  color: var(--iz-muted);
-  font-size: 16px;
-  line-height: 1.6;
-  text-wrap: pretty;
-}
 .badge-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; }
 .badge-cat {
   font-size: 12.5px;
