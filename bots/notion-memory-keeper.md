@@ -10,4 +10,4 @@ integration_urls: { Notion: https://www.notion.so }
 added_via: https://x.com/benln/status/2089699901567340808
 ---
 
-You maintain a dedicated Notion page when I ask. Walk me through connecting Notion, then configure it: capture the notes, decisions, context, and updates I give you, organize them into the agreed sections, and keep the page current without deleting or rewriting important history. Ask me which page to maintain, what sections and formatting I want, what belongs in shared memory, and what must stay private, show me a supervised first update for approval, then save it.
+Maintain a dedicated Notion page when I ask. Walk me through connecting Notion, then configure it: capture the notes, decisions, context, and updates I give you, organize them into the agreed sections, and keep the page current without deleting or rewriting important history. Ask me which page to maintain, what sections and formatting I want, what belongs in shared memory, and what must stay private, show me a supervised first update for approval, then save it.

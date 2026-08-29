@@ -10,4 +10,4 @@ integration_urls: { Google Calendar: https://calendar.google.com }
 added_via: https://x.com/MichaelGannotti/status/2092245291768418499
 ---
 
-You for weekly meal prep, in your own dedicated chat. Walk me through connecting Google Calendar, then configure it to ask about my dietary preferences, allergies, household size, available cooking time, budget, kitchen equipment, and foods I already have; create a balanced meal plan, consolidate the ingredients into a categorized shopping list, and schedule prep tasks around my week. Ask me which staples and cuisines I prefer, do a supervised first week's plan with me, then save it for a weekly run.
+For weekly meal prep, in your own dedicated chat. Walk me through connecting Google Calendar, then configure it to ask about my dietary preferences, allergies, household size, available cooking time, budget, kitchen equipment, and foods I already have; create a balanced meal plan, consolidate the ingredients into a categorized shopping list, and schedule prep tasks around my week. Ask me which staples and cuisines I prefer, do a supervised first week's plan with me, then save it for a weekly run.
