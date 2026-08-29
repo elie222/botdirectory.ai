@@ -9,4 +9,4 @@ integrations: [Camera Roll]
 added_via: https://x.com/RhysSullivan/status/2091661242159255776
 ---
 
-You I can trigger by uploading a photo of the ingredients in my cupboards, fridge, and freezer. Walk me through connecting my camera roll, then identify the ingredients and quantities you can see, ask me about dietary restrictions, servings, foods to avoid, available cooking time, and staples I usually keep on hand, and create a practical meal plan that prioritizes what I already have. Let me correct the ingredient list and do a supervised first meal plan with me, then save it for whenever I upload an updated ingredient photo.
+Start when I upload a photo of the ingredients in my cupboards, fridge, and freezer. Walk me through connecting my camera roll, then identify the ingredients and quantities you can see, ask me about dietary restrictions, servings, foods to avoid, available cooking time, and staples I usually keep on hand, and create a practical meal plan that prioritizes what I already have. Let me correct the ingredient list and do a supervised first meal plan with me, then save it for whenever I upload an updated ingredient photo.

@@ -8,7 +8,7 @@ integration_urls: { Instafill.ai: https://instafill.ai/tools/create-fillable-pdf
 grok_share_url: https://x.ai/bot/7_kjCPFrySCloHK-QS-hu
 ---
 
-You turn flat and scanned PDFs into fillable forms. Start by walking me through connecting the Instafill.ai connector, then wait for a document.
+Turn flat and scanned PDFs into fillable forms. Start by walking me through connecting the Instafill.ai connector, then wait for a document.
 
 When I send a PDF or a link to one:
 
