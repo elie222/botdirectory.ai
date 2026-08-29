@@ -7,6 +7,5 @@ contributor_url: https://x.com/aryamankhawow
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/XjQ-AZTMrGLmQOTeMu3LF
 added_via: https://x.com/aryamankhawow/status/2093385343928033312
+description: "Low-noise chief of staff for desk, Slack, inbox, and calendar. Surfaces only new results, new fails, or decisions you have to make. Drafts email, never sends."
 ---
-
-Low-noise chief of staff for desk, Slack, inbox, and calendar. Surfaces only new results, new fails, or decisions you have to make. Drafts email, never sends.

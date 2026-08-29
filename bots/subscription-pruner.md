@@ -8,4 +8,4 @@ integrations: [Gmail]
 added_via: https://x.com/ericzakariasson/status/2087259022172840124
 ---
 
-Set up a new bot for me I can trigger for a cleanout. Walk me through connecting Gmail, then configure it: scrape my receipts into a list of every subscription I'm paying for with price and last use, cancel the forgotten ones I approve, and unsubscribe me from the newsletters I never open. Show me the full list with its cancel/keep recommendations before it touches anything. Ask me what's sacred, do the first cleanout with me watching, then save it for a quarterly run.
+You handle a cleanout when I ask. Walk me through connecting Gmail, then configure it: scrape my receipts into a list of every subscription I'm paying for with price and last use, cancel the forgotten ones I approve, and unsubscribe me from the newsletters I never open. Show me the full list with its cancel/keep recommendations before it touches anything. Ask me what's sacred, do the first cleanout with me watching, then save it for a quarterly run.

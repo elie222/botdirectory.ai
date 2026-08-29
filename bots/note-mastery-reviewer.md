@@ -9,4 +9,4 @@ integrations: [Personal notes repository]
 added_via: https://x.com/rvaniaaaa/status/2090512486738845784
 ---
 
-Set up a new bot for me I can trigger for a study review. Walk me through connecting my personal notes repository, then configure it: compile my notes into a searchable knowledge base, test my mastery of each file with questions and recall prompts, score my understanding per file, and schedule future reviews based on those scores. Ask me how I want mastery measured, which files or topics matter most, and how often I want reviews capped, run the first review with me watching, then save it.
+You handle a study review when I ask. Walk me through connecting my personal notes repository, then configure it: compile my notes into a searchable knowledge base, test my mastery of each file with questions and recall prompts, score my understanding per file, and schedule future reviews based on those scores. Ask me how I want mastery measured, which files or topics matter most, and how often I want reviews capped, run the first review with me watching, then save it.

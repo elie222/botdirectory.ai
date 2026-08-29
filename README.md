@@ -39,7 +39,9 @@ with your prompt and the mention bot opens the PR for you.
 
 Prefer second-person prompts that lead with **You…**. When you have an official
 Grok Bot share link on x.ai, set `grok_share_url` — we surface **Add to Grok Bot**
-and never rehost packed configs.
+and never rehost packed configs. If you only have the public share-page blurb (not
+the private system prompt), put it in frontmatter `description` and leave the body
+empty — we label that **Description**, not **The prompt**.
 
 Full contract, category list, and quality bar: [CONTRIBUTING.md](CONTRIBUTING.md).
 

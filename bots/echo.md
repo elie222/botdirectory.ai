@@ -7,6 +7,5 @@ contributor_url: https://x.com/kristaletz
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/ph5mcXqVy2p176Br7BJYi
 added_via: https://x.com/kristaletz/status/2093494509682217308
+description: "Turns a customer call into slides from customer context. What we heard, next steps, project initiatives, or all of the above. Works with Figma or Google Slides, and Granola or Gong notes."
 ---
-
-Turns a customer call into slides from customer context. What we heard, next steps, project initiatives, or all of the above. Works with Figma or Google Slides, and Granola or Gong notes.

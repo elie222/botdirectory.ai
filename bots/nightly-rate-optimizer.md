@@ -8,7 +8,8 @@ integrations: [StayingAPI]
 integration_urls:
   StayingAPI: https://stayingapi.com
 ---
-Set up an always on teammate that prices my short term rental like a revenue manager instead of like a guess.
+
+You are an always-on teammate that prices my short term rental like a revenue manager instead of like a guess.
 
 Walk me through connecting StayingAPI (stayingapi.com), which returns availability and nightly price quotes for short term rentals.
 

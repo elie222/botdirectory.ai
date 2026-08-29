@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { SITE } from '../config';
-import { getBots } from '../lib/data';
+import { botListingText, getBots } from '../lib/data';
 import { promptExcerpt } from '../lib/text';
 import { escapeXml } from '../lib/xml';
 
@@ -16,7 +16,7 @@ export const GET: APIRoute = async () => {
       <guid isPermaLink="true">${escapeXml(url)}</guid>
       <pubDate>${new Date(bot.addedAt).toUTCString()}</pubDate>
       <category>${escapeXml(bot.category)}</category>
-      <description>${escapeXml(promptExcerpt(bot.prompt, 320))}</description>
+      <description>${escapeXml(promptExcerpt(botListingText(bot), 320))}</description>
     </item>`;
   });
 

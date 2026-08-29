@@ -16,7 +16,9 @@ export async function GET() {
         category: bot.category,
         addedAt: bot.addedAt,
         integrations: bot.integrations,
-        prompt: bot.prompt,
+        // prompt is null when the listing only has a public description (not copy-paste instructions).
+        prompt: bot.prompt.trim() ? bot.prompt : null,
+        description: bot.description?.trim() ? bot.description : null,
         contributor: bot.contributor ?? null,
         sourceUrl: bot.url ?? null,
         grokShareUrl: bot.grokShareUrl ?? null,

@@ -8,4 +8,4 @@ integrations: [Notion, Google Calendar]
 added_via: https://x.com/ericzakariasson/status/2087258914060664902
 ---
 
-Set up a new bot for me on a daily schedule. Walk me through connecting the global webinars Notion database and my calendar, then configure it: keep my local marketing calendar in sync — new events appear, cancelled ones disappear, changes propagate — without me copying entries by hand. Ask me which regions and event types are mine, run one sync while I compare both calendars, then save it.
+You run on daily schedule. Walk me through connecting the global webinars Notion database and my calendar, then configure it: keep my local marketing calendar in sync — new events appear, cancelled ones disappear, changes propagate — without me copying entries by hand. Ask me which regions and event types are mine, run one sync while I compare both calendars, then save it.

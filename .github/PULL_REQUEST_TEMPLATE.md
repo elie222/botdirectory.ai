@@ -11,6 +11,8 @@
       `https://x.ai/bot/…` share link — never invent one; omit the field until
       you do (see CONTRIBUTING.md)
 - [ ] Integrations have an icon in `data/tool-icons.json` where possible (add + `pnpm icons`; see CONTRIBUTING)
-- [ ] The prompt is the file body, tested end to end in Grok Bot, Rakazo, or another agent
+- [ ] The markdown body is the real prompt (You-voice), **or** frontmatter
+      `description` holds a public blurb for share-URL-only listings — never put
+      an x.ai page blurb in the body labeled as a prompt
 - [ ] `pnpm validate` passes locally
 - [ ] This is a real, working bot — not an ad (promoted placement is the sponsor program, not a PR)

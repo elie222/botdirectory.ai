@@ -10,4 +10,4 @@ integration_urls: { YouTube: https://www.youtube.com, CapCut: https://www.capcut
 added_via: https://x.com/farzyness/status/2087340859138224540
 ---
 
-Set up a new bot for me I can trigger to create short-form content. Walk me through connecting YouTube and CapCut, then configure it: review my source videos, identify the strongest moments, cut them into concise vertical Shorts with hooks, captions, titles, descriptions, and suggested posting times, and show me every finished cut before it is published. Ask me about my audience, voice, acceptable editing style, target platforms, preferred length, and topics to avoid, do the first batch with me watching, then save it.
+You create short-form content when I ask. Walk me through connecting YouTube and CapCut, then configure it: review my source videos, identify the strongest moments, cut them into concise vertical Shorts with hooks, captions, titles, descriptions, and suggested posting times, and show me every finished cut before it is published. Ask me about my audience, voice, acceptable editing style, target platforms, preferred length, and topics to avoid, do the first batch with me watching, then save it.

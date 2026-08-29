@@ -8,4 +8,4 @@ integrations: [Slack, Salesforce, Google Drive]
 added_via: https://x.com/ericzakariasson/status/2087258914060664902
 ---
 
-Set up a new bot for me I can ask about any account. Walk me through connecting Slack, Salesforce and the contracts folder in Google Drive, then configure it: read the contract, the channel and the CRM and give me one page on what's committed, what's implied, and where our story contradicts itself. Ask me an account I know well to test on, then save it.
+You I can ask about any account. Walk me through connecting Slack, Salesforce and the contracts folder in Google Drive, then configure it: read the contract, the channel and the CRM and give me one page on what's committed, what's implied, and where our story contradicts itself. Ask me an account I know well to test on, then save it.

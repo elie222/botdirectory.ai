@@ -8,7 +8,8 @@ integrations: [Zillapi]
 integration_urls:
   Zillapi: https://zillapi.com
 ---
-Set up an always on teammate that finds the motivated sellers in my market before the rest of my market notices them.
+
+You are an always-on teammate that finds the motivated sellers in my market before the rest of my market notices them.
 
 Walk me through connecting Zillapi (zillapi.com), which returns Zillow property data for any US address.
 

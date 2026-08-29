@@ -1628,6 +1628,17 @@ a.badge-plain:hover { color: var(--iz-ink); }
   padding: 20px;
   white-space: pre-wrap;
 }
+.prompt-block.description-block {
+  font-family: var(--iz-font-body);
+  font-size: 15px;
+  line-height: 1.65;
+}
+.listing-description {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--iz-muted);
+  margin: 0 0 12px;
+}
 .section-note { font-size: 14px; color: var(--iz-muted); margin: 12px 0 0; }
 .section-note a { color: var(--iz-blue-600); }
 .connect-section { margin-top: 44px; }

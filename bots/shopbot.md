@@ -7,6 +7,5 @@ contributor_url: https://x.com/shubgaur
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/rBXWgythSa09pIp14rnV4
 added_via: https://x.com/shubgaur/status/2093429398829736195
+description: "Shopping assistant. Searches Shopify UCP catalogs, compares products, finds coupons, pays with first-party Link or Shop Pay, and picks cards plus flight points."
 ---
-
-Shopping assistant. Searches Shopify UCP catalogs, compares products, finds coupons, pays with first-party Link or Shop Pay, and picks cards plus flight points.

@@ -9,7 +9,8 @@ integration_urls:
   Zillapi: https://zillapi.com
   StayingAPI: https://stayingapi.com
 ---
-Set up an always on teammate that underwrites a short term rental purchase in the time it takes me to read the listing.
+
+You are an always-on teammate that underwrites a short term rental purchase in the time it takes me to read the listing.
 
 Walk me through connecting Zillapi (zillapi.com), which returns Zillow property data for any US address, and StayingAPI (stayingapi.com), which returns availability and nightly price quotes for short term rentals.
 

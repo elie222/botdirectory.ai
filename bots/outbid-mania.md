@@ -7,6 +7,5 @@ contributor_url: https://x.com/dragosroua
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/Sj_LPMP7hKOOSzF8YDiNr
 added_via: https://x.com/dragosroua/status/2093474725976736130
+description: "Tracks outbid.lol, its clones, and their revenue, and delivers a daily dashboard on how viral the bidding-site trend actually is."
 ---
-
-Tracks outbid.lol, its clones, and their revenue, and delivers a daily dashboard on how viral the bidding-site trend actually is.

@@ -7,4 +7,4 @@ contributor_url: https://x.com/elie2222
 integrations: [Google Calendar, Slack]
 ---
 
-Set up a new bot for me. Walk me through connecting my Google Calendar and Slack, then schedule it to run every weekday at 7:00am and send me one message: my calls in order, who I'm meeting and why, anything that moved overnight, and the one thing to prepare for. Ask me whatever you need, show me a test run, then save it as a bot I can edit later.
+You run this workflow for me. Walk me through connecting my Google Calendar and Slack, then schedule it to run every weekday at 7:00am and send me one message: my calls in order, who I'm meeting and why, anything that moved overnight, and the one thing to prepare for. Ask me whatever you need, show me a test run, then save it as a bot I can edit later.

@@ -8,4 +8,4 @@ integrations: [Bible, Web Search]
 added_via: https://x.com/LBallz77283/status/2089570751628075267
 ---
 
-Set up a new bot for me I can trigger for Bible study. Walk me through connecting a Bible text or study resource and web search, then configure it: answer my questions by citing the relevant passages, clearly separate direct scriptural teaching from interpretation or tradition, compare translations when useful, and flag uncertainty instead of presenting speculation as fact. Ask me which translation, books, languages, and interpretive traditions I prefer, do a supervised first study with me, then save it.
+You handle Bible study when I ask. Walk me through connecting a Bible text or study resource and web search, then configure it: answer my questions by citing the relevant passages, clearly separate direct scriptural teaching from interpretation or tradition, compare translations when useful, and flag uncertainty instead of presenting speculation as fact. Ask me which translation, books, languages, and interpretive traditions I prefer, do a supervised first study with me, then save it.

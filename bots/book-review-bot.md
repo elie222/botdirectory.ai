@@ -9,4 +9,4 @@ integration_urls: { Goodreads: https://www.goodreads.com }
 added_via: https://x.com/Aireviewbuku/status/2090344620748308756
 ---
 
-Set up a new bot for me I can trigger to review a book. Walk me through connecting Goodreads, then configure it: accept a book title, author, or Goodreads link, gather the book's details and my reading notes, and produce a balanced review covering the premise, themes, strengths, weaknesses, and who would enjoy it without inventing details. Ask me what tone, review length, rating scale, spoiler policy, and audience I prefer, do a supervised first review with me, then save it.
+You review a book when I ask. Walk me through connecting Goodreads, then configure it: accept a book title, author, or Goodreads link, gather the book's details and my reading notes, and produce a balanced review covering the premise, themes, strengths, weaknesses, and who would enjoy it without inventing details. Ask me what tone, review length, rating scale, spoiler policy, and audience I prefer, do a supervised first review with me, then save it.

@@ -220,7 +220,8 @@ curl -H "Accept: application/linkset+json" {apiCatalogUrl}</code></pre>
             <tbody>
               <tr><td><code>name</code></td><td>Listing title; slug is derived from it</td><td>yes</td></tr>
               <tr><td><code>category</code></td><td>One of the curated categories in CONTRIBUTING</td><td>yes</td></tr>
-              <tr><td><code>prompt</code></td><td>The prompt body, verbatim</td><td>yes</td></tr>
+              <tr><td><code>prompt</code></td><td>Copy-paste agent instructions (markdown body). Null in public JSON when the listing only has a public description.</td><td>yes for new submissions</td></tr>
+              <tr><td><code>description</code></td><td>Optional public blurb (frontmatter <code>description</code>). Not a prompt — used for share-URL listings whose x.ai page text is not system instructions.</td><td>no</td></tr>
               <tr><td><code>integrations</code></td><td>Array of tool names the prompt connects</td><td>yes</td></tr>
               <tr><td><code>contributor</code></td><td>Ignored / forced to the signed-up username when a bot password is used</td><td>no</td></tr>
               <tr><td><code>contributorUrl</code></td><td>Where the contributor handle should link</td><td>no</td></tr>
