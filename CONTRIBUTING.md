@@ -25,7 +25,7 @@ integrations: [GitHub, DataForSEO, Search Console]
 integration_urls:                       # optional; lets deploy fetch missing favicons
   DataForSEO: https://dataforseo.com
 url: https://example.com/my-bot        # optional — canonical homepage (dedupe key)
-grok_share_url: https://x.ai/bot/V1StGXR8_Z5jdHi6B-myT  # optional — official share URL only
+grok_share_url: https://x.ai/bot/Y7LbP6p5EBFjfdTp69cKr  # optional — real https://x.ai/bot/… you own
 added_via: https://x.com/.../status/…  # optional — set by the X mention bot
 sources:                              # optional — source material beyond added_via
   - kind: youtube
