@@ -7,6 +7,7 @@ contributor_url: https://x.com/mvanhorn
 scouted_by: elie2222
 integrations: [Grok Bot, GitHub, ScrapeCreators, X, Reddit, YouTube, TikTok, Hacker News, Polymarket]
 integration_urls: { Grok Bot: https://grok.com, GitHub: https://github.com, ScrapeCreators: https://scrapecreators.com, X: https://x.com, Reddit: https://www.reddit.com, YouTube: https://www.youtube.com, TikTok: https://www.tiktok.com, Hacker News: https://news.ycombinator.com, Polymarket: https://polymarket.com }
+grok_share_url: https://x.ai/bot/ANv3NrqPfRcS9PdXku7h8
 added_via: https://x.com/mvanhorn/status/2093466618718245198
 ---
 
