@@ -116,6 +116,11 @@ export function relatedBots(bot: Bot, bots: Bot[], limit = 3): Bot[] {
 export function botDescription(bot: Bot): string {
   const tools = bot.integrations.slice(0, 3).join(', ');
   const more = bot.integrations.length > 3 ? ` and ${bot.integrations.length - 3} more` : '';
+  if (!bot.prompt && bot.description) {
+    const fromListing = bot.description.replace(/\s+/g, ' ').trim();
+    if (fromListing.length <= 165) return fromListing;
+    return `${fromListing.slice(0, 162).trim()}…`;
+  }
   const detailed = `Copy the ${bot.name} Grok Bot prompt. Set up a ${bot.category.toLowerCase()} workflow with ${tools}${more}, then review it before the bot runs.`;
   return detailed.length <= 165
     ? detailed

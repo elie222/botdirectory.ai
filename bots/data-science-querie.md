@@ -6,7 +6,7 @@ contributor: egavrilenko11
 contributor_url: https://x.com/egavrilenko11
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/Bu2sEQqu0hEjpbzN_07D3
+description: "Owns analytics queries (Hex, Databricks), spreadsheet pulls, and metric definitions. Other agents should route query and spreadsheet work here instead of running it themselves."
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/egavrilenko11/status/2093409119302791170
 ---
-
-Owns analytics queries (Hex, Databricks), spreadsheet pulls, and metric definitions. Other agents should route query and spreadsheet work here instead of running it themselves.

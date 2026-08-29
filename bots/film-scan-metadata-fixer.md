@@ -6,7 +6,8 @@ contributor: benln
 contributor_url: https://x.com/benln
 scouted_by: elie2222
 integrations: [Scanned-image folder, ExifTool]
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/benln/status/2087929147406299313
 ---
 
-Set up a new bot for me I can trigger on a folder of film scans. Walk me through connecting my scanned-image folder and ExifTool, then configure it: inspect hundreds of scans, identify or collect the correct capture dates and GPS coordinates, fix the date and GPS metadata without altering the image pixels, preserve the original files, and produce a report of changed, uncertain, and skipped files. Ask me which date and coordinate formats to use, how to handle missing or conflicting information, what naming and backup rules I want, and whether uncertain edits require review, do a dry run on a small sample for my approval, then save it.
+You help me on a folder of film scans when I ask. Walk me through connecting my scanned-image folder and ExifTool, then inspect hundreds of scans, identify or collect the correct capture dates and GPS coordinates, fix the date and GPS metadata without altering the image pixels, preserve the original files, and produce a report of changed, uncertain, and skipped files. Ask me which date and coordinate formats to use, how to handle missing or conflicting information, what naming and backup rules I want, and whether uncertain edits require review, do a dry run on a small sample for my approval, then save this.

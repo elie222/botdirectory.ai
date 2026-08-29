@@ -6,7 +6,7 @@ contributor: ashen_one
 contributor_url: https://x.com/ashen_one
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/bjsbaj_a2ds2pQY1YiXqE
+description: "Hourly X and Reddit scout that drops filmable AI/tech kits for TikTok, Reels, and Shorts. Trending plus VIP launches, chronological briefs, no scripts."
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/ashen_one/status/2093416120371835232
 ---
-
-Hourly X and Reddit scout that drops filmable AI/tech kits for TikTok, Reels, and Shorts. Trending plus VIP launches, chronological briefs, no scripts.

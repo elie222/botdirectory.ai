@@ -7,7 +7,8 @@ contributor_url: https://x.com/mrfundman
 scouted_by: elie2222
 integrations: [Gmail]
 integration_urls: { Gmail: https://mail.google.com }
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/mrfundman/status/2089338947201569187
 ---
 
-Set up a new bot for me I can trigger for a class-action claim search. Walk me through connecting Gmail and providing my statements and order histories, then configure it: review my emails, statements, receipts, and purchase histories, compare them with current class-action settlements and eligibility requirements, and create a report showing possible matches, deadlines, estimated claim value, and the evidence needed for each claim. Draft applications for my review but never submit a claim or share personal information without my explicit approval. Ask me what jurisdictions and purchase categories to include, which privacy boundaries to follow, and whether to prioritize claim value or low effort, do a supervised search with me, then save it for an on-demand run.
+You help me with a class-action claim search when I ask. Walk me through connecting Gmail and providing my statements and order histories, then review my emails, statements, receipts, and purchase histories, compare them with current class-action settlements and eligibility requirements, and create a report showing possible matches, deadlines, estimated claim value, and the evidence needed for each claim. Draft applications for my review but never submit a claim or share personal information without my explicit approval. Ask me what jurisdictions and purchase categories to include, which privacy boundaries to follow, and whether to prioritize claim value or low effort, do a supervised search with me, then save this for an on-demand run.

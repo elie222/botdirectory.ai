@@ -8,7 +8,7 @@ integrations: [TranscriptAPI]
 integration_urls:
   TranscriptAPI: https://transcriptapi.com
 grok_share_url: https://x.ai/bot/dug1Zq29P009fdcI5-tTC
+description: "Morning transcript recap of the channels you pick. TranscriptAPI, not scraping. Quiet if nothing new."
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/scheemunai/status/2093397281928053001
 ---
-
-Morning transcript recap of the channels you pick. TranscriptAPI, not scraping. Quiet if nothing new.

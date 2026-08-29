@@ -37,9 +37,12 @@ before merge.
 Or skip git entirely: **tag [@botdirectoryai](https://x.com/botdirectoryai) on X**
 with your prompt and the mention bot opens the PR for you.
 
-Prefer second-person prompts that lead with **You…**. When you have an official
+Prefer briefing-voice prompts that lead with **You…** and use **my** / **me**
+(instructions to the bot, not a product blurb). When you have an official
 Grok Bot share link on x.ai, set `grok_share_url` — we surface **Add to Grok Bot**
-and never rehost packed configs.
+and never rehost packed configs. If you only have the public x.ai page blurb,
+put it in `description` and leave the prompt body empty — do not invent a fake
+system prompt.
 
 Full contract, category list, and quality bar: [CONTRIBUTING.md](CONTRIBUTING.md).
 

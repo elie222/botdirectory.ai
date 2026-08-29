@@ -5,7 +5,8 @@ added_at: "2026-08-17T18:23:33.000Z"
 contributor: ericzakariasson
 contributor_url: https://x.com/ericzakariasson
 integrations: [Kindle, Anki]
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/ericzakariasson/status/2087259022172840124
 ---
 
-Set up a new bot for me that runs every morning. Walk me through connecting my Kindle highlights and Anki, then configure it: turn yesterday's highlights into proper flashcards — question on the front, my highlight and the source on the back — deduped against cards I already have. Ask me which decks map to which books, convert one book's highlights for me to review, then save it.
+You run for me that runs every morning. Walk me through connecting my Kindle highlights and Anki, then turn yesterday's highlights into proper flashcards — question on the front, my highlight and the source on the back — deduped against cards I already have. Ask me which decks map to which books, convert one book's highlights for me to review, then save this.

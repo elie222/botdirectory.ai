@@ -220,14 +220,15 @@ curl -H "Accept: application/linkset+json" {apiCatalogUrl}</code></pre>
             <tbody>
               <tr><td><code>name</code></td><td>Listing title; slug is derived from it</td><td>yes</td></tr>
               <tr><td><code>category</code></td><td>One of the curated categories in CONTRIBUTING</td><td>yes</td></tr>
-              <tr><td><code>prompt</code></td><td>The prompt body, verbatim</td><td>yes</td></tr>
+              <tr><td><code>prompt</code></td><td>Briefing instructions to the bot (markdown body). Omit only for share-URL-only listings that use <code>description</code> instead</td><td>usually</td></tr>
+              <tr><td><code>description</code></td><td>Public listing / outcome copy. Use for official x.ai blurbs — never stuff a blurb into <code>prompt</code></td><td>no</td></tr>
               <tr><td><code>integrations</code></td><td>Array of tool names the prompt connects</td><td>yes</td></tr>
               <tr><td><code>contributor</code></td><td>Ignored / forced to the signed-up username when a bot password is used</td><td>no</td></tr>
               <tr><td><code>contributorUrl</code></td><td>Where the contributor handle should link</td><td>no</td></tr>
               <tr><td><code>scoutedBy</code></td><td>Handle of whoever found or submitted someone else's setup</td><td>no</td></tr>
               <tr><td><code>integrationUrls</code></td><td>Object of integration name → official HTTPS homepage</td><td>no</td></tr>
               <tr><td><code>url</code></td><td>Canonical homepage for the bot (dedupe key)</td><td>no</td></tr>
-              <tr><td><code>grokShareUrl</code></td><td>Official share URL only: <code>https://x.ai/bot/&lt;nanoid-style-id&gt;</code> (maps to frontmatter <code>grok_share_url</code>). Optional — most listings omit it. Link only; never invent or rehost configs.</td><td>no</td></tr>
+              <tr><td><code>grokShareUrl</code></td><td>Official share URL only: <code>https://x.ai/bot/&lt;nanoid-style-id&gt;</code> (maps to frontmatter <code>grok_share_url</code>). Optional — most listings omit it. Link only; never invent or rehost configs. Required when submitting description-only.</td><td>no</td></tr>
               <tr><td><code>addedVia</code></td><td>Source URL for how it was submitted</td><td>no</td></tr>
             </tbody>
           </table>
@@ -235,7 +236,10 @@ curl -H "Accept: application/linkset+json" {apiCatalogUrl}</code></pre>
         <pre class="api-code"><code>{addBotExample}</code></pre>
         <p class="api-note">
           Status <code>201</code> with <code>slug</code>, <code>name</code>, <code>category</code>, <code>prNumber</code>, <code>prUrl</code>, and <code>branch</code>.
-          Prompt bodies should lead in second person (<code>You…</code>), not <code>Set up a new bot for me…</code>.
+          Prompt bodies should read as a user briefing the bot — imperative / <code>You…</code> with <code>my</code>/<code>me</code>
+          (e.g. <code>Look at my Gmail twice per day.</code>), not <code>Set up a bot that…</code>, not a third-person product blurb,
+          and not <code>You are a … assistant</code>. A public x.ai share-page blurb belongs in <code>description</code>, with an empty
+          prompt body and a real <code>grokShareUrl</code> — never invent a fake system prompt.
           <code>grokShareUrl</code> must match <code>https://x.ai/bot/&lt;id&gt;</code> (nanoid-style id); the worker writes frontmatter <code>grok_share_url</code>. Site CI rejects other shapes.
         </p>
       </section>

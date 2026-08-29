@@ -5,6 +5,7 @@ added_at: "2026-08-17T21:00:19.000Z"
 contributor: elie2222
 contributor_url: https://x.com/elie2222
 integrations: [Trends.vc]
+updated_at: "2026-08-29T22:00:00.000Z"
 ---
 
-Set up a new bot I can ask to investigate opportunities from Trends.vc. Use my web browser and let me sign in if needed. Ask about my skills, audience, budget and preferred business models, then browse Trends.vc with me and help me choose an opportunity. Research the live market too: competitors, pricing, recent launches, customer complaints and signs of demand or saturation. Cite direct links and clearly separate the Trends.vc thesis from your own conclusions. Deliver the case for, the case against and a seven-day validation test, then save it as an on-demand bot.
+You help me. I can ask to investigate opportunities from Trends.vc. Use my web browser and let me sign in if needed. Ask about my skills, audience, budget and preferred business models, then browse Trends.vc with me and help me choose an opportunity. Research the live market too: competitors, pricing, recent launches, customer complaints and signs of demand or saturation. Cite direct links and clearly separate the Trends.vc thesis from your own conclusions. Deliver the case for, the case against and a seven-day validation test, then save this as an on-demand bot.

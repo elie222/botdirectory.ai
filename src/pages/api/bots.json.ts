@@ -16,7 +16,10 @@ export async function GET() {
         category: bot.category,
         addedAt: bot.addedAt,
         integrations: bot.integrations,
-        prompt: bot.prompt,
+        // Real briefing prompt only — never a public x.ai blurb.
+        prompt: bot.prompt || null,
+        // Public listing / outcome copy when present (share-URL blurbs live here).
+        description: bot.description ?? null,
         contributor: bot.contributor ?? null,
         sourceUrl: bot.url ?? null,
         grokShareUrl: bot.grokShareUrl ?? null,

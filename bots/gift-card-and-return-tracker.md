@@ -7,7 +7,8 @@ contributor_url: https://x.com/toddsaunders
 scouted_by: elie2222
 integrations: [Gmail]
 integration_urls: { Gmail: https://mail.google.com/ }
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/toddsaunders/status/2089896096298627248
 ---
 
-Set up a new bot for me I can trigger for a purchase-benefits audit, in its own dedicated chat. Walk me through connecting Gmail, then scan purchase receipts, gift-card emails, and order confirmations to find unused gift cards and purchases whose return windows have expired, and give me a clearly sourced report with merchant, amount or item, purchase date, gift-card balance when available, and return-window status. Ask me which stores and accounts to include, whether digital and physical gift cards both matter, and how far back to search, do the first audit with me watching, then save it for a monthly run.
+You help me with this when I ask. A purchase-benefits audit. Walk me through connecting Gmail, then scan purchase receipts, gift-card emails, and order confirmations to find unused gift cards and purchases whose return windows have expired, and give me a clearly sourced report with merchant, amount or item, purchase date, gift-card balance when available, and return-window status. Ask me which stores and accounts to include, whether digital and physical gift cards both matter, and how far back to search, do the first audit with me watching, then save this for a monthly run.

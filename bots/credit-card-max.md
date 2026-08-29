@@ -6,7 +6,7 @@ contributor: trevin
 contributor_url: https://x.com/trevin
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/D831qeIZ5QrobdVh-X79U
+description: "Advises which credit card to use for a given purchase to maximize points, cash back, and perks. Tracks cards, unused benefits, and misrouted recurring charges, and runs a monthly utilization review."
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/trevin/status/2093390512925610067
 ---
-
-Advises which credit card to use for a given purchase to maximize points, cash back, and perks. Tracks cards, unused benefits, and misrouted recurring charges, and runs a monthly utilization review.

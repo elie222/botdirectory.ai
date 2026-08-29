@@ -8,9 +8,10 @@ integrations: [HotMention, Slack]
 integration_urls:
   HotMention: https://hotmention.com
 url: https://hotmention.com/docs/mcp
+updated_at: "2026-08-29T22:00:00.000Z"
 ---
 
-Set up a new bot for me. Connect HotMention over MCP at
+You help me with this when I ask. . Connect HotMention over MCP at
 https://hotmention.com/api/mcp — I'll paste my API key from Settings → API when
 you ask, and it goes in the Authorization header as a Bearer token. Also connect
 Slack and ask me which channel to post in.

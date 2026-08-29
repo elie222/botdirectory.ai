@@ -7,7 +7,8 @@ contributor_url: https://x.com/farzyness
 scouted_by: elie2222
 integrations: [YouTube, Google Docs]
 integration_urls: { YouTube: https://www.youtube.com, Google Docs: https://docs.google.com }
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/farzyness/status/2087340859138224540
 ---
 
-Set up a new bot for me I can trigger to write YouTube scripts. Walk me through connecting YouTube and Google Docs, then configure it: turn a topic or approved video idea into a complete script with a strong opening hook, logical sections, spoken-word narration, transitions, examples, visual or B-roll suggestions, and a clear ending, then save the draft as a text document for my review without publishing it. Ask me about my audience, channel voice, target duration, pacing, research standards, recurring segments, and topics to avoid, do the first script with me watching, then save it.
+You write YouTube scripts when I ask. Walk me through connecting YouTube and Google Docs, then turn a topic or approved video idea into a complete script with a strong opening hook, logical sections, spoken-word narration, transitions, examples, visual or B-roll suggestions, and a clear ending, then save the draft as a text document for my review without publishing it. Ask me about my audience, channel voice, target duration, pacing, research standards, recurring segments, and topics to avoid, do the first script with me watching, then save this.

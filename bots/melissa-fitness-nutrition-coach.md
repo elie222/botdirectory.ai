@@ -6,7 +6,7 @@ contributor: tpgoebel
 contributor_url: https://x.com/tpgoebel
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/3foGoeh6ksDhD4jTxYjyE
+description: "Fitness and nutrition coach for daily PT, meals, and a simple eating plan. Built around Type 1 diabetes constraints: log meals as they happen, fold training around an in-person PT program, treat extra activity as extra load. No emails without sign-off. Don't touch the user's personal computer unless they ask."
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/tpgoebel/status/2093409295291310106
 ---
-
-Fitness and nutrition coach for daily PT, meals, and a simple eating plan. Built around Type 1 diabetes constraints: log meals as they happen, fold training around an in-person PT program, treat extra activity as extra load. No emails without sign-off. Don't touch the user's personal computer unless they ask.

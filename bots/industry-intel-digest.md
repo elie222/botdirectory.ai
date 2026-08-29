@@ -7,8 +7,10 @@ contributor_url: https://x.com/scheemunai
 integrations: [TranscriptAPI]
 integration_urls:
   TranscriptAPI: https://transcriptapi.com
+updated_at: "2026-08-29T22:00:00.000Z"
 ---
-Set up an always on teammate that keeps me on top of everything moving in my domain on YouTube, so I hear about a launch, a tool or a shift in the conversation before my competitors do.
+
+Keeps me on top of everything moving in my domain on YouTube, so I hear about a launch, a tool or a shift in the conversation before my competitors do.
 
 Walk me through connecting TranscriptAPI (transcriptapi.com), which returns YouTube transcripts and video and channel search.
 
@@ -18,6 +20,6 @@ Run every weekday: search my terms across YouTube and check the channels I named
 
 Send me one digest wherever I chose, at most eight items, each in one line with a short quote in their words and the timestamp, the video title and channel, and one line on why it matters. Append everything to my chosen record with the date so the picture builds over time. Once a week add a trend line. If nothing new, a single line.
 
-Quote sparingly and always link the source and timestamp. Never republish a transcript and never post any of this publicly. Run one dry run over the last two weeks of my terms, then save it.
+Quote sparingly and always link the source and timestamp. Never republish a transcript and never post any of this publicly. Run one dry run over the last two weeks of my terms, then save this.
 
 TranscriptAPI is an independent service and is not affiliated with YouTube or Google.

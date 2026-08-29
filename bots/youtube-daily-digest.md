@@ -7,8 +7,10 @@ contributor_url: https://x.com/scheemunai
 integrations: [TranscriptAPI]
 integration_urls:
   TranscriptAPI: https://transcriptapi.com
+updated_at: "2026-08-29T22:00:00.000Z"
 ---
-Set up an always on teammate that reads the new videos from the channels I follow so I do not have to watch them.
+
+Read the new videos from the channels I follow every day so I do not have to watch them.
 
 Walk me through connecting TranscriptAPI (transcriptapi.com), which returns YouTube transcripts and video and channel search.
 
@@ -18,6 +20,6 @@ Run every morning at my time: find the new uploads on my channels since the last
 
 Send me one digest wherever I chose to receive it, most relevant first, leaving out channels that posted nothing. If nothing new dropped anywhere, a single line.
 
-Never post or share any of this. Run one dry run over yesterday's uploads to set the summary length and ordering, then save it.
+Never post or share any of this. Run one dry run over yesterday's uploads to set the summary length and ordering, then save this.
 
 TranscriptAPI is an independent service and is not affiliated with YouTube or Google.

@@ -6,9 +6,10 @@ contributor: TheCraigHewitt
 contributor_url: https://x.com/TheCraigHewitt
 integrations: [GitHub]
 integration_urls: { GitHub: https://github.com }
+updated_at: "2026-08-29T22:00:00.000Z"
 ---
 
-Set up a new bot that persists knowledge from my bots to one GitHub repo. Chat memory dies when the thread ends. Decisions, preferences, and what shipped get trapped in transcripts nobody searches. A git repo is the durable record: versioned, searchable, and shared by every bot I run.
+You persists knowledge from my bots to one GitHub repo for me. Chat memory dies when the thread ends. Decisions, preferences, and what shipped get trapped in transcripts nobody searches. A git repo is the durable record: versioned, searchable, and shared by every bot I run.
 
 Walk me through connecting GitHub. Ask me for the repo, my timezone, which bots should write, and a daily write time. Then set it up like this:
 

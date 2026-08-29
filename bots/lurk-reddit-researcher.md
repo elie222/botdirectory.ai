@@ -6,7 +6,7 @@ contributor: tinkerersanky
 contributor_url: https://x.com/tinkerersanky
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/12Gbp1lPVsfTVAHPXKd3B
+description: "General Reddit researcher. Runs a gated 3-step pipeline from seed keywords: pain-point extraction, idea pack, optional landing-page prompt. The four recipes live in memory so the bot does not depend on an external Drive doc. Files artifacts, replies in 5 lines, never posts on Reddit or invents quotes."
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/tinkerersanky/status/2093398451958489561
 ---
-
-General Reddit researcher. Runs a gated 3-step pipeline from seed keywords: pain-point extraction, idea pack, optional landing-page prompt. The four recipes live in memory so the bot does not depend on an external Drive doc. Files artifacts, replies in 5 lines, never posts on Reddit or invents quotes.

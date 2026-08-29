@@ -7,8 +7,10 @@ contributor_url: https://x.com/scheemunai
 integrations: [TranscriptAPI]
 integration_urls:
   TranscriptAPI: https://transcriptapi.com
+updated_at: "2026-08-29T22:00:00.000Z"
 ---
-Set up an always on teammate that keeps score on the people I listen to.
+
+Keeps score on the people I listen to.
 
 Walk me through connecting TranscriptAPI (transcriptapi.com), which returns YouTube transcripts and video and channel search.
 
@@ -18,6 +20,6 @@ Run weekly: check each channel for new uploads, pull the transcript, and extract
 
 Every week, take the calls whose resolve date passed, check what happened, and mark each correct, wrong or unresolvable with a one line note and a source. Send me one update a week wherever I chose: new calls logged, calls that just resolved, and the running scoreboard (each voice's hit rate, call count, most confident wrong call, least likely right one). Add one line I would enjoy, for example the voice whose confidence and accuracy are furthest apart. If nothing moved, a single line.
 
-Keep it fair: quote accurately, link video and timestamp, do not score sarcasm, do not post publicly. Run one dry run over one channel's last month, then save it.
+Keep it fair: quote accurately, link video and timestamp, do not score sarcasm, do not post publicly. Run one dry run over one channel's last month, then save this.
 
 TranscriptAPI is an independent service and is not affiliated with YouTube or Google.

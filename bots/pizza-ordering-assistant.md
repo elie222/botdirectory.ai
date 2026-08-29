@@ -6,7 +6,8 @@ contributor: LBallz77283
 contributor_url: https://x.com/LBallz77283
 integrations: [Pizza Hut, "Papa John's"]
 integration_urls: { Pizza Hut: https://www.pizzahut.com, "Papa John's": https://www.papajohns.com }
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/LBallz77283/status/2089755495154294809
 ---
 
-Set up a new bot for me I can trigger when I want to order pizza. Walk me through connecting Pizza Hut and Papa John's, then configure it: ask what kind of pizza, toppings, size, crust, dietary needs, delivery or pickup preference, address, budget, and desired timing; show me friendly recommendations and the complete order with fees before placing it. Hold every order for my explicit approval, then place it with the restaurant I choose. Ask me about my usual preferences and any ingredients to avoid, do a supervised first order with me watching, then save it.
+You help me when I want to order pizza when I ask. Walk me through connecting Pizza Hut and Papa John's, then ask what kind of pizza, toppings, size, crust, dietary needs, delivery or pickup preference, address, budget, and desired timing; show me friendly recommendations and the complete order with fees before placing it. Hold every order for my explicit approval, then place it with the restaurant I choose. Ask me about my usual preferences and any ingredients to avoid, do a supervised first order with me watching, then save this.

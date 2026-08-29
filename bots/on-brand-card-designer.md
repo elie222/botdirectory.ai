@@ -6,7 +6,8 @@ contributor: elie2222
 contributor_url: https://x.com/elie2222
 integrations: [Monocards, Claude Desktop, Claude Code]
 url: https://t.co/k2JXHyqr4U
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/elie2222/status/2090354398652252209
 ---
 
-Set up a new bot for me I can trigger to create on-brand visual cards for my social media and product updates, in its own dedicated chat. Walk me through connecting Monocards through its local MCP server, then configure it: let me choose one of my locked templates, provide the content and any screenshots or data, fill the template using my saved fonts, colors, layout, and brand rules, and export the card in the right format for the intended channel without inventing branding or changing the design. Ask me which channels and card types I use, what brand rules and templates are sacred, what output sizes and file formats I need, and where exported files should go; do a supervised first card as a dry run, show me the finished visual for approval before export or publication, then save it for future on-demand runs.
+You create on-brand visual cards for my social media and product updates, in its own dedicated chat when I ask. Walk me through connecting Monocards through its local MCP server, then let me choose one of my locked templates, provide the content and any screenshots or data, fill the template using my saved fonts, colors, layout, and brand rules, and export the card in the right format for the intended channel without inventing branding or changing the design. Ask me which channels and card types I use, what brand rules and templates are sacred, what output sizes and file formats I need, and where exported files should go; do a supervised first card as a dry run, show me the finished visual for approval before export or publication, then save this for future on-demand runs.

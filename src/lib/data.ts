@@ -55,7 +55,13 @@ export interface Bot {
   scoutedBy?: string;
   copies: number;
   integrations: string[];
+  /**
+   * Ready-to-paste briefing prompt. Empty when the listing only has a public
+   * description (e.g. an official share URL whose x.ai blurb is not a prompt).
+   */
   prompt: string;
+  /** Public listing description / outcome copy. Distinct from `prompt`. */
+  description?: string;
   url?: string;
   /** Official Grok Bot share/preview URL on x.ai, when the creator published one. */
   grokShareUrl?: string;
@@ -134,6 +140,7 @@ export async function getBots(): Promise<Bot[]> {
       copies: Number.isFinite(copyCounts[e.id]) ? copyCounts[e.id] : 0,
       integrations: e.data.integrations,
       prompt: (e.body ?? '').trim(),
+      description: e.data.description?.trim() || undefined,
       url: e.data.url,
       grokShareUrl: e.data.grok_share_url,
       addedVia: e.data.added_via,

@@ -26,6 +26,7 @@ integration_urls:                       # optional; lets deploy fetch missing fa
   DataForSEO: https://dataforseo.com
 url: https://example.com/my-bot        # optional — canonical homepage (dedupe key)
 grok_share_url: https://x.ai/bot/Y7LbP6p5EBFjfdTp69cKr  # optional — real https://x.ai/bot/… you own
+description: Plans my Instacart cart from meal ideas.  # optional — public blurb; NOT the prompt
 added_via: https://x.com/.../status/…  # optional — set by the X mention bot
 sources:                              # optional — source material beyond added_via
   - kind: youtube
@@ -85,6 +86,11 @@ fix internal links, and open a PR I review before merge.
   until you have a real share link; never invent one. The public JSON API
   exposes this as `grokShareUrl`.
 
+- **description** — optional public listing / outcome copy (what the bot does).
+  Distinct from the prompt. Use this for official x.ai share-page blurbs —
+  never put a marketing blurb in the markdown body and label it as a prompt.
+  Description-only listings (empty body) require `grok_share_url`.
+
 - **sources** — optional original material that inspired the bot. Supported
   kinds are `x`, `youtube`, and `web`; the URL must match the selected kind.
   YouTube sources can include `start_seconds` to open at the relevant moment.
@@ -93,9 +99,15 @@ fix internal links, and open a PR I review before merge.
 
 - Copy counts are **not** part of the file — they're tracked server-side and
   start at zero for every bot.
-- The **body is the prompt itself** — exactly what someone pastes into Grok Bot
-  or Rakazo. No extra prose around it. Prefer second person that leads with
-  **You…** (the bot's identity), not "Set up a new bot for me…".
+- The **body is the prompt itself** — instructions *to* the bot (do this, watch
+  that, send me X), in imperative / first-person-possessive briefing voice.
+  Good: `Look at my Gmail twice per day.` / `You plan my grocery cart when I ask.`
+  Bad: `Set up a bot that looks at Gmail.` / `This bot checks the user's Gmail.` /
+  `You are a Gmail assistant that…` / stuffing the public x.ai blurb into the body.
+  Prefer second person that leads with **You…** and uses **my** / **me**. No extra
+  prose around the prompt. If you only have a public share blurb, put it in
+  `description`, leave the body empty, and set `grok_share_url` — do not invent
+  a fake full system prompt.
 
 The value is the chip's dot color — pick the closest family color already in use.
 
@@ -112,7 +124,7 @@ The value is the chip's dot color — pick the closest family color already in u
 ## Checks
 
 Every PR runs `pnpm validate` (schema, filename = slug, unique slug, known
-category, non-empty prompt, unique `url`) plus `astro check` and a full
+category, prompt and/or description, unique `url`) plus `astro check` and a full
 build. Run them locally:
 
 ```sh

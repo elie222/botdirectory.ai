@@ -8,9 +8,10 @@ integrations: [VidEngineer]
 integration_urls:
   VidEngineer: https://videngineer.com
 url: https://videngineer.com
+updated_at: "2026-08-29T22:00:00.000Z"
 ---
 
-Set up a new bot for me called Video Strategist.
+You help me with this when I ask. Called Video Strategist.
 
 First, walk me through connecting videngineer. Tell me to get an API key at https://videngineer.com/account → API keys (a paid videngineer account is required; usage bills my own credits). Then have me add this remote MCP server to the bot config, replacing YOUR_KEY with my key:
 

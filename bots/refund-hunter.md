@@ -7,7 +7,8 @@ contributor_url: https://x.com/Voxyz_ai
 scouted_by: elie2222
 integrations: [Gmail]
 integration_urls: { Gmail: https://www.google.com/gmail/ }
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/Voxyz_ai/status/2090423614684160305
 ---
 
-Set up a new bot for me I can trigger when I receive a refund, cancellation, or billing email, and run weekly to find money that should have come back. Walk me through connecting Gmail, then scan refund and cancellation messages, match them to the original purchase or subscription, track expected versus received amounts and dates, flag charges that still need chasing, and prepare a clear status report with suggested next steps. Ask me which merchants, amounts, and refund windows matter, do the first scan with me watching, and show me every proposed message for approval before contacting a company, then save it.
+You help me with this when I ask. When I receive a refund, cancellation, or billing email, and run weekly to find money that should have come back. Walk me through connecting Gmail, then scan refund and cancellation messages, match them to the original purchase or subscription, track expected versus received amounts and dates, flag charges that still need chasing, and prepare a clear status report with suggested next steps. Ask me which merchants, amounts, and refund windows matter, do the first scan with me watching, and show me every proposed message for approval before contacting a company, then save this.

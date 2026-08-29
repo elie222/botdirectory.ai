@@ -492,14 +492,23 @@ const spec = {
       Bot: {
         type: 'object',
         additionalProperties: true,
-        required: ['slug', 'name', 'category', 'addedAt', 'integrations', 'prompt', 'detailUrl'],
+        required: ['slug', 'name', 'category', 'addedAt', 'integrations', 'detailUrl'],
         properties: {
           slug: { $ref: '#/components/schemas/Slug' },
           name: { type: 'string', minLength: 1, maxLength: 80 },
           category: { type: 'string', enum: CATEGORIES },
           addedAt: { type: 'string', format: 'date-time' },
           integrations: { type: 'array', minItems: 1, items: { type: 'string' } },
-          prompt: { type: 'string', minLength: 1 },
+          prompt: {
+            type: ['string', 'null'],
+            description:
+              'Ready-to-paste briefing prompt addressed to the bot. Null when the listing only has a public description (e.g. an official share URL whose x.ai blurb is not a prompt). Never a marketing blurb.',
+          },
+          description: {
+            type: ['string', 'null'],
+            description:
+              'Public listing / outcome copy. Distinct from prompt. Share-URL page blurbs belong here.',
+          },
           contributor: { type: ['string', 'null'] },
           sourceUrl: { type: ['string', 'null'], format: 'uri' },
           grokShareUrl: {
@@ -593,11 +602,24 @@ const spec = {
       BotSubmission: {
         type: 'object',
         additionalProperties: false,
-        required: ['name', 'category', 'prompt', 'integrations'],
+        required: ['name', 'category', 'integrations'],
         properties: {
           name: { type: 'string', minLength: 1, maxLength: 80 },
           category: { type: 'string', enum: CATEGORIES },
-          prompt: { type: 'string', minLength: 1, maxLength: 20000 },
+          prompt: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 20000,
+            description:
+              'Briefing instructions to the bot (imperative / You… with my/me). Required unless description + grokShareUrl are both set for a share-URL-only listing.',
+          },
+          description: {
+            type: 'string',
+            minLength: 1,
+            maxLength: 2000,
+            description:
+              'Public listing / outcome copy. Use this — not prompt — for official x.ai share-page blurbs.',
+          },
           integrations: {
             type: 'array',
             minItems: 1,

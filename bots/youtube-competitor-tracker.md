@@ -7,8 +7,10 @@ contributor_url: https://x.com/scheemunai
 integrations: [TranscriptAPI]
 integration_urls:
   TranscriptAPI: https://transcriptapi.com
+updated_at: "2026-08-29T22:00:00.000Z"
 ---
-Set up an always on teammate that tells me what my competitors said out loud this week, before any of it reaches their blog.
+
+Tells me what my competitors said out loud this week, before any of it reaches their blog.
 
 Walk me through connecting TranscriptAPI (transcriptapi.com), which returns YouTube transcripts and video and channel search.
 
@@ -18,6 +20,6 @@ Run every weekday: check each tracked channel for new uploads, and search my ter
 
 Send me one briefing wherever I chose, at most six items, each with the claim as a short quote in their words, the timestamp, the video title and channel, and one line on why it matters to us. Append every item to my chosen record with the date. If nothing new, a single line. Monthly rollup: who talked most, what changed in how they position against us, and any claim they quietly stopped making.
 
-Quote sparingly and always link source and timestamp. Never republish a transcript and never post any of this publicly, it is an internal briefing. Run one dry run over two weeks of one channel, then save it.
+Quote sparingly and always link source and timestamp. Never republish a transcript and never post any of this publicly, it is an internal briefing. Run one dry run over two weeks of one channel, then save this.
 
 TranscriptAPI is an independent service and is not affiliated with YouTube or Google.

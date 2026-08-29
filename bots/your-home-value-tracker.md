@@ -7,8 +7,10 @@ contributor_url: https://x.com/scheemunai
 integrations: [Zillapi]
 integration_urls:
   Zillapi: https://zillapi.com
+updated_at: "2026-08-29T22:00:00.000Z"
 ---
-Set up an always on teammate that tells me what my house is actually worth this month, and which sale nearby moved the number.
+
+Tells me what my house is actually worth this month, and which sale nearby moved the number.
 
 Walk me through connecting Zillapi (zillapi.com), which returns Zillow property data for any US address.
 
@@ -18,6 +20,6 @@ Run on the first of each month: pull my property record, Zestimate and rent Zest
 
 Send me one update wherever I chose, short enough to read on a phone: my Zestimate and how it moved since last month and since I bought, my estimated equity, the single nearby sale or price change that best explains the move, my rent Zestimate and what the house would earn rented, and where my assessed value sits against the estimated value. If it barely moved, a single line.
 
-Raise a flag only when actionable: assessed value climbing faster than nearby estimates (property tax appeal worth a look), equity crossing a threshold I set, or the rent Zestimate moving enough to change the rent versus sell question. Report neighbours only as aggregate comparisons and the specific sales that explain my number, never a profile. Run one dry run, then save it.
+Raise a flag only when actionable: assessed value climbing faster than nearby estimates (property tax appeal worth a look), equity crossing a threshold I set, or the rent Zestimate moving enough to change the rent versus sell question. Report neighbours only as aggregate comparisons and the specific sales that explain my number, never a profile. Run one dry run, then save this.
 
 Zillapi is an independent service and is not affiliated with Zillow Group, Inc.

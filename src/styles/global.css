@@ -1617,7 +1617,8 @@ a.badge-plain:hover { color: var(--iz-ink); }
   border-radius: 9px;
   padding: 6px 12px;
 }
-.prompt-block {
+.prompt-block,
+.description-block {
   font-family: var(--iz-font-mono);
   font-size: 13.5px;
   line-height: 1.7;
@@ -2073,7 +2074,8 @@ a.connect-chip:hover { border-color: var(--iz-blue-150); color: var(--iz-blue-60
     margin: 2px 0 0;
   }
   .prompt-section { margin-top: 34px; }
-  .prompt-block {
+  .prompt-block,
+  .description-block {
     padding: 16px;
     font-size: 13px;
   }

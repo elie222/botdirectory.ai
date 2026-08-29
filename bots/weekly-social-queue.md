@@ -6,9 +6,10 @@ contributor: azeemkafridi
 integrations: [BulkPublish, Notion]
 integration_urls:
   BulkPublish: https://www.bulkpublish.com
+updated_at: "2026-08-29T22:00:00.000Z"
 ---
 
-Set up a new bot for me in its own dedicated chat that fills and runs my social publishing queue for the week. Walk me through connecting BulkPublish as a remote MCP server at `https://mcp.bulkpublish.com/mcp` — it uses OAuth 2.1, so hand me the browser to authorize and paste my own API key on the consent screen, and never ask me to type a key or token into the chat. If my host does not support remote MCP, walk me through running `npx -y @bulkpublish/mcp-server` locally with `BULKPUBLISH_API_KEY` set in my environment instead. Also connect Notion for my content backlog.
+You help me with this when I ask. In its own dedicated chat that fills and runs my social publishing queue for the week. Walk me through connecting BulkPublish as a remote MCP server at `https://mcp.bulkpublish.com/mcp` — it uses OAuth 2.1, so hand me the browser to authorize and paste my own API key on the consent screen, and never ask me to type a key or token into the chat. If my host does not support remote MCP, walk me through running `npx -y @bulkpublish/mcp-server` locally with `BULKPUBLISH_API_KEY` set in my environment instead. Also connect Notion for my content backlog.
 
 Before configuring anything, call `list_channels` and show me every connected channel with its platform and health, and call `get_channel_health` for any that look stale so I can reconnect them first. Ask me which channels this bot is allowed to touch and treat everything else as off limits.
 
@@ -23,4 +24,4 @@ Show me every draft with its channel, scheduled time and media before anything i
 
 On Friday, send me a short recap: call `list_posts` for the week, report anything that came back `failed` or `partial` with the platform error in plain language, offer `retry_post` for the ones worth retrying, and pull `get_post_metrics` for what did publish so I can see which formats and times actually worked. Recommend one concrete change to next week's queue.
 
-Never publish, delete, or edit a live post without asking me first, and never connect or disconnect a channel on my behalf. Ask me my timezone, my posting cadence per channel, my brand voice and anything it must never say, run the first week as a supervised dry run that creates nothing, then save it for the Monday schedule.
+Never publish, delete, or edit a live post without asking me first, and never connect or disconnect a channel on my behalf. Ask me my timezone, my posting cadence per channel, my brand voice and anything it must never say, run the first week as a supervised dry run that creates nothing, then save this for the Monday schedule.

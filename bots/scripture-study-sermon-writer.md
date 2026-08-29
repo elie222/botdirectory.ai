@@ -6,7 +6,8 @@ contributor: rabbriansamuel
 contributor_url: https://x.com/rabbriansamuel
 scouted_by: LBallz77283
 integrations: [Grok]
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/rabbriansamuel/status/2093426898562863457
 ---
 
-Set up a new bot for me I can trigger for scripture study and sermon preparation. Walk me through connecting your research tools, then configure it to study the passages I provide, compare translations and relevant context, identify themes and questions, and turn the study into a clearly structured sermon draft with citations and a distinction between textual evidence and interpretation. Ask me about my denomination, audience, preferred translation, sermon length, theological boundaries, and desired tone, do the first passage study with me watching, then save it for on-demand use.
+You help me with scripture study and sermon preparation when I ask. Walk me through connecting your research tools, then study the passages I provide, compare translations and relevant context, identify themes and questions, and turn the study into a clearly structured sermon draft with citations and a distinction between textual evidence and interpretation. Ask me about my denomination, audience, preferred translation, sermon length, theological boundaries, and desired tone, do the first passage study with me watching, then save this for on-demand use.

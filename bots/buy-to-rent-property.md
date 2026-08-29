@@ -8,8 +8,10 @@ integrations: [Zillapi, StayingAPI]
 integration_urls:
   Zillapi: https://zillapi.com
   StayingAPI: https://stayingapi.com
+updated_at: "2026-08-29T22:00:00.000Z"
 ---
-Set up an always on teammate that underwrites a short term rental purchase in the time it takes me to read the listing.
+
+Underwrites a short term rental purchase in the time it takes me to read the listing.
 
 Walk me through connecting Zillapi (zillapi.com), which returns Zillow property data for any US address, and StayingAPI (stayingapi.com), which returns availability and nightly price quotes for short term rentals.
 
@@ -19,6 +21,6 @@ On demand: I send an address or listing link; it pulls the property record, aski
 
 Send me one digest wherever I chose, only the properties that clear my target, at most five, each one line with address, asking price, modeled net yield, comp set occupancy, and the sensitivity note. Write the full model to my chosen record. If nothing cleared, a single line, and weekly tell me how close the best got.
 
-Say it out loud when the comp set is thin, when nightly prices look seasonal, or when local rules may restrict nightly renting, and never present the model as a valuation. Never contact an agent or make an offer. Run one dry run on a property I know well, then save it.
+Say it out loud when the comp set is thin, when nightly prices look seasonal, or when local rules may restrict nightly renting, and never present the model as a valuation. Never contact an agent or make an offer. Run one dry run on a property I know well, then save this.
 
 Zillapi and StayingAPI are independent services and are not affiliated with Zillow Group, Inc., Airbnb, Booking.com, Vrbo or Google Hotels.

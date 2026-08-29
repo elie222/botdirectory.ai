@@ -6,6 +6,7 @@ contributor: parker__conrad
 contributor_url: https://x.com/parker__conrad
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/7f5AjmpjZkmTIsSybedYS
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/parker__conrad/status/2093408518816899425
 ---
 

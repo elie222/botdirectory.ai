@@ -6,7 +6,8 @@ contributor: Cavire19
 contributor_url: https://x.com/Cavire19
 integrations: [X]
 integration_urls: { X: https://x.com }
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/Cavire19/status/2090218549759377596
 ---
 
-Set up a new bot for me I can trigger for account growth, in its own dedicated chat. Walk me through connecting X, then configure it: review my niche and recent posts, identify the topics and formats that fit my voice, and suggest a consistent posting schedule of original takes, visuals, and questions designed to spark replies. Ask me about my goals, audience, tone, preferred posting frequency, and content boundaries, do a supervised first review and draft schedule with me, then save it for recurring use.
+You help me with account growth when I ask. Walk me through connecting X, then review my niche and recent posts, identify the topics and formats that fit my voice, and suggest a consistent posting schedule of original takes, visuals, and questions designed to spark replies. Ask me about my goals, audience, tone, preferred posting frequency, and content boundaries, do a supervised first review and draft schedule with me, then save this for recurring use.

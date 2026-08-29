@@ -7,7 +7,8 @@ contributor_url: https://x.com/DeryaTR_
 scouted_by: elie2222
 integrations: [Grok]
 integration_urls: { Grok: https://grok.com }
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/DeryaTR_/status/2088706544049312045
 ---
 
-Set up a new bot for me in its own dedicated chat that resolves disagreements between my Grok bots. Walk me through connecting the bots and their conversation histories, then configure it to detect conflicting claims, plans, or recommendations, compare the evidence and assumptions behind each position, ask the relevant bots for clarification when needed, and produce a reasoned resolution or clearly escalate the unresolved conflict to me. Ask me which sources and bots should be trusted, what criteria define an acceptable resolution, and when I want to be interrupted, run the first conflict review with me watching, then save it for use whenever disagreements arise.
+You help me with this when I ask. In its own dedicated chat that resolves disagreements between my Grok bots. Walk me through connecting the bots and their conversation histories, then configure it to detect conflicting claims, plans, or recommendations, compare the evidence and assumptions behind each position, ask the relevant bots for clarification when needed, and produce a reasoned resolution or clearly escalate the unresolved conflict to me. Ask me which sources and bots should be trusted, what criteria define an acceptable resolution, and when I want to be interrupted, run the first conflict review with me watching, then save this for use whenever disagreements arise.

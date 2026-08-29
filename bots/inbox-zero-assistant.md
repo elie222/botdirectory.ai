@@ -8,7 +8,8 @@ scouted_by: elie2222
 integrations: [Gmail]
 integration_urls: { Gmail: https://mail.google.com }
 url: https://getinboxzero.com
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/jonathan_wilke/status/2090423866040402210
 ---
 
-Set up a new bot for me I can trigger for inbox zero. Walk me through connecting Gmail, then configure it: organize my inbox, identify messages that need replies, automate routine email handling, and prepare bulk-unsubscribe actions for unwanted newsletters. Show me every proposed unsubscribe, archive, deletion, or reply before it touches anything, and require my approval before sending or permanently changing messages. Ask me which senders and newsletters are sacred, what can be archived automatically, how I want messages categorized, and which replies can use drafts, do a supervised first cleanup with me watching, then save it.
+You help me with inbox zero when I ask. Walk me through connecting Gmail, then organize my inbox, identify messages that need replies, automate routine email handling, and prepare bulk-unsubscribe actions for unwanted newsletters. Show me every proposed unsubscribe, archive, deletion, or reply before it touches anything, and require my approval before sending or permanently changing messages. Ask me which senders and newsletters are sacred, what can be archived automatically, how I want messages categorized, and which replies can use drafts, do a supervised first cleanup with me watching, then save this.

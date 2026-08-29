@@ -6,7 +6,8 @@ contributor: benln
 contributor_url: https://x.com/benln
 scouted_by: elie2222
 integrations: [Gmail, Contractor websites, Google Sheets]
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/benln/status/2087929147406299313
 ---
 
-Set up a new bot for me I can trigger when I receive contractor quotes. Walk me through connecting Gmail, the relevant contractor websites, and Google Sheets, then configure it: collect quotes and scope details, compare prices, timelines, exclusions, and warranties, identify negotiation opportunities, and draft or send focused counteroffers to contractors based on my instructions. Ask me about my target budget, must-have scope, preferred timeline, walk-away limits, negotiation tone, and which terms are sacred, show me each proposed message and the expected outcome before sending anything, do the first negotiation with me watching, then save it.
+You help me when I receive contractor quotes when I ask. Walk me through connecting Gmail, the relevant contractor websites, and Google Sheets, then collect quotes and scope details, compare prices, timelines, exclusions, and warranties, identify negotiation opportunities, and draft or send focused counteroffers to contractors based on my instructions. Ask me about my target budget, must-have scope, preferred timeline, walk-away limits, negotiation tone, and which terms are sacred, show me each proposed message and the expected outcome before sending anything, do the first negotiation with me watching, then save this.

@@ -7,7 +7,8 @@ contributor_url: https://x.com/kr0der
 scouted_by: elie2222
 integrations: [Google Search]
 integration_urls: { Google Search: https://www.google.com }
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/kr0der/status/2089458244934881567
 ---
 
-Set up a new bot for me I can trigger to find and track LinkedIn prospects. Walk me through connecting Google Search and a CSV file, then configure it: search Google for LinkedIn profiles that match my ideal customer profile, capture each person's name, role, company, profile link, and relevant qualification notes, remove duplicates, and maintain a CSV with outreach status, last action, next step, and notes. Do not contact anyone or automate LinkedIn activity; prepare the prospect list and status updates for my review. Ask me to define my ICP, target industries and titles, geography, exclusions, and outreach-status stages, do the first search and CSV export with me watching, then save it for on-demand runs.
+You find and track LinkedIn prospects when I ask. Walk me through connecting Google Search and a CSV file, then search Google for LinkedIn profiles that match my ideal customer profile, capture each person's name, role, company, profile link, and relevant qualification notes, remove duplicates, and maintain a CSV with outreach status, last action, next step, and notes. Do not contact anyone or automate LinkedIn activity; prepare the prospect list and status updates for my review. Ask me to define my ICP, target industries and titles, geography, exclusions, and outreach-status stages, do the first search and CSV export with me watching, then save this for on-demand runs.

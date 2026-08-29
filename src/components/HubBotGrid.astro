@@ -3,7 +3,7 @@ import ToolIcon from './ToolIcon.astro';
 import { catStyle } from '../lib/constants';
 import type { Bot } from '../lib/data';
 import { categorySlug, integrationSlug } from '../lib/seo';
-import { promptExcerpt } from '../lib/text';
+import { listingExcerpt } from '../lib/text';
 
 interface Props {
   bots: Bot[];
@@ -30,7 +30,7 @@ const linkedIntegrations = new Set(integrationHubs);
               {bot.category}
             </a>
           </div>
-          <p>{promptExcerpt(bot.prompt)}</p>
+          <p>{listingExcerpt(bot)}</p>
           <div class="hub-tool-list" aria-label="Integrations">
             {bot.integrations.map((integration) =>
               linkedIntegrations.has(integration) ? (
@@ -42,7 +42,7 @@ const linkedIntegrations = new Set(integrationHubs);
               )
             )}
           </div>
-          <a href={`/bots/${bot.slug}/`} class="hub-bot-cta">View and copy prompt →</a>
+          <a href={`/bots/${bot.slug}/`} class="hub-bot-cta">{bot.prompt ? 'View and copy prompt →' : 'View listing →'}</a>
         </article>
       );
     })

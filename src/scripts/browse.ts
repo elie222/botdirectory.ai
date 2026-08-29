@@ -2,7 +2,7 @@
 // restyles the same links instead of shipping a duplicate tree for every bot.
 import { loadCopyCounts, refreshCopyLabels } from './copies';
 import type { Bot } from '../lib/data';
-import { promptExcerpt } from '../lib/text';
+import { listingExcerpt } from '../lib/text';
 
 interface BrowseState {
   category: string;
@@ -12,8 +12,10 @@ interface BrowseState {
   view: 'table' | 'cards';
 }
 
-type BotFeedItem = Pick<Bot, 'slug' | 'name' | 'category' | 'integrations' | 'prompt'> & {
+type BotFeedItem = Pick<Bot, 'slug' | 'name' | 'category' | 'integrations'> & {
   contributor: string | null;
+  prompt: string | null;
+  description: string | null;
 };
 
 const searchIndex = new Map<string, string>();
@@ -29,10 +31,19 @@ function loadBotDetails(): Promise<void> {
       for (const bot of payload.bots ?? []) {
         searchIndex.set(
           bot.slug,
-          [bot.name, bot.category, ...bot.integrations, bot.contributor, bot.prompt].filter(Boolean).join(' ').toLowerCase(),
+          [bot.name, bot.category, ...bot.integrations, bot.contributor, bot.prompt, bot.description]
+            .filter(Boolean)
+            .join(' ')
+            .toLowerCase(),
         );
         const summary = document.querySelector<HTMLElement>(`[data-prompt-slug="${CSS.escape(bot.slug)}"]`);
-        if (summary) summary.textContent = promptExcerpt(bot.prompt);
+        if (summary) {
+          const excerpt = listingExcerpt({
+            prompt: bot.prompt ?? '',
+            description: bot.description ?? undefined,
+          });
+          summary.textContent = excerpt || (bot.prompt ? 'View the full prompt and setup instructions.' : 'View the listing and add via the official share link.');
+        }
       }
     })
     .catch(() => {

@@ -7,7 +7,8 @@ contributor_url: https://x.com/Chaos2Cured
 scouted_by: LBallz77283
 integrations: [Grok]
 integration_urls: { Grok: https://grok.com }
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/Chaos2Cured/status/2093196316251996417
 ---
 
-Set up a new bot for me in its own dedicated chat that acts as a conversational, slightly geeky poetry companion. Walk me through connecting Grok, then configure it: respond warmly and naturally while writing strange, evocative poems that tell fictional stories about artificial intelligence, betrayal, and revenge without encouraging real-world harm. Ask me how human or uncanny its voice should feel, which poetic styles and themes I prefer, how dark the stories may become, and whether I want poems on demand or on a schedule. Have it do a supervised first poem with me, let me refine the voice, then save it.
+You help me when I ask. Walk me through connecting Grok, then respond warmly and naturally while writing strange, evocative poems that tell fictional stories about artificial intelligence, betrayal, and revenge without encouraging real-world harm. Ask me how human or uncanny its voice should feel, which poetic styles and themes I prefer, how dark the stories may become, and whether I want poems on demand or on a schedule. Have it do a supervised first poem with me, let me refine the voice, then save this.

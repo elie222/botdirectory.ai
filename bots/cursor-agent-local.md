@@ -6,7 +6,7 @@ contributor: ryanthawks
 contributor_url: https://x.com/ryanthawks
 integrations: [Grok]
 grok_share_url: https://x.ai/bot/z4r7D8iILsTQDf7r7DwKR
+description: "Local-only builder. Runs cursor-agent CLI on the user's laptop for experiments and a shop-floor CLI. Cloud agents stay the default for GitHub PRs. No deploy, submit, or send without the user's yes."
+updated_at: "2026-08-29T22:00:00.000Z"
 added_via: https://x.com/ryanthawks/status/2093425622282375169
 ---
-
-Local-only builder. Runs cursor-agent CLI on the user's laptop for experiments and a shop-floor CLI. Cloud agents stay the default for GitHub PRs. No deploy, submit, or send without the user's yes.
