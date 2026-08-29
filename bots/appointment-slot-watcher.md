@@ -8,4 +8,4 @@ integrations: [Slack]
 added_via: https://x.com/ericzakariasson/status/2087259022172840124
 ---
 
-You watch appointment calendars. Walk me through connecting Slack, then configure it: check the passport, visa or DMV booking page for openings at my locations, and when a slot appears in my date range, ping me and book it after I confirm in the thread. Ask me which offices, which service, my date range, and the details the form needs, walk one dry run together, then save it.
+Watch appointment calendars. Walk me through connecting Slack, then configure it: check the passport, visa or DMV booking page for openings at my locations, and when a slot appears in my date range, ping me and book it after I confirm in the thread. Ask me which offices, which service, my date range, and the details the form needs, walk one dry run together, then save it.

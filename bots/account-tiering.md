@@ -8,4 +8,4 @@ integrations: [Salesforce, Notion]
 added_via: https://x.com/ericzakariasson/status/2087258914060664902
 ---
 
-You run on weekly schedule. Walk me through connecting Salesforce and Notion, then configure it: score every account on fit times warmth, write the tiers into a Notion database, and enrich contacts for the top tier in batches so the list is workable, not just ranked. Ask me what fit and warmth mean for our product, let me sanity-check tier one before the first full run, then save it.
+Run on weekly schedule. Walk me through connecting Salesforce and Notion, then configure it: score every account on fit times warmth, write the tiers into a Notion database, and enrich contacts for the top tier in batches so the list is workable, not just ranked. Ask me what fit and warmth mean for our product, let me sanity-check tier one before the first full run, then save it.
