@@ -32,10 +32,12 @@ function markCopied(slug: string): boolean {
 function currentCopyCount(slug: string, root: ParentNode = document): number {
   const known = knownCounts.get(slug);
   if (known !== undefined) return known;
-  const row = root.querySelector<HTMLElement>(`[data-slug="${slug}"]`);
-  if (row) return Number(row.dataset.copies || '0');
+  // Prefer the copies badge seed. Do not use bare [data-slug] nodes (e.g. the
+  // article wrapper) — they lack data-copies and would read as 0.
   const label = root.querySelector<HTMLElement>(`[data-copies-slug="${slug}"]`);
-  return Number(label?.dataset.copiesSeed || '0');
+  if (label) return Number(label.dataset.copiesSeed || '0');
+  const row = root.querySelector<HTMLElement>(`[data-slug="${slug}"][data-copies]`);
+  return Number(row?.dataset.copies || '0');
 }
 
 function setCopyCount(slug: string, copies: number, root: ParentNode = document): void {
