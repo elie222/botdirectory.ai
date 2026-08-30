@@ -13,7 +13,7 @@ import Select from '../components/Select.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 import { FEATURES, SITE, SPONSORING } from '../config';
 import { CATEGORIES, catStyle, fmt } from '../lib/constants';
-import { botHasPrompt, botListingText, getBots, SPONSORS, PROMOS, type Bot, type Promo } from '../lib/data';
+import { botListingText, getBots, SPONSORS, PROMOS, type Bot, type Promo } from '../lib/data';
 import { categorySlug, listIntegrations, MIN_INTEGRATION_HUB_BOTS, organizationStructuredData } from '../lib/seo';
 import { sponsorUrl } from '../lib/utm';
 import { promptExcerpt } from '../lib/text';
@@ -142,8 +142,7 @@ const structuredData = [
                 {
                   rows.map((row) =>
                     row.bot ? (
-                      <a
-                        href={`/bots/${row.bot.slug}/`}
+                      <div
                         class="bot-row"
                         data-slug={row.bot.slug}
                         data-name={row.bot.name}
@@ -155,13 +154,23 @@ const structuredData = [
                       >
                         <span class="bot-row-namecell">
                           <span class="bot-row-nameline">
-                            <span class="bot-row-name">{row.bot.name}</span>
+                            <a href={`/bots/${row.bot.slug}/`} class="bot-row-name">{row.bot.name}</a>
+                            {
+                              row.bot.grokShareUrl && (
+                                <a
+                                  href={row.bot.grokShareUrl}
+                                  class="add-grok-btn bot-row-add"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  data-grok-share
+                                >
+                                  Add to Grok Bot
+                                </a>
+                              )
+                            }
                           </span>
                           <span class="directory-card-summary" data-prompt-slug={row.bot.slug}>
-                            {promptExcerpt(botListingText(row.bot)) ||
-                              (botHasPrompt(row.bot)
-                                ? 'View the full prompt and setup instructions.'
-                                : 'View the description and Add to Grok Bot link.')}
+                            {promptExcerpt(botListingText(row.bot))}
                           </span>
                         </span>
                         <span
@@ -177,7 +186,7 @@ const structuredData = [
                           <span class="bot-row-copies" data-copies-slug={row.bot.slug} data-copies-seed={row.bot.copies}>{fmt(row.bot.copies)} copies</span>
                         )}
                         <span class="bot-row-contrib">{row.bot.contributor ? `@${row.bot.contributor}` : '—'}</span>
-                      </a>
+                      </div>
                     ) : (
                       <a
                         href={sponsorUrl(row.promo.href, 'promo')}
