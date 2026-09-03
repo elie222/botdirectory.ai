@@ -155,19 +155,6 @@ const structuredData = [
                         <span class="bot-row-namecell">
                           <span class="bot-row-nameline">
                             <a href={`/bots/${row.bot.slug}/`} class="bot-row-name">{row.bot.name}</a>
-                            {
-                              row.bot.grokShareUrl && (
-                                <a
-                                  href={row.bot.grokShareUrl}
-                                  class="add-grok-btn bot-row-add"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  data-grok-share
-                                >
-                                  Add to Grok Bot
-                                </a>
-                              )
-                            }
                           </span>
                           <span class="directory-card-summary" data-prompt-slug={row.bot.slug}>
                             {promptExcerpt(botListingText(row.bot))}
@@ -185,7 +172,22 @@ const structuredData = [
                         {FEATURES.showCopies && (
                           <span class="bot-row-copies" data-copies-slug={row.bot.slug} data-copies-seed={row.bot.copies}>{fmt(row.bot.copies)} copies</span>
                         )}
-                        <span class="bot-row-contrib">{row.bot.contributor ? `@${row.bot.contributor}` : '—'}</span>
+                        <span class="bot-row-source">
+                          {
+                            row.bot.grokShareUrl && (
+                              <a
+                                href={row.bot.grokShareUrl}
+                                class="bot-row-add"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-grok-share
+                              >
+                                Add
+                              </a>
+                            )
+                          }
+                          <span class="bot-row-contrib">{row.bot.contributor ? `@${row.bot.contributor}` : '—'}</span>
+                        </span>
                       </div>
                     ) : (
                       <a
@@ -214,7 +216,9 @@ const structuredData = [
                           ))}
                         </span>
                         {FEATURES.showCopies && <span class="bot-row-copies">Sponsored</span>}
-                        <span class="bot-row-contrib">@{row.promo.contributor}</span>
+                        <span class="bot-row-source">
+                          <span class="bot-row-contrib">@{row.promo.contributor}</span>
+                        </span>
                       </a>
                     )
                   )
