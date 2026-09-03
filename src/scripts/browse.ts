@@ -1,6 +1,6 @@
 // Home-page interactivity over one statically rendered directory. Card mode
-// restyles the same links instead of shipping a duplicate tree for every bot.
-import { loadCopyCounts, refreshCopyLabels } from './copies';
+// restyles the same rows instead of shipping a duplicate tree for every bot.
+import { loadCopyCounts, refreshCopyLabels, trackCopy } from './copies';
 import type { Bot } from '../lib/data';
 import { promptExcerpt } from '../lib/text';
 
@@ -168,6 +168,15 @@ function init(): void {
   btnCards.addEventListener('click', () => {
     state.view = 'cards';
     syncView();
+  });
+
+  // Count Add to Grok Bot the same as listing pages (fire-and-forget; don't block navigation).
+  directory.querySelectorAll<HTMLAnchorElement>('[data-grok-share]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const slug = link.closest<HTMLElement>('[data-slug]')?.dataset.slug || '';
+      trackCopy(slug);
+      refreshCopyLabels();
+    });
   });
 
   refreshCopyLabels();
