@@ -137,7 +137,7 @@ const structuredData = [
 
               <div id="directory-view" class="bot-table directory-view" data-view="table">
                 <div class="bot-table-head">
-                  <span>Bot</span><span>Category</span><span>Integrations</span>{FEATURES.showCopies && <span>Copies</span>}<span>Source</span>
+                  <span>Bot</span><span>Category</span><span>Integrations</span>{FEATURES.showCopies && <span>Copies</span>}<span>Source</span><span class="bot-table-add-head">Add</span>
                 </div>
                 {
                   rows.map((row) =>
@@ -172,7 +172,8 @@ const structuredData = [
                         {FEATURES.showCopies && (
                           <span class="bot-row-copies" data-copies-slug={row.bot.slug} data-copies-seed={row.bot.copies}>{fmt(row.bot.copies)} copies</span>
                         )}
-                        <span class="bot-row-source">
+                        <span class="bot-row-contrib">{row.bot.contributor ? `@${row.bot.contributor}` : '—'}</span>
+                        <span class="bot-row-action">
                           {
                             row.bot.grokShareUrl && (
                               <a
@@ -182,11 +183,10 @@ const structuredData = [
                                 rel="noopener noreferrer"
                                 data-grok-share
                               >
-                                Add
+                                Add to Grok Bot
                               </a>
                             )
                           }
-                          <span class="bot-row-contrib">{row.bot.contributor ? `@${row.bot.contributor}` : '—'}</span>
                         </span>
                       </div>
                     ) : (
@@ -216,9 +216,8 @@ const structuredData = [
                           ))}
                         </span>
                         {FEATURES.showCopies && <span class="bot-row-copies">Sponsored</span>}
-                        <span class="bot-row-source">
-                          <span class="bot-row-contrib">@{row.promo.contributor}</span>
-                        </span>
+                        <span class="bot-row-contrib">@{row.promo.contributor}</span>
+                        <span class="bot-row-action"></span>
                       </a>
                     )
                   )
