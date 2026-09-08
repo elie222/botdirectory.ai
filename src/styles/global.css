@@ -835,6 +835,7 @@ code, .iz-code {
   justify-self: end;
   align-self: end;
 }
+.directory-view[data-view='cards'] .bot-row-action:empty { display: none; }
 
 /* ---------- Empty state ---------- */
 .empty-state {
@@ -2022,6 +2023,7 @@ a.connect-chip:hover { border-color: var(--iz-blue-150); color: var(--iz-blue-60
   .directory-view .bot-row-tool { border: 1px solid var(--iz-line-2); border-radius: 7px; padding: 3px 8px; background: var(--iz-white); font-size: 12px; font-weight: 500; }
   .directory-view .bot-row-contrib { justify-self: start; }
   .directory-view .bot-row-action { justify-self: end; }
+  .directory-view .bot-row-action:empty { display: none; }
   .view-toggle { display: none; }
 }
 
