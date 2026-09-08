@@ -779,7 +779,7 @@ code, .iz-code {
 .directory-view[data-view='cards'] .bot-table-head { display: none; }
 .directory-view[data-view='cards'] .bot-row {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 12px;
   align-content: start;
   align-items: center;
@@ -790,12 +790,30 @@ code, .iz-code {
   transition: box-shadow 180ms ease, transform 180ms ease;
 }
 .directory-view[data-view='cards'] .bot-row:hover { box-shadow: var(--iz-shadow-lg); transform: translateY(-2px); }
-.directory-view[data-view='cards'] .bot-row-namecell,
-.directory-view[data-view='cards'] .bot-row-tools { grid-column: 1 / -1; }
-.directory-view[data-view='cards'] .bot-row-name { font-size: 19px; }
+/* Flatten namecell so the title and Add can share the card header row. */
+.directory-view[data-view='cards'] .bot-row:not([data-promo]) > .bot-row-namecell,
+.directory-view[data-view='cards'] .bot-row:not([data-promo]) > .bot-row-namecell > .bot-row-nameline {
+  display: contents;
+}
+.directory-view[data-view='cards'] .bot-row-name {
+  order: 1;
+  grid-column: 1;
+  font-size: 19px;
+  align-self: center;
+  min-width: 0;
+}
+.directory-view[data-view='cards'] .bot-row-action {
+  order: 1;
+  grid-column: 2;
+  justify-self: end;
+  align-self: start;
+}
+.directory-view[data-view='cards'] .bot-row-action:empty { display: none; }
 .directory-view[data-view='cards'] .directory-card-summary,
 .directory-view[data-view='cards'] .bot-row-note {
   display: block;
+  order: 2;
+  grid-column: 1 / -1;
   margin-top: 8px;
   height: 98px;
   overflow: hidden;
@@ -813,7 +831,11 @@ code, .iz-code {
   -webkit-mask-image: linear-gradient(to bottom, #000 62px, transparent 92px);
 }
 .directory-view[data-view='cards'] .directory-card-summary:empty { display: none; }
-.directory-view[data-view='cards'] .bot-row-tools { gap: 6px; }
+.directory-view[data-view='cards'] .bot-row-tools {
+  order: 3;
+  grid-column: 1 / -1;
+  gap: 6px;
+}
 .directory-view[data-view='cards'] .bot-row-tool {
   border: 1px solid var(--iz-line-2);
   border-radius: 7px;
@@ -822,13 +844,14 @@ code, .iz-code {
   font-size: 12px;
   font-weight: 500;
 }
-.directory-view[data-view='cards'] .bot-row-copies { align-self: end; font-size: 12.5px; }
-.directory-view[data-view='cards'] .bot-row-contrib { justify-self: start; align-self: end; }
-.directory-view[data-view='cards'] .bot-row-action {
-  justify-self: end;
-  align-self: end;
+.directory-view[data-view='cards'] .cat-pill { order: 4; justify-self: start; }
+.directory-view[data-view='cards'] .bot-row-copies { order: 5; align-self: end; font-size: 12.5px; }
+.directory-view[data-view='cards'] .bot-row-contrib { order: 6; justify-self: end; align-self: end; }
+/* Promo cards keep the namecell wrapper. */
+.directory-view[data-view='cards'] .bot-row[data-promo] .bot-row-namecell,
+.directory-view[data-view='cards'] .bot-row[data-promo] .bot-row-tools {
+  grid-column: 1 / -1;
 }
-.directory-view[data-view='cards'] .bot-row-action:empty { display: none; }
 
 /* ---------- Empty state ---------- */
 .empty-state {
@@ -1984,7 +2007,7 @@ a.connect-chip:hover { border-color: var(--iz-blue-150); color: var(--iz-blue-60
   .directory-view .bot-table-head { display: none; }
   .directory-view .bot-row {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 12px;
     align-content: start;
     align-items: center;
@@ -1993,10 +2016,28 @@ a.connect-chip:hover { border-color: var(--iz-blue-150); color: var(--iz-blue-60
     padding: 20px;
     box-shadow: var(--iz-shadow);
   }
-  .directory-view .bot-row-namecell, .directory-view .bot-row-tools { grid-column: 1 / -1; }
-  .directory-view .bot-row-name { font-size: 19px; }
+  .directory-view .bot-row:not([data-promo]) > .bot-row-namecell,
+  .directory-view .bot-row:not([data-promo]) > .bot-row-namecell > .bot-row-nameline {
+    display: contents;
+  }
+  .directory-view .bot-row-name {
+    order: 1;
+    grid-column: 1;
+    font-size: 19px;
+    align-self: center;
+    min-width: 0;
+  }
+  .directory-view .bot-row-action {
+    order: 1;
+    grid-column: 2;
+    justify-self: end;
+    align-self: start;
+  }
+  .directory-view .bot-row-action:empty { display: none; }
   .directory-view .directory-card-summary, .directory-view .bot-row-note {
     display: block;
+    order: 2;
+    grid-column: 1 / -1;
     margin-top: 8px;
     height: 98px;
     overflow: hidden;
@@ -2012,11 +2053,24 @@ a.connect-chip:hover { border-color: var(--iz-blue-150); color: var(--iz-blue-60
     text-overflow: unset;
   }
   .directory-view .directory-card-summary:empty { display: none; }
-  .directory-view .bot-row-tools { gap: 6px; }
-  .directory-view .bot-row-tool { border: 1px solid var(--iz-line-2); border-radius: 7px; padding: 3px 8px; background: var(--iz-white); font-size: 12px; font-weight: 500; }
-  .directory-view .bot-row-contrib { justify-self: start; }
-  .directory-view .bot-row-action { justify-self: end; }
-  .directory-view .bot-row-action:empty { display: none; }
+  .directory-view .bot-row-tools {
+    order: 3;
+    grid-column: 1 / -1;
+    gap: 6px;
+  }
+  .directory-view .bot-row-tool {
+    border: 1px solid var(--iz-line-2);
+    border-radius: 7px;
+    padding: 3px 8px;
+    background: var(--iz-white);
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .directory-view .cat-pill { order: 4; justify-self: start; }
+  .directory-view .bot-row-copies { order: 5; align-self: end; }
+  .directory-view .bot-row-contrib { order: 6; justify-self: end; align-self: end; }
+  .directory-view .bot-row[data-promo] .bot-row-namecell,
+  .directory-view .bot-row[data-promo] .bot-row-tools { grid-column: 1 / -1; }
   .view-toggle { display: none; }
 }
 
