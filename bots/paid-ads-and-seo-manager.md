@@ -6,8 +6,8 @@ contributor: irinabuht12-oss
 contributor_url: https://x.com/irabodnar
 integrations: [Google Ads, Meta Ads, Google Analytics, Search Console]
 integration_urls:
-  Google Ads: https://ads.google.com
-  Meta Ads: https://www.facebook.com/business/ads
+  Google Ads: https://www.get-ryze.ai/google-ads-mcp
+  Meta Ads: https://www.get-ryze.ai/meta-ads-mcp
   Google Analytics: https://analytics.google.com
   Search Console: https://search.google.com/search-console
 url: https://www.get-ryze.ai/how-to-connect-claude-to-google-meta-ads-mcp
