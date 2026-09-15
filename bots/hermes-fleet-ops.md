@@ -8,7 +8,7 @@ scouted_by: underdogs_scout
 integrations: [Grok Bot, Hermes Agent, HERDR, Tailscale]
 integration_urls:
   Hermes Agent: https://hermes-agent.nousresearch.com
-url: https://github.com/shagghiesuperstar/hermes-grok-bridge
+url: https://github.com/shagghiesuperstar/hermes-grok-bridge#fleet-ops
 sources:
   - kind: web
     url: https://github.com/shagghiesuperstar/hermes-grok-bridge

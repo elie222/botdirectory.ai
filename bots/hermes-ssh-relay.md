@@ -9,7 +9,7 @@ integrations: [Grok Bot, Hermes Agent, SSH, MCP, Tailscale]
 integration_urls:
   Hermes Agent: https://hermes-agent.nousresearch.com
   Tailscale: https://tailscale.com
-url: https://github.com/shagghiesuperstar/hermes-grok-bridge
+url: https://github.com/shagghiesuperstar/hermes-grok-bridge/blob/main/docs/SSH_RELAY.md
 sources:
   - kind: web
     url: https://github.com/shagghiesuperstar/hermes-grok-bridge
