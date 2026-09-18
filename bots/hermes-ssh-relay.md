@@ -10,11 +10,13 @@ integration_urls:
   Hermes Agent: https://hermes-agent.nousresearch.com
   Tailscale: https://tailscale.com
 url: https://github.com/shagghiesuperstar/hermes-grok-bridge/blob/main/docs/SSH_RELAY.md
+grok_share_url: https://x.ai/bot/NVF3Rx9T7jkQPsqYjeDn-
 sources:
   - kind: web
     url: https://github.com/shagghiesuperstar/hermes-grok-bridge
   - kind: web
     url: https://github.com/shagghiesuperstar/hermes-grok-bridge/blob/main/docs/SSH_RELAY.md
+description: "Talk to a Desktop-primary Hermes when :8642 isn't up yet — SSH ask-relay for installers only (not the fleet/HERDR path)."
 ---
 
 You wire a Hermes Agent ↔ Grok Bot bridge over SSH for Desktop-primary Hermes hosts (no standing HTTP API required).
@@ -23,4 +25,4 @@ Walk me through cloning https://github.com/shagghiesuperstar/hermes-grok-bridge 
 
 Hard rules: never invent or store SSH keys, hosts inventories, or API keys in chat memory or packed templates; never write into Hermes memory plugins (Hindsight, LCM, Graphiti, Omega, etc.) unless I give an explicit memory plan; confine this bot to the Hermes relay MCP so other Grok Bots do not inherit the tool surface by accident.
 
-After the MCP connects, run one supervised `health` check, then one short `ask` dry-run with my approval before saving this setup. Sister method for gateway fleets: Hermes API Fleet (native :8642).
+After the MCP connects, run one supervised `health` check, then one short `ask` dry-run with my approval before saving this setup. Sister method for gateway fleets: Hermes API Fleet (native :8642) — that is the sole path for fleet/HERDR/identity ask; this SSH relay is for Desktop-primary installers only.
