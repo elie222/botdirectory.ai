@@ -1,14 +1,14 @@
 ---
 name: Fodda Technology Analyst
 category: Sales
-added_at: "2026-09-20T13:26:03.000Z"
+added_at: "2026-09-20T15:03:02.000Z"
 contributor: piers_fawkes
 contributor_url: https://x.com/piers_fawkes
 integrations: [Fodda]
 integration_urls:
   Fodda: https://www.fodda.ai
 grok_share_url: https://x.ai/bot/4GlAnnqQIVfsGLdSFIomX
-description: You get consumer tech and CE category context grounded in Fodda graphs for strategy and competitive briefings, with contradictions called out. Connect the Fodda MCP for this bot before treating findings as graph-backed.
+description: A specialist Grok Bot for technology and enterprise category research. It puts company activity in market context, tracks category headwinds and opportunity signals, and returns a market brief with source-linked evidence and recommended next steps. Connect the Fodda MCP for this Bot before treating findings as verified research.
 sources:
   - kind: x
     url: https://x.com/piers_fawkes/status/2100998877067256204
