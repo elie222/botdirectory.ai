@@ -7,7 +7,6 @@ contributor_url: https://x.com/piers_fawkes
 integrations: [Fodda]
 integration_urls:
   Fodda: https://www.fodda.ai
-url: https://www.fodda.ai
 grok_share_url: https://x.ai/bot/4GlAnnqQIVfsGLdSFIomX
 description: You get consumer tech and CE category context grounded in Fodda graphs for strategy and competitive briefings, with contradictions called out. Connect the Fodda MCP for this bot before treating findings as graph-backed.
 sources:

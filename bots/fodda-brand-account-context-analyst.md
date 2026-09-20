@@ -7,7 +7,6 @@ contributor_url: https://x.com/piers_fawkes
 integrations: [Fodda]
 integration_urls:
   Fodda: https://www.fodda.ai
-url: https://www.fodda.ai
 grok_share_url: https://x.ai/bot/uLsc529aqDnuQDacsDV9g
 description: You get pre-meeting brand and account dossiers grounded in Fodda knowledge graphs — market shifts, competitor moves, claim checks, and mandatory counter-evidence. Connect the Fodda Brand Context MCP, then ask for a Sephora/Target/Lululemon-style briefing or a claim to verify.
 sources:
