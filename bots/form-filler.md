@@ -9,5 +9,5 @@ grok_share_url: https://x.ai/bot/wPURKNd7W_Fafwz73SP5I
 description: "You get drafts of forms, surveys, claims, rebates, warranties, and class-action intakes with cited answers. Nothing is submitted without you."
 sources:
   - kind: x
-    url: https://x.com/exzacklyright/status/2106131577671733544
+    url: https://x.com/exzacklyright/status/2105339811825680608
 ---
