@@ -40,22 +40,23 @@ export const SITE = {
 
 export const SPONSORING = {
   /**
-   * Slot layout. 'rail' (default): right rail next to the list.
+   * Slot layout. 'rail': right rail next to the list.
    * 'both': sticky page-edge columns ≥1440px. 'inline': promos spliced
-   * into the list at fixed indexes (data/promos.json).
+   * into the list at fixed indexes (data/promos.json). Inline is the live
+   * layout — there is no side rail or edge column.
    */
-  mode: 'both' as SponsorMode,
+  mode: 'inline' as SponsorMode,
   /**
    * Edge-card look (design prop `sponsorCardStyle`). 'plain': white card,
    * colored logo tile. 'tinted': full-card color wash per sponsor family
    * (TrustMRR-style).
    */
   cardStyle: 'tinted' as 'plain' | 'tinted',
-  /** "3 of 6 taken" line next to the rail. */
+  /** "3 of 6 taken" line next to the rail (unused while mode is inline). */
   slotsTaken: 3,
   slotsTotal: 6,
-  /** "N of M taken" when mode === 'both'. */
-  slotsTakenBoth: 14,
+  /** Open-slot count on the sponsor page. Taken matches the live sponsors. */
+  slotsTakenBoth: 3,
   slotsTotalBoth: 15,
   /** Stripe payment link for booking a slot. */
   paymentUrl: 'https://buy.stripe.com/bJedRa7U18bw9tH7Gi4ko04',
@@ -88,7 +89,7 @@ export const NEWSLETTER_API = {
  * inventory from the sidebar slots (not part of sponsors.json rotation).
  */
 export const CONNECT_SPONSOR = {
-  enabled: true,
+  enabled: false,
   name: 'Executor',
   logo: '/images/sponsors/executor.png',
   url: 'https://executor.sh',

@@ -12,7 +12,7 @@ import ToolIcon from '../components/ToolIcon.astro';
 import Select from '../components/Select.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 import { FEATURES, SITE, SPONSORING } from '../config';
-import { CATEGORIES, catStyle, fmt } from '../lib/constants';
+import { CATEGORIES, catStyle, familyStyle, fmt } from '../lib/constants';
 import { botListingText, getBots, SPONSORS, PROMOS, type Bot, type Promo } from '../lib/data';
 import { categorySlug, listIntegrations, MIN_INTEGRATION_HUB_BOTS, organizationStructuredData } from '../lib/seo';
 import { sponsorUrl } from '../lib/utm';
@@ -42,7 +42,10 @@ const railWrapClass = mode === 'both' ? 'iz-only-narrow' : '';
 type Row = { bot: Bot; promo?: undefined } | { promo: Promo; bot?: undefined };
 const rows: Row[] = bots.map((b) => ({ bot: b }));
 if (mode === 'inline') {
-  for (const p of PROMOS) rows.splice(Math.min(p.at, rows.length), 0, { promo: p });
+  // High indexes first so each `at` stays a position in the bot list.
+  for (const p of [...PROMOS].sort((a, b) => b.at - a.at)) {
+    rows.splice(Math.min(p.at, rows.length), 0, { promo: p });
+  }
 }
 
 const searchText = (b: Bot) => [b.name, b.category, ...b.integrations, b.contributor].filter(Boolean).join(' ').toLowerCase();
@@ -84,7 +87,7 @@ const structuredData = [
 
 <Base title={title} description={description} structuredData={structuredData}>
   <div class:list={['iz-page-root', { 'hide-copies': !FEATURES.showCopies }]}>
-    <MarqueeStrips />
+    {mode !== 'inline' && <MarqueeStrips />}
 
     <div class="iz-cols" style={`grid-template-columns: ${pageCols};`}>
       {hasEdge && <EdgeColumn side="left" />}
@@ -192,23 +195,29 @@ const structuredData = [
                     ) : (
                       <a
                         href={sponsorUrl(row.promo.href, 'promo')}
-                        class="bot-row"
+                        class="bot-row promo-row"
                         data-promo
                         data-sponsor={row.promo.name}
                         data-sponsor-placement="promo"
                         data-at={row.promo.at}
+                        rel="sponsored"
                         style={`background: var(--iz-${row.promo.family}-50);`}
                       >
                         <span class="bot-row-namecell">
                           <span class="bot-row-nameline">
+                            {
+                              row.promo.logo && (
+                                <img class="promo-logo logo-img" src={row.promo.logo} alt="" width="28" height="28" />
+                              )
+                            }
                             <span class="bot-row-name">{row.promo.name}</span>
-                            <span class="promo-tag-row">Promoted</span>
+                            <span class="promo-tag-row">Sponsored</span>
                           </span>
                           <span class="bot-row-note">{row.promo.note}</span>
                         </span>
                         <span
                           class="cat-pill"
-                          style={`color: ${catStyle(row.promo.category).catFg}; background: ${catStyle(row.promo.category).catBg}; border-color: ${catStyle(row.promo.category).catBorder};`}
+                          style={`color: ${familyStyle(row.promo.family).fg}; background: ${familyStyle(row.promo.family).bg}; border-color: ${familyStyle(row.promo.family).border};`}
                         >{row.promo.category}</span>
                         <span class="bot-row-tools">
                           {row.promo.integrations.map((t) => (
@@ -216,8 +225,8 @@ const structuredData = [
                           ))}
                         </span>
                         {FEATURES.showCopies && <span class="bot-row-copies">Sponsored</span>}
-                        <span class="bot-row-contrib">@{row.promo.contributor}</span>
-                        <span class="bot-row-action"></span>
+                        <span class="bot-row-contrib">{row.promo.source ?? `@${row.promo.contributor}`}</span>
+                        <span class="bot-row-action"><span class="add-grok-btn bot-row-add">Visit</span></span>
                       </a>
                     )
                   )

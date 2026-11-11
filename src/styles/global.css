@@ -733,11 +733,71 @@ code, .iz-code {
   flex: none;
   font-size: 10.5px;
   font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--iz-muted-2);
-  background: var(--iz-surface);
+  background: var(--iz-white);
   border: 1px solid var(--iz-line-2);
   border-radius: 6px;
   padding: 1px 6px;
+}
+.promo-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  flex: none;
+}
+.bot-row[data-promo] .bot-row-nameline { align-items: center; flex-wrap: wrap; }
+/* Card directory: the Visit control sits on the title row, and the pill +
+   site share the next full-width row. The Copies cell would otherwise fall
+   into the narrow button column. */
+.directory-view[data-view='cards'] .promo-row { align-self: start; }
+.directory-view[data-view='cards'] .promo-row.bot-row:has(.bot-row-add) > .bot-row-namecell {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+.directory-view[data-view='cards'] .promo-row .bot-row-nameline { padding-right: 76px; }
+.directory-view[data-view='cards'] .promo-row .bot-row-action:not(:empty) {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+}
+.directory-view[data-view='cards'] .promo-row .cat-pill {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: start;
+  align-self: center;
+}
+.directory-view[data-view='cards'] .promo-row .bot-row-copies { display: none; }
+.directory-view[data-view='cards'] .promo-row .bot-row-contrib {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+  align-self: center;
+}
+.directory-view[data-view='cards'] .promo-row .bot-row-tools:not(:has(.bot-row-tool)) {
+  display: none;
+}
+/* Tagline stays one line of copy. Card view otherwise treats .bot-row-note
+   like a prompt excerpt (fixed height, mono, fade). */
+.directory-view[data-view='cards'] .bot-row[data-promo] .bot-row-note,
+.directory-view .bot-row[data-promo] .bot-row-note {
+  height: auto;
+  max-height: none;
+  margin-top: 6px;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--iz-muted);
+  font-family: var(--iz-font-body);
+  font-size: 13.5px;
+  line-height: 1.45;
+  white-space: normal;
+  mask-image: none;
+  -webkit-mask-image: none;
 }
 .bot-row-note { font-size: 12.5px; color: var(--iz-muted); text-wrap: pretty; }
 .cat-pill {
@@ -1951,7 +2011,8 @@ a.connect-chip:hover { border-color: var(--iz-blue-150); color: var(--iz-blue-60
   .iz-strip-top .iz-strip-track { animation: izMarqueeL 42s linear infinite; }
   .iz-strip-bottom .iz-strip-track { animation: izMarqueeR 52s linear infinite; }
   .iz-rail-wrap { display: none !important; }
-  .iz-page-root { padding-top: 56px; padding-bottom: 56px; }
+  /* Clear the fixed sponsor strips. Pages without them keep their own padding. */
+  .iz-page-root:has(.iz-strip) { padding-top: 56px; padding-bottom: 56px; }
 }
 @media (max-width: 1439px) {
   .iz-cols { grid-template-columns: minmax(0, 1fr) !important; }
@@ -2046,6 +2107,32 @@ a.connect-chip:hover { border-color: var(--iz-blue-150); color: var(--iz-blue-60
   }
   .directory-view .bot-row-copies { align-self: end; }
   .directory-view .bot-row-contrib { justify-self: end; align-self: end; }
+  .directory-view .promo-row { align-self: start; }
+  .directory-view .promo-row.bot-row:has(.bot-row-add) > .bot-row-namecell {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  .directory-view .promo-row .bot-row-nameline { padding-right: 76px; }
+  .directory-view .promo-row .bot-row-action:not(:empty) {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: end;
+    align-self: start;
+  }
+  .directory-view .promo-row .cat-pill {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+    align-self: center;
+  }
+  .directory-view .promo-row .bot-row-copies { display: none; }
+  .directory-view .promo-row .bot-row-contrib {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    align-self: center;
+  }
+  .directory-view .promo-row .bot-row-tools:not(:has(.bot-row-tool)) { display: none; }
   .view-toggle { display: none; }
 }
 

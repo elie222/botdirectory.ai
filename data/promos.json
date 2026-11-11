@@ -1,4 +1,38 @@
 [
-  { "at": 2, "name": "Rakazo Cloud Inbox Bot", "category": "Email", "family": "blue", "integrations": ["Gmail", "Slack", "Notion"], "contributor": "rakazo", "href": "https://rakazo.com", "note": "Hosted version of the inbox triage bot — connect Gmail once, it runs every 10 minutes." },
-  { "at": 8, "name": "DataForSEO Rank Watcher", "category": "Marketing", "family": "orange", "integrations": ["DataForSEO", "Search Console"], "contributor": "dataforseo", "href": "https://dataforseo.com", "note": "Feeds real SERP data into your own marketing bots. 1,000 free requests." }
+  {
+    "at": 8,
+    "name": "CodeRabbit",
+    "category": "Code review",
+    "family": "orange",
+    "integrations": [],
+    "contributor": "coderabbit",
+    "source": "coderabbit.ai",
+    "href": "https://coderabbit.link/bot-directory-ai-001",
+    "logo": "/images/sponsors/coderabbit.png",
+    "note": "AI writes the code. CodeRabbit catches the slop."
+  },
+  {
+    "at": 28,
+    "name": "Inbox Zero",
+    "category": "Email",
+    "family": "blue",
+    "integrations": [],
+    "contributor": "inboxzero",
+    "source": "getinboxzero.com",
+    "href": "https://getinboxzero.com",
+    "logo": "/images/sponsors/inbox-zero.png",
+    "note": "Your 24/7 AI email assistant. Open source, works with Gmail and Outlook."
+  },
+  {
+    "at": 56,
+    "name": "Rakazo",
+    "category": "Agents",
+    "family": "indigo",
+    "integrations": [],
+    "contributor": "rakazo",
+    "source": "rakazo.com",
+    "href": "https://rakazo.com",
+    "logo": "/images/sponsors/rakazo.png",
+    "note": "Open source Grok Bot."
+  }
 ]
