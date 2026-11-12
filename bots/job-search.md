@@ -9,5 +9,5 @@ grok_share_url: https://x.ai/bot/PR62dA8RVFBzyylzEvmvn
 description: "You get an interview hunter: it locks your target role and resume facts, then drafts applications and LinkedIn referral asks for you to review."
 sources:
   - kind: x
-    url: https://x.com/exzacklyright/status/2105339811825680608
+    url: https://x.com/exzacklyright/status/2106131577671733544
 ---
