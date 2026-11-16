@@ -1,15 +1,4 @@
 [
-  { "name": "Comp AI", "initial": "C", "family": "indigo", "tagline": "AI that gets you SOC 2, ISO 27001 and HIPAA audit-ready in record time.", "cta": "Get audit-ready →", "url": "https://go.trycomp.ai/elie", "logo": "/images/sponsors/comp-ai.png" },
-  { "name": "Postiz", "initial": "P", "family": "purple", "tagline": "Agentic social scheduling — plan, generate and post across 30+ networks.", "cta": "Schedule a post →", "url": "https://postiz.com", "logo": "/images/sponsors/postiz.png" },
-  { "name": "GojiberryAI", "initial": "G", "family": "pink", "tagline": "Finds warm leads and books sales calls for you automatically.", "cta": "Find warm leads →", "url": "https://gojiberry.ai", "logo": "/images/sponsors/gojiberryai.png" },
-  { "name": "FounderStack", "initial": "F", "family": "blue", "tagline": "Lifetime deal: Social media automation + 3 other tools", "cta": "Get lifetime access →", "url": "https://www.founderstack.pro/", "logo": "/images/sponsors/founderstack.png" },
-  { "name": "treg", "initial": "T", "family": "green", "tagline": "Connect your agents to 2,630+ API endpoints — one auth, pay per result.", "cta": "Connect your agent →", "url": "https://treg.to", "logo": "/images/sponsors/treg.png" },
-  { "name": "ScreenshotOne", "initial": "S", "family": "purple", "tagline": "Screenshot API for developers — capture any site with one request.", "cta": "Grab an API key →", "url": "https://screenshotone.com", "logo": "/images/sponsors/screenshotone.png" },
-  { "name": "Trends.vc", "initial": "T", "family": "blue", "tagline": "A database of vetted business opportunities, pulled from years of Trends research.", "cta": "Browse opportunities →", "url": "https://trends.vc/opportunities", "logo": "/images/sponsors/trends-vc.png" },
-  { "name": "Inbox Zero", "initial": "I", "family": "blue", "tagline": "Your 24/7 AI email assistant. Open source, works with Gmail and Outlook.", "cta": "Clean your inbox →", "url": "https://getinboxzero.com", "logo": "/images/sponsors/inbox-zero.png" },
-  { "name": "Castos", "initial": "C", "family": "purple", "tagline": "The easiest way to start and grow your podcast — publish in minutes, distribute everywhere.", "cta": "Start a podcast →", "url": "https://castos.com", "logo": "/images/sponsors/castos.png" },
-  { "name": "Monocards", "initial": "M", "family": "purple", "tagline": "Turn your agent into an on-brand visual designer.", "cta": "Design on-brand cards →", "url": "https://monocards.app", "logo": "/images/sponsors/monocards.png" },
-  { "name": "maxfusion.ai", "initial": "M", "family": "orange", "tagline": "The AI ad creative platform for agents.", "cta": "Create your AI ad →", "url": "https://maxfusion.ai", "logo": "/images/sponsors/maxfusion.png" },
   {
     "name": "CodeRabbit",
     "initial": "C",
@@ -23,5 +12,22 @@
       { "id": "reviews", "tagline": "Your agent writes the code. CodeRabbit reviews it." }
     ]
   },
-  { "name": "CRHQ.AI", "initial": "C", "family": "purple", "tagline": "Deploy autonomous AI agent teams on dedicated servers in 90 seconds.", "cta": "Deploy your AI team →", "url": "https://crhq.ai", "logo": "/images/sponsors/crhq.svg" }
+  {
+    "name": "Inbox Zero",
+    "initial": "I",
+    "family": "blue",
+    "tagline": "Your 24/7 AI email assistant. Open source, works with Gmail and Outlook.",
+    "cta": "Clean your inbox →",
+    "url": "https://getinboxzero.com",
+    "logo": "/images/sponsors/inbox-zero.png"
+  },
+  {
+    "name": "Rakazo",
+    "initial": "R",
+    "family": "indigo",
+    "tagline": "Open source Grok Bot.",
+    "cta": "Try Rakazo →",
+    "url": "https://rakazo.com",
+    "logo": "/images/sponsors/rakazo.png"
+  }
 ]

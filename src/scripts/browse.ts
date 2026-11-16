@@ -87,7 +87,25 @@ function init(): void {
     history.replaceState(null, '', url);
   }
 
-  const effectiveCopies = (row: HTMLElement): number => Number(row.dataset.copies || '0');
+  /**
+   * Insertion indexes spread across a bot list of `length`, strictly increasing
+   * and never past the end, so a short filter can't pile every ad together.
+   */
+  function spreadPromoIndexes(count: number, length: number): number[] {
+    const indexes = Array.from({ length: count }, (_, i) =>
+      Math.round(((i + 1) * (length + 1)) / (count + 1)),
+    );
+    for (let i = 1; i < indexes.length; i++) {
+      if (indexes[i] <= indexes[i - 1]) indexes[i] = indexes[i - 1] + 1;
+    }
+    for (let i = indexes.length - 1; i >= 0; i--) {
+      const max = length - (indexes.length - 1 - i);
+      if (indexes[i] > max) indexes[i] = Math.max(0, max);
+    }
+    return indexes;
+  }
+
+const effectiveCopies = (row: HTMLElement): number => Number(row.dataset.copies || '0');
 
   const matches = (row: HTMLElement, q: string): boolean =>
     (state.category === 'All' || row.dataset.category === state.category) &&
@@ -111,10 +129,26 @@ function init(): void {
         (a.dataset.name || '').localeCompare(b.dataset.name || '');
     });
 
-    // Promoted rows keep their fixed positions in the visible list.
+    // Sponsored rows keep their fixed slots in the visible list. When a filter
+    // leaves fewer bots than the last slot, spread the ads through what's left
+    // so they don't stack at the end. Hide them entirely when nothing matches.
     const ordered = [...visible];
-    for (const p of promoRows) {
-      ordered.splice(Math.min(Number(p.dataset.at || '0'), ordered.length), 0, p);
+    const promos = [...promoRows].sort(
+      (a, b) => Number(a.dataset.at || '0') - Number(b.dataset.at || '0'),
+    );
+    if (visible.length === 0) {
+      for (const p of promos) p.hidden = true;
+    } else {
+      const preferred = promos.map((p) => Number(p.dataset.at || '0'));
+      const fits = preferred.every((at, i) => at <= visible.length && (i === 0 || at > preferred[i - 1]));
+      const indexes = fits ? preferred : spreadPromoIndexes(promos.length, visible.length);
+      // High indexes first so each `at` is a position in the bot list, not
+      // a slot that drifts after earlier ads are inserted.
+      for (let i = promos.length - 1; i >= 0; i--) {
+        const p = promos[i];
+        p.hidden = false;
+        ordered.splice(Math.min(indexes[i] ?? ordered.length, ordered.length), 0, p);
+      }
     }
     const hiddenRows = botRows.filter((r) => !visible.includes(r));
 
