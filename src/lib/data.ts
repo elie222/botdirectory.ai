@@ -37,8 +37,12 @@ export interface Promo {
   family: string;
   integrations: string[];
   contributor: string;
+  /** Public site shown in the source column. Falls back to @contributor. */
+  source?: string;
   href: string;
   note: string;
+  /** Path under public/ for a logo. */
+  logo?: string;
 }
 
 export interface Bot {

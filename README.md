@@ -101,7 +101,7 @@ pnpm check      # astro check (types)
 
 ## Sponsoring
 
-Sponsor slots (the rail next to the list) are monthly and capped. See the
+Sponsors are labelled rows mixed into the directory, not a side rail. See the
 [sponsor section](https://botdirectory.ai/#sponsor) on the site.
 
 ## License

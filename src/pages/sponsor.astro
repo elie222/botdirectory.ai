@@ -14,7 +14,7 @@ const bots = await getBots();
 const botCount = bots.length;
 const slotsTotal = SPONSORING.slotsTotalBoth;
 const slotsOpen = slotsTotal - SPONSORING.slotsTakenBoth;
-const slotsShown = 9; // 9 sponsor cards + Advertise; sit-outs flip into the slots over time
+const slotsShown = SPONSORS.length;
 const price = `$${SPONSORING.priceMonthly.toLocaleString('en-US')}`;
 const elonPostUrl = 'https://x.com/elonmusk/status/2090079706402164857';
 const elonPostViews = '22M';
@@ -28,19 +28,19 @@ const description = `${botCount} ready-to-use bot prompts, ${slotsTotal} sponsor
 const stats = [
   { value: String(botCount), label: 'ready-to-use bot prompts. Copy, paste into Grok, done.' },
   { value: elonPostViews, label: 'views on Elon Musk’s post sharing the directory' },
-  { value: `${slotsShown} of ${slotsTotal}`, label: 'sponsor cards on screen at a time, flipping through the rest' },
+  { value: `${slotsShown} of ${slotsTotal}`, label: 'sponsor slots filled, shown as labelled rows in the directory' },
 ];
 
 const tiers = [
   {
-    name: 'Side rail',
+    name: 'Sponsored row',
     price,
     perMonth: true,
     cta: { label: 'Book a slot', href: SPONSORING.paymentUrl, primary: true },
     availability: `${slotsOpen} open`,
     note: 'Current rate. It goes up as more sponsors join.',
-    blurb: 'A card in the sticky rail beside the bot table, visible the whole scroll.',
-    points: ['Logo, name and one line of copy', 'Sticky on desktop, strip on mobile', `${slotsShown} of ${slotsTotal} on screen at a time, flipping through the rest`],
+    blurb: 'A labelled row mixed into the home-page directory, in the table and in the cards.',
+    points: ['Logo, name and one line of copy', 'Spread through the bot list', 'Marked Sponsored, on desktop and mobile'],
   },
   {
     name: 'In-list',
@@ -48,8 +48,8 @@ const tiers = [
     perMonth: false,
     cta: { label: 'Email to enquire', href: SITE.sponsorContactUrl, primary: false },
     availability: 'Enquire',
-    blurb: 'Your bot sits inside the table as a labelled promoted row.',
-    points: ['Reads like a real directory entry', 'Fixed rows near the top of the list', 'Marked Promoted, always'],
+    blurb: 'Your product sits inside the directory as a labelled sponsored row.',
+    points: ['Reads like a directory entry', 'Placed among the bots, not in a sidebar', 'Marked Sponsored, always'],
   },
   {
     name: 'Full takeover',
@@ -57,7 +57,7 @@ const tiers = [
     perMonth: false,
     cta: { label: 'Email to enquire', href: SITE.sponsorContactUrl, primary: false },
     availability: 'Enquire',
-    blurb: 'Both edge rails plus the dark sponsor band for a full month.',
+    blurb: 'Every sponsored row plus the dark sponsor band for a full month.',
     points: ['Exclusive, no other sponsors', 'Band copy written with you', 'Home page and every bot page'],
   },
 ];
@@ -65,7 +65,7 @@ const tiers = [
 const faqs = [
   { q: 'How is a slot priced?', a: `Flat ${price} a month, paid through Stripe. No CPM, no auction, no bidding against the other ${word(slotsTotal - 1)}. That is today's rate. It goes up as more sponsors join.` },
   { q: 'Can I test one month?', a: 'That is the default. Month to month, cancel anytime, no annual commitment.' },
-  { q: `Why ${word(slotsTotal)} but ${word(slotsShown)} shown?`, a: `${cap(word(slotsShown))} sponsor cards sit in the rails at once, and they flip through the rest so every sponsor gets the same share of impressions.` },
+  { q: `Why ${word(slotsTotal)} but ${word(slotsShown)} shown?`, a: `${cap(word(slotsShown))} sponsors are live. Each one is a labelled row mixed into the directory. The other slots are open.` },
   { q: 'What do you not accept?', a: 'No competing directories, no crypto, nothing you would not want sitting next to your own product.' },
   { q: 'Who writes the copy?', a: 'You send a line, we edit it to match the page voice and send it back before it goes live.' },
 ];
@@ -139,8 +139,8 @@ const structuredData = [
       <p class="iz-eyebrow sp-eyebrow">Placements</p>
       <h2 class="sp-h2">Three places a slot can live</h2>
       <p class="sp-section-lede">
-        {cap(word(slotsTotal))} slots exist, {word(slotsShown)} render on any given page load, and no two go to companies
-        in the same category.
+        {cap(word(slotsTotal))} slots exist. {cap(word(slotsShown))} sponsors are in the directory now, each as a labelled
+        row in the list.
       </p>
       <div class="sp-tiers">
         {
